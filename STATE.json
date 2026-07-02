@@ -1,8 +1,8 @@
 {
   "phase": "P0",
-  "last_completed_task": "A-001-recon",
+  "last_completed_task": "A-002",
   "active_jobs": [],
   "budget_est_usd": 0.0,
-  "blockers": [],
+  "blockers": ["robintrack-archive-soft: no local export; CALIB-only, needed for P3 (see notes.md)"],
   "trials_registered": 0
 }
