@@ -1,0 +1,9 @@
+run_id: smoke-local
+phase: P2
+universe: {tickers: [SYNTH1], source: synthetic}
+window: {start: "2030-01-01", days: 10}     # synthetic dates; no real data needed
+agents: {n: 20, persona_seed: 1337}
+models: [Qwen/Qwen2.5-1.5B-Instruct]        # smoke may substitute a stub generator offline
+decision_frequency: daily
+mode: signal_and_auction
+gates: {min_parse_valid_frac: 0.99}

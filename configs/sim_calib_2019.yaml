@@ -1,0 +1,8 @@
+run_id: calib-2019-v1
+phase: P3
+universe: {source: robintrack_rules, selection_date: "2019-06-28", n_tickers: 10}
+window: {start: "2019-07-01", end: "2019-12-31"}
+agents: {n: 300, persona_seed: 1337}
+anonymization_ab: true          # named vs aliased arms (memorization quantification)
+decision_frequency: daily
+targets: [robintrack_d_holders_sign, stylized_facts]
