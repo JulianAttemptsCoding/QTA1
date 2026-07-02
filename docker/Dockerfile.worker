@@ -1,0 +1,32 @@
+# Vertex worker image for agorasim: vLLM inference + HF download + GCS sync.
+# Built via Cloud Build (K-1: no local heavy compute). Runs on n1-standard-8 + T4 (sm_75).
+FROM python:3.11-slim
+
+ENV PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    HF_HUB_ENABLE_HF_TRANSFER=1 \
+    PYTHONPATH=/app/src
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential git curl ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Heavy, rarely-changing deps first (Docker layer cache).
+RUN pip install --upgrade pip && \
+    pip install \
+      "vllm==0.6.3.post1" \
+      "huggingface_hub[hf_transfer]>=0.25,<1.0" \
+      "google-cloud-storage>=2.18"
+
+# Repo package + its light deps (numpy/pandas/pydantic/requests/pyyaml).
+COPY pyproject.toml /app/pyproject.toml
+COPY src /app/src
+RUN pip install .
+
+COPY prompts /app/prompts
+COPY configs /app/configs
+COPY scripts /app/scripts
+
+CMD ["python", "-c", "import vllm, agorasim; print('agorasim worker ok, vllm', vllm.__version__)"]

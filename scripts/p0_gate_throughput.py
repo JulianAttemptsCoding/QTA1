@@ -1,7 +1,9 @@
-"""GATE G0 (compute): run INSIDE a Vertex T4 worker. Measures real decisions/hour:
-- load each configs/models.yaml model under vLLM,
-- run 512 representative prompts (persona + 30 bars + 5 headlines, ~900 tok in / 120 out),
-- record tokens/s and valid-JSON rate via agorasim.schemas.parse_decision,
-- write docs/G0_THROUGHPUT.md and refresh the FEASIBILITY.md cost table.
-Budget lines in FEASIBILITY.md are estimates until this gate replaces them with measurements.
+"""GATE G0 (compute): thin entrypoint for the Vertex T4 worker image. Delegates to
+agorasim.infra.throughput_probe (measures decisions/hour + valid-JSON rate for one model).
+NOT runnable locally (needs vLLM + a GPU); the launcher loops it over models. See A-003.
+docs/G0_THROUGHPUT.md is assembled locally from the per-model results synced to GCS.
 """
+from agorasim.infra.throughput_probe import main
+
+if __name__ == "__main__":
+    main()
