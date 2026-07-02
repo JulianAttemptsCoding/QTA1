@@ -16,3 +16,12 @@
 - GCP project resolved from gcloud config: `project-c779f701-1a49-4a58-b54`; region resolved from gcloud config: `us-central1`.
 - Billing check: `gcloud beta billing projects describe ...` reported billing enabled.
 - QA delta against QC_AUDIT master checklist: M-14 local reproducibility checks remain green; M-12/M-13 are still gated on G0 measurements; no heavy-compute rule violation observed.
+
+## [2026-07-02T22:14:00Z] P0/A-002
+- Implemented `scripts/p0_gate_data.py` with real checks for Alpaca bars/feed matrix, Alpaca news depth, Robintrack archive load, SEC EDGAR, and FRED.
+- Added non-network tests for the P0 gate helper logic; `pytest -q` result after implementation: 17 passed.
+- Ran `python scripts\p0_gate_data.py`; first attempt passed Alpaca, Robintrack, and FRED but failed EDGAR because the fallback User-Agent lacked an email-shaped contact and SEC returned HTML.
+- Fixed EDGAR response handling and fallback User-Agent, then reran `python scripts\p0_gate_data.py --no-robintrack-download`; all checks PASS.
+- Robintrack archive was downloaded/extracted under ignored `data/raw/robintrack/`; sample CSVs loaded for AAPL, TSLA, and GME. Raw vendor data remains untracked.
+- `docs/G0_REPORT.md` written with PASS details. Data-side G0 criteria are satisfied; throughput-side G0 remains pending and must run on Vertex.
+- QA loop: `pytest -q` passed, smoke command passed, no secrets were printed or committed, and QC_AUDIT M-13 is now resolved for the checked data endpoints.
