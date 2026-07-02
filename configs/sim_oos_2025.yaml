@@ -1,0 +1,8 @@
+run_id: oos-2025-v1
+phase: P4
+universe: {source: oos_rules, n_tickers: 10, freeze_before_inference: true}
+window: {start: "SET_AT_G1_AFTER_MAX_MODEL_CUTOFF", end: "2026-06-30"}
+agents: {n: 300, persona_seed: 1337, scaling_curve: [50, 100, 300, 1000]}
+decision_frequency: daily
+ablations: [single_strong_llm_baseline, news_off, personas_off, per_model_family]
+prediction_eval: {ic: true, dm_vs_baselines: true, dsr_trials_doc: docs/TRIALS.md}

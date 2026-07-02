@@ -1,0 +1,21 @@
+[project]
+name = "agorasim"
+version = "0.0.1"
+description = "LLM-agent retail crowd simulation for small-cap prediction (proof of concept)"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26", "pandas>=2.1", "pydantic>=2.6", "requests>=2.31", "pyyaml>=6.0"]
+
+[project.optional-dependencies]
+worker = ["vllm>=0.6"]           # Vertex GPU image only; never needed locally
+dev = ["pytest>=8.0"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
