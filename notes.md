@@ -376,3 +376,7 @@
 ## [2026-07-03T11:04:00Z] P3/A-301-IIPR-NAMED-POLL
 - Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 4,480 rows / 4,462 parsed. The P3 ledger continues to advance in GCS; no local LLM weights or local inference were used.
+
+## [2026-07-03T11:14:00Z] P3/A-301-IIPR-NAMED-POLL
+- Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 4,736 rows / 4,717 parsed. Current parsed rate remains above 99%, and all work is still executing on Vertex.
