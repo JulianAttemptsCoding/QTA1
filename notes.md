@@ -292,3 +292,7 @@
 - Rebuilt the worker after the import-guard patch so the Artifact Registry image matches the local P3 scripts.
 - Cloud Build `7ca656e6-b345-4eb9-b847-88f817aa2782` succeeded and pushed worker digest `sha256:bf698ed30e55b843654b987000423b2d0c99326e9db5951d829bd7b1e3715450`.
 - No Codex-owned Vertex GPU job was launched during the build; a separate sibling validation job remained active and was not touched.
+
+## [2026-07-03T08:02:00Z] P3/A-301-LAUNCHER-WINDOWS-FIX
+- First P3 launch attempt failed locally before submission because `subprocess.run(["gcloud", ...])` cannot resolve the executable on this Windows shell; no Vertex job was created and no GPU budget was spent.
+- Patched `scripts/run_sim_phase.py` to resolve `gcloud` or `gcloud.cmd` via `shutil.which`, matching the existing Vertex launcher helper.

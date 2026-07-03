@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -59,7 +60,10 @@ def snapshot_hashes_for_ticker(snapshot_manifest: dict[str, Any], kind: str, tic
 
 
 def upload_file(local_path: Path, gcs_uri: str) -> None:
-    subprocess.run(["gcloud", "storage", "cp", str(local_path), gcs_uri], check=True)
+    gcloud = shutil.which("gcloud") or shutil.which("gcloud.cmd")
+    if not gcloud:
+        raise FileNotFoundError("Could not find gcloud/gcloud.cmd on PATH.")
+    subprocess.run([gcloud, "storage", "cp", str(local_path), gcs_uri], check=True)
 
 
 def build_manifest(
