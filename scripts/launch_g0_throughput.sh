@@ -17,12 +17,14 @@ IMAGE="${2:?IMAGE_URI required}"
 N="${3:-512}"
 REGION="us-central1"
 
-# Model dirs under {BASE}/models/ each hold a sanitized model id (org__name). Recover the
-# original id by turning the first '__' back into '/'.
-mapfile -t DIRS < <(gcloud storage ls "${BASE}/models/" | sed -E 's#/$##; s#.*/##' | grep -v '^$')
+# Read the model_cache manifest and probe ONLY models whose status == OK (gated repos the
+# token could not access are status SKIP and have no weights in GCS). Parsing the manifest
+# (not raw dir enumeration) avoids probing sidecar files or stale dirs.
+mapfile -t MODELS < <(gcloud storage cat "${BASE}/models/_cache_manifest.json" \
+  | python -c 'import sys,json; d=json.load(sys.stdin); [print(k) for k,v in d.items() if v.get("status")=="OK"]')
 
-for SAN in "${DIRS[@]}"; do
-  MODEL="${SAN/__//}"
+for MODEL in "${MODELS[@]}"; do
+  SAN="${MODEL//\//__}"
   echo "=== throughput probe: ${MODEL} (dir ${SAN}) ==="
   YAML="$(mktemp)"
   cat > "$YAML" <<EOF
