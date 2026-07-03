@@ -61,3 +61,11 @@
 - Rebuilding worker image as :v2 (Cloud Build, background b2fnc5s7x). On SUCCESS -> re-run scripts/launch_g0_throughput.sh with :v2 image.
 - No result files written; NOT a G0 kill (kill = throughput<2000 OR valid-JSON<90% on a WORKING run; this was an infra fault, not a model-capability fault). Retry after image fix.
 - Failed job ids: 5857209500427091968, 7381677974292004864, 8302664098089271296, 5366880090997129216 (all ~1-2 min, spot; negligible cost, no GPU-seconds billed on early crash).
+
+## [2026-07-03T04:43:53Z] P0/A-003 -- GPU fix confirmed; valid-JSON diagnosis + guided decoding
+- v2 image (GPU driver fix) WORKS: validation job 6457877100727631872 = SUCCEEDED. Result Qwen2.5-1.5B: decisions_per_hour=10353 (>2000 OK), valid_json_rate=0.2246 (22% -- FAR below 90% G0 threshold).
+- Diagnosis: throughput was fine, JSON validity was not. Free-form generation lets small models loop/ramble (e.g. "100 shares at 20.41, 100 shares at 20.41, ...") until max_tokens=160 -> truncated invalid JSON.
+- Idea source: codex/runs/g0-throughput/*.json (sibling project) show guided_decoding:true -> valid_json_rate 1.0 (Qwen1.5B/3B/Phi), 0.988 (SmolLM2), and their invalid_examples show the exact loop/truncation failure mode. Applied same MECHANISM (vLLM guided JSON decoding to the AgentDecision schema); did not copy code.
+- Fix (commit): throughput_probe now uses SamplingParams(guided_decoding=GuidedDecodingParams(json=AgentDecision.model_json_schema())) + records up to 3 invalid_examples. This is the same constrained-decoding the real sim needs for G2 (>=99%). NOTE: wire the same into agents/vllm_batch.run_offline at P2.
+- Rebuilding worker:v3 (Cloud Build bhn6w055f). On SUCCESS -> re-validate Qwen1.5B (expect ~100% valid) -> run all 4 -> docs/G0_THROUGHPUT.md -> GATE G0.
+- NOT a G0 kill: the 22% was a probe/decoding artifact (infra), not a working-run model-capability measurement.
