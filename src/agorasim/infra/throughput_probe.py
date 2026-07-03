@@ -65,7 +65,10 @@ def main() -> None:
     # Constrain generation to the AgentDecision JSON schema. Without this, small models
     # ramble/loop until max_tokens and emit truncated (invalid) JSON — the operative fix
     # for the >=90% (G0) / >=99% (G2) valid-JSON gates. This is also how the real sim runs.
-    gd = GuidedDecodingParams(json=AgentDecision.model_json_schema())
+    # backend="lm-format-enforcer": vLLM's other bundled JSON-schema decoder. Avoids the
+    # `outlines` import chain (outlines pulls a broken `pyairports` dep on vllm 0.6.3).
+    gd = GuidedDecodingParams(json=AgentDecision.model_json_schema(),
+                              backend="lm-format-enforcer")
     sp = SamplingParams(max_tokens=160, temperature=0.7, guided_decoding=gd)
 
     llm = LLM(model=local, dtype="half", gpu_memory_utilization=0.90,
