@@ -331,3 +331,8 @@
 - Job `projects/987318647780/locations/us-central1/customJobs/8715101904784326656` ended `JOB_STATE_FAILED` at `2026-07-03T09:14:19Z` with Vertex error code 8: replicas low on memory.
 - Preserved partial ledger in GCS: `requests.jsonl` has 12,800 requests; `outputs.jsonl` has 2,048 rows / 2,041 parsed (`99.7%` cumulative), all in the Qwen portion. The worker resume path skips answered request ids, so no local heavy compute or local model inference is needed.
 - Recorded the failed attempt in `BUDGET.md` at `$0.36` estimated cost, cumulative `$1.06`, still below the `$85` hard stop. Reduced P3 chunk defaults from 512 to 128 before relaunch.
+
+## [2026-07-03T09:24:00Z] P3/A-301-IIPR-NAMED-RELAUNCH
+- Backed up the original GCS manifest to `manifest_before_rerun1.json`, then relaunched the same run id `calib-2019-g1-iipr-named-v1` so completed request ids can be skipped.
+- New Vertex job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` (`agorasim-p3-iipr-named-v1-rerun1`) is `JOB_STATE_PENDING` with explicit `--chunk-size 128`, `--gpu-memory-utilization 0.85`, and `--enforce-eager`.
+- A separate project job is currently occupying the T4 slot; this rerun is queued/pending without cancelling other work. Conservative cumulative budget estimate is `$2.86`, below the `$85` hard stop.
