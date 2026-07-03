@@ -336,3 +336,7 @@
 - Backed up the original GCS manifest to `manifest_before_rerun1.json`, then relaunched the same run id `calib-2019-g1-iipr-named-v1` so completed request ids can be skipped.
 - New Vertex job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` (`agorasim-p3-iipr-named-v1-rerun1`) is `JOB_STATE_PENDING` with explicit `--chunk-size 128`, `--gpu-memory-utilization 0.85`, and `--enforce-eager`.
 - A separate project job is currently occupying the T4 slot; this rerun is queued/pending without cancelling other work. Conservative cumulative budget estimate is `$2.86`, below the `$85` hard stop.
+
+## [2026-07-03T09:34:00Z] P3/A-301-IIPR-NAMED-POLL
+- Sibling project job `agorasim-g0-thru-v10-validate` completed successfully; rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` is now `JOB_STATE_RUNNING` with start time `2026-07-03T09:31:41Z`.
+- The rerun refreshed `requests.jsonl` in the same GCS run directory. `outputs.jsonl` remains at the preserved 2,048 rows / 2,041 parsed while the worker loads models and resumes.
