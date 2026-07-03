@@ -412,3 +412,7 @@
 ## [2026-07-03T12:34:00Z] P3/A-301-IIPR-NAMED-POLL
 - Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 7,168 rows / 7,138 parsed. Phi chunking is stable after the model transition.
+
+## [2026-07-03T12:44:00Z] P3/A-301-IIPR-NAMED-POLL
+- Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 7,552 rows / 7,521 parsed. The Phi tranche is proceeding at the same checkpoint cadence as Qwen.
