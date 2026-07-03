@@ -452,3 +452,7 @@
 ## [2026-07-03T14:14:00Z] P3/A-301-IIPR-NAMED-POLL
 - Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 9,856 rows / 9,818 parsed. The shard remains healthy with 2,944 requests left.
+
+## [2026-07-03T14:24:00Z] P3/A-301-IIPR-NAMED-POLL
+- Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 10,112 rows / 10,074 parsed. The run is past 79% completion and remains Vertex-only.
