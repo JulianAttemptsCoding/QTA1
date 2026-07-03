@@ -53,3 +53,11 @@
 - GATE G0 throughput LAUNCHED via scripts/launch_g0_throughput.sh (background task b89g58r10): 4 jobs, ONE per model, SERIAL (T4 quota==1), n1-standard-8 + 1x T4 SPOT, --n 512. First job agorasim-g0-thru-Qwen__Qwen2.5-1.5B-Instruct = PENDING. Each writes gs://.../runs/g0_throughput/<model>.json (decisions_per_hour + valid_json_rate).
 - G0 kill criteria (PLAN): throughput < 2000 dec/hr OR valid-JSON < 90%. Polling per P-14; will not end while jobs run.
 - Next: on ALL_THROUGHPUT_JOBS_DONE -> assemble docs/G0_THROUGHPUT.md -> full GATE G0 decision + docs/FEASIBILITY_ADDENDUM.md (A-004).
+
+## [2026-07-03T04:19:12Z] P0/A-003 -- GATE G0 throughput jobs FAILED (fixed, rebuilding v2)
+- All 4 g0-throughput jobs = JOB_STATE_FAILED. Root cause (logs): `WARNING _custom_ops.py Failed to import from vllm._C with ImportError('libcuda.so.1: cannot open shared object file')` -> `RuntimeError: Failed to infer device type`. vLLM could not find the GPU driver.
+- Diagnosis: worker image FROM python:3.11-slim. Vertex nvidia-container-runtime mounts the driver (libcuda.so.1) into /usr/local/nvidia/lib64, but slim base does not include that dir on LD_LIBRARY_PATH, so the loader cannot find it. (model_cache job was CPU-only -> unaffected, which is why it passed.)
+- Idea source: peeked codex/docker/Dockerfile.worker (sibling project, same task) which sets LD_LIBRARY_PATH=/usr/local/nvidia/lib64:/usr/local/cuda/lib64 + NVIDIA_VISIBLE_DEVICES + NVIDIA_DRIVER_CAPABILITIES. Applied same ENV fix (did not copy code). Commit ade5714.
+- Rebuilding worker image as :v2 (Cloud Build, background b2fnc5s7x). On SUCCESS -> re-run scripts/launch_g0_throughput.sh with :v2 image.
+- No result files written; NOT a G0 kill (kill = throughput<2000 OR valid-JSON<90% on a WORKING run; this was an infra fault, not a model-capability fault). Retry after image fix.
+- Failed job ids: 5857209500427091968, 7381677974292004864, 8302664098089271296, 5366880090997129216 (all ~1-2 min, spot; negligible cost, no GPU-seconds billed on early crash).
