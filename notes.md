@@ -302,3 +302,32 @@
 - Run id `calib-2019-g1-iipr-named-v1`; manifest uploaded before launch to `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-iipr-named-v1/manifest.json`.
 - Worker will load only GCS-cached model weights (`Qwen/Qwen2.5-1.5B-Instruct`, `microsoft/Phi-3.5-mini-instruct`) and write requests, raw outputs, and `sim.jsonl` to the same GCS run directory. Local machine remains orchestration-only.
 - Conservative budget reservation: <=6 h at `$0.30/h` = `$1.80`; cumulative estimate `$2.50`, below the `$85` hard stop.
+
+## [2026-07-03T08:14:00Z] P3/A-301-IIPR-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8715101904784326656` is `JOB_STATE_RUNNING`.
+- GCS run directory currently contains the pre-launch `manifest.json` and Vertex-rendered `requests.jsonl` (~40 MiB); `outputs.jsonl` is not present yet, consistent with model download/load/inference startup.
+
+## [2026-07-03T08:22:00Z] P3/A-301-IIPR-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8715101904784326656` remains `JOB_STATE_RUNNING`.
+- First chunk uploaded `outputs.jsonl`: 512 rows, 509 parsed (`99.4%`), model `Qwen/Qwen2.5-1.5B-Instruct`. The request ledger is working and syncing to GCS after chunks.
+
+## [2026-07-03T08:32:00Z] P3/A-301-IIPR-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8715101904784326656` remains `JOB_STATE_RUNNING`.
+- GCS `outputs.jsonl` is still at 512 rows / 509 parsed. Continuing to monitor chunk cadence before taking action.
+
+## [2026-07-03T08:43:00Z] P3/A-301-IIPR-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8715101904784326656` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 1,024 rows / 1,021 parsed (`99.7%` cumulative), all Qwen so far. The chunk ledger is healthy, so the job continues.
+
+## [2026-07-03T08:53:00Z] P3/A-301-IIPR-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8715101904784326656` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 1,536 rows / 1,532 parsed (`99.7%` cumulative), still within the Qwen portion of the shard.
+
+## [2026-07-03T09:03:00Z] P3/A-301-IIPR-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8715101904784326656` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` remains at 1,536 rows / 1,532 parsed, but Vertex logs show the current 512-prompt Qwen chunk is actively progressing, so no relaunch action taken.
+
+## [2026-07-03T09:21:00Z] P3/A-301-IIPR-NAMED-FAILED-RESUME
+- Job `projects/987318647780/locations/us-central1/customJobs/8715101904784326656` ended `JOB_STATE_FAILED` at `2026-07-03T09:14:19Z` with Vertex error code 8: replicas low on memory.
+- Preserved partial ledger in GCS: `requests.jsonl` has 12,800 requests; `outputs.jsonl` has 2,048 rows / 2,041 parsed (`99.7%` cumulative), all in the Qwen portion. The worker resume path skips answered request ids, so no local heavy compute or local model inference is needed.
+- Recorded the failed attempt in `BUDGET.md` at `$0.36` estimated cost, cumulative `$1.06`, still below the `$85` hard stop. Reduced P3 chunk defaults from 512 to 128 before relaunch.

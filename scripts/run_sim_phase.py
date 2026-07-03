@@ -210,7 +210,7 @@ def main() -> int:
     calib.add_argument("--model-ids", type=parse_csv_list, default=DEFAULT_SURVIVORS)
     calib.add_argument("--temperatures", type=parse_float_csv, default=DEFAULT_TEMPERATURES)
     calib.add_argument("--run-salt", default="calib-2019-v1")
-    calib.add_argument("--chunk-size", type=int, default=512)
+    calib.add_argument("--chunk-size", type=int, default=128)
     calib.add_argument("--max-new-tokens", type=int, default=160)
     calib.add_argument("--gpu-memory-utilization", type=float)
     calib.add_argument("--enforce-eager", action="store_true")

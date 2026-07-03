@@ -428,7 +428,7 @@ def main() -> int:
     parser.add_argument("--end", default="2019-12-31")
     parser.add_argument("--run-salt", default="calib-2019-v1")
     parser.add_argument("--max-new-tokens", type=int, default=160)
-    parser.add_argument("--chunk-size", type=int, default=512)
+    parser.add_argument("--chunk-size", type=int, default=128)
     parser.add_argument("--gpu-memory-utilization", type=float, default=0.90)
     parser.add_argument("--enforce-eager", action="store_true")
     args = parser.parse_args()
