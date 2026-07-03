@@ -30,3 +30,9 @@
 - **GATE G0 (data) = PASS.** (G0 full gate still needs A-003 throughput on Vertex.)
 - SOFT BLOCKER (user action, non-halting): if Robintrack bulk download keeps failing at P3-prep, download Kaggle "Robinhood Stock Popularity History" and extract to data/raw/robintrack/popularity_export/ as <TICKER>.csv (cols timestamp,users_holding), then continue.
 - Next: A-003 = build worker image (Cloud Build -> Artifact Registry), create GCS bucket, model_cache job (P-17), throughput probe (P-14). First Vertex spend.
+
+## [2026-07-02T22:25:31Z] P0/A-003 -- worker image build + Vertex job scaffolding
+- Committed A-003 scaffolding (commit e8611f3, pushed QTA1): docker/Dockerfile.worker, cloudbuild.yaml, .dockerignore, infra/gcs.py, infra/model_cache.py (P-17), infra/throughput_probe.py (G0 compute), scripts/p0_gate_throughput.py, configs/models.yaml (P-05 six models).
+- Cloud Build launched: build id daaf6fdf-cbac-4d17-b023-6387c063d692, target image us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:v1. Status WORKING (polling per P-14).
+- GCS base = gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim.
+- Next (blocked on image SUCCESS): launch model_cache Vertex job (HF_TOKEN via temp job YAML, never committed) -> download six models to GCS + record SHAs (docs/MODEL_SHAS.md); then throughput probe (T4 spot) per cached model -> assemble docs/G0_THROUGHPUT.md -> evaluate full GATE G0.
