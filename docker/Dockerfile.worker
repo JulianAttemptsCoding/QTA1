@@ -23,9 +23,12 @@ WORKDIR /app
 # Heavy, rarely-changing deps first (Docker layer cache). Guided JSON decoding uses the
 # lm-format-enforcer backend (bundled with vLLM) to avoid the `outlines` import chain,
 # which pulls a broken `pyairports` dependency on vllm 0.6.3.
+# transformers is pinned to 4.46.3: newer releases removed `LogitsWarper`, which
+# lm-format-enforcer's transformers integration still imports (ImportError otherwise).
 RUN pip install --upgrade pip && \
     pip install \
       "vllm==0.6.3.post1" \
+      "transformers==4.46.3" \
       "huggingface_hub[hf_transfer]>=0.25,<1.0" \
       "google-cloud-storage>=2.18"
 
