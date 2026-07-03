@@ -352,3 +352,7 @@
 ## [2026-07-03T10:04:00Z] P3/A-301-IIPR-NAMED-POLL
 - Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 2,944 rows / 2,936 parsed. Recent Vertex logs show 128-prompt chunks completing successfully at the reduced chunk size.
+
+## [2026-07-03T10:14:00Z] P3/A-301-IIPR-NAMED-POLL
+- Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 3,200 rows / 3,192 parsed. Brief GCS copy misses occurred during worker sync windows, but object listing and retry confirmed the ledger is intact.
