@@ -22,7 +22,7 @@ studies and counterfactuals. Nothing here is investment advice.
 | G4 | OOS budget checkpoint | not started |
 | G5 | Full reproducibility from manifests | not started |
 
-Local test suite: `pytest -q` - 34/34 passing. Stub smoke:
+Local test suite: `pytest -q` - 40/40 passing. Stub smoke:
 `python scripts/p2_smoke_sim.py --config configs/sim_smoke.yaml` - PASS
 (parse-valid 0.995, auction price dynamics exercised). Real-model G2 smoke:
 Qwen2.5-1.5B and Phi-3.5-mini both reached valid-JSON `1.000` and contamination

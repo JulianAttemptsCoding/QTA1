@@ -275,3 +275,20 @@
 ## [2026-07-03T07:23:00Z] QA/GATE-TAGS
 - Pushed annotated tags `G0-PASS`, `G1-PASS`, and `G2-PASS` to `origin`.
 - `G2-PASS` points at the corrected `codex` tip so the tagged branch state preserves the original PLAN.md gate criterion text.
+
+## [2026-07-03T07:38:00Z] P3/A-301-IMPLEMENTATION-START
+- Started P3 calibration implementation after G2 PASS; no Codex-owned Vertex jobs were active.
+- Aligned `configs/sim_calib_2019.yaml` to the pinned P3 workload shape: 100 agents per ticker/arm, matching the execution brief and PLAN A-301 estimate.
+- Added a Vertex-only calibration worker plus local launcher and collector scripts. Local QA before build: `pytest -q` 40/40 passing, compileall passing, stub smoke PASS, secret scan clean.
+- Alias scrubbing is best-effort for ticker tokens, the synthetic `<TICKER> Holdings` name used in prompts, and exchange mentions; EDGAR legal-name scrubbing is logged as a known limitation because G1 snapshots do not carry company legal-name metadata.
+
+## [2026-07-03T07:52:00Z] P3/A-301-WORKER-BUILD-QA
+- Verified `gcloud builds submit --help`; the installed CLI does not support `--file`, so the working command is `gcloud builds submit --project project-c779f701-1a49-4a58-b54 --region us-central1 --config cloudbuild.worker.yaml .`.
+- Cloud Build `befb1739-8e0d-4f20-87dd-25cdd3940518` succeeded and pushed worker digest `sha256:b238b0dbde4b773ff42785e7c7543932bc9145f4be39e5b5a11beddf45f156d2`.
+- Dry-run launch caught local environment drift: `agorasim` initially resolved from the sibling `claude` checkout. Added repo-local import guards to the new scripts and reinstalled `pip install -e ".[dev]"` from the `codex` folder.
+- Post-fix QA: `pytest -q` 40/40 passing, compileall passing, `python -c "import agorasim"` resolves to the local `codex/src/agorasim`, and secret scan is clean.
+
+## [2026-07-03T07:59:00Z] P3/A-301-FINAL-WORKER-BUILD
+- Rebuilt the worker after the import-guard patch so the Artifact Registry image matches the local P3 scripts.
+- Cloud Build `7ca656e6-b345-4eb9-b847-88f817aa2782` succeeded and pushed worker digest `sha256:bf698ed30e55b843654b987000423b2d0c99326e9db5951d829bd7b1e3715450`.
+- No Codex-owned Vertex GPU job was launched during the build; a separate sibling validation job remained active and was not touched.

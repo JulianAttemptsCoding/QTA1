@@ -7,7 +7,7 @@ universe:
 snapshot_manifest: docs/G1_SNAPSHOT_MANIFEST.json
 gcs_snapshot_manifest: gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/manifest.json
 window: {start: "2019-07-01", end: "2019-12-31"}
-agents: {n: 300, persona_seed: 1337}
+agents: {n: 100, persona_seed: 1337}
 anonymization_ab: true          # named vs aliased arms (memorization quantification)
 decision_frequency: daily
 targets: [robintrack_d_holders_sign, stylized_facts]
