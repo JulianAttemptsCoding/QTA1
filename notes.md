@@ -678,3 +678,10 @@
 - Artifact QA: `requests.jsonl` 12,800 rows, `outputs.jsonl` 12,800 rows / 12,765 parsed, `sim.jsonl` 128 rows, worker `valid_json_rate=0.997265625`.
 - Collector QA over the available P3 artifacts passed: G3 kill condition does not fire for the current IIPR named+alias artifact set.
 - Budget actual recorded: 6.11 T4 spot wall hours at `$0.30/hr` = `$1.83`; cumulative ledger now `$4.59`, well below the `$85` R5 hard stop.
+
+## [2026-07-03T21:19:13Z] P3/A-302-IGC-NAMED-LAUNCH
+- Launched next calibration shard in configured order: `IGC` / `named`, run id `calib-2019-g1-igc-named-v1`.
+- Vertex job `projects/987318647780/locations/us-central1/customJobs/37070043120402432`, display `agorasim-p3-igc-named-v1`; initial state `JOB_STATE_PENDING` with create time `2026-07-03T21:18:54.953014Z`.
+- GCS output directory: `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-igc-named-v1`.
+- Spec recorded at `docs/vertex_job_specs/agorasim-p3-igc-named-v1.json`; the launch keeps `--chunk-size 128`, `--gpu-memory-utilization 0.85`, and `--enforce-eager` so model weights/inference remain on Vertex.
+- Budget state estimate advanced to `$6.29` cumulative, still below the `$85` R5 hard stop.
