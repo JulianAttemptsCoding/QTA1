@@ -404,3 +404,7 @@
 ## [2026-07-03T12:14:00Z] P3/A-301-IIPR-NAMED-MODEL-SWITCH
 - Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 6,400 rows / 6,378 parsed, completing the Qwen request tranche. Vertex logs confirm `microsoft/Phi-3.5-mini-instruct` loaded from `/tmp/agorasim-models/microsoft__Phi-3.5-mini-instruct` with memory profiling completed on the T4 worker.
+
+## [2026-07-03T12:24:00Z] P3/A-301-IIPR-NAMED-POLL
+- Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
+- Phi outputs are being checkpointed: `outputs.jsonl` advanced to 6,784 rows / 6,756 parsed after the model switch. The second surviving model is running on Vertex from GCS-cached weights.
