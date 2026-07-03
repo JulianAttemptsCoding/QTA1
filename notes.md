@@ -296,3 +296,9 @@
 ## [2026-07-03T08:02:00Z] P3/A-301-LAUNCHER-WINDOWS-FIX
 - First P3 launch attempt failed locally before submission because `subprocess.run(["gcloud", ...])` cannot resolve the executable on this Windows shell; no Vertex job was created and no GPU budget was spent.
 - Patched `scripts/run_sim_phase.py` to resolve `gcloud` or `gcloud.cmd` via `shutil.which`, matching the existing Vertex launcher helper.
+
+## [2026-07-03T08:07:00Z] P3/A-301-IIPR-NAMED-LAUNCH
+- Launched first P3 calibration shard after queue was clear: `projects/987318647780/locations/us-central1/customJobs/8715101904784326656` (`agorasim-p3-iipr-named-v1`), spot T4.
+- Run id `calib-2019-g1-iipr-named-v1`; manifest uploaded before launch to `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-iipr-named-v1/manifest.json`.
+- Worker will load only GCS-cached model weights (`Qwen/Qwen2.5-1.5B-Instruct`, `microsoft/Phi-3.5-mini-instruct`) and write requests, raw outputs, and `sim.jsonl` to the same GCS run directory. Local machine remains orchestration-only.
+- Conservative budget reservation: <=6 h at `$0.30/h` = `$1.80`; cumulative estimate `$2.50`, below the `$85` hard stop.
