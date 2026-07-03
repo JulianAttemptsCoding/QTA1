@@ -344,3 +344,7 @@
 ## [2026-07-03T09:44:00Z] P3/A-301-IIPR-NAMED-POLL
 - Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
 - The smaller chunk path is confirmed: `outputs.jsonl` advanced from the preserved 2,048 rows to 2,304 rows / 2,296 parsed. All computation and model inference remain on Vertex.
+
+## [2026-07-03T09:54:00Z] P3/A-301-IIPR-NAMED-POLL
+- Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 2,560 rows / 2,552 parsed. The run is proceeding in 128-row chunks with no local model inference.
