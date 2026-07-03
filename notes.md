@@ -647,3 +647,7 @@
 ## [2026-07-03T20:08:06Z] P3/A-301-IIPR-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` is at 10,496 rows / 10,463 parsed. The job remains in the final stretch with normal checkpoint pacing.
+
+## [2026-07-03T20:18:14Z] P3/A-301-IIPR-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 10,880 rows / 10,847 parsed. The final quarter continues to progress under the Vertex T4 worker.
