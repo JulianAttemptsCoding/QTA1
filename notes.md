@@ -506,3 +506,7 @@
 - Launched the paired alias shard for ticker `IIPR`: job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840`, run id `calib-2019-g1-iipr-alias-v1`, display name `agorasim-p3-iipr-alias-v1`.
 - Job is `JOB_STATE_PENDING` with explicit `--chunk-size 128`, `--gpu-memory-utilization 0.85`, and `--enforce-eager`. It uses only GCS-cached model weights on Vertex.
 - Unrelated project Vertex jobs are currently running/pending, so this job may queue without cancelling sibling work. Conservative cumulative budget estimate is `$4.46`, below the `$85` hard stop.
+
+## [2026-07-03T15:19:00Z] P3/A-301-IIPR-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` is `JOB_STATE_RUNNING` with start time `2026-07-03T15:10:20Z`.
+- Vertex logs confirm Qwen loaded from `/tmp/agorasim-models/Qwen__Qwen2.5-1.5B-Instruct`; first `outputs.jsonl` checkpoint landed with 128 rows / 128 parsed.
