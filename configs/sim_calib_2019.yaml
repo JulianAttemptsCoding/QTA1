@@ -1,6 +1,11 @@
-run_id: calib-2019-v1
+run_id: calib-2019-g1
 phase: P3
-universe: {source: robintrack_rules, selection_date: "2019-06-28", n_tickers: 10}
+universe:
+  source: docs/G1_UNIVERSES.md
+  selection_date: "2019-06-28"
+  tickers: [IIPR, IGC, GOLD, RIOT, CRBP, BLNK, PLUG, XXII, LEVI, VKTX]
+snapshot_manifest: docs/G1_SNAPSHOT_MANIFEST.json
+gcs_snapshot_manifest: gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/manifest.json
 window: {start: "2019-07-01", end: "2019-12-31"}
 agents: {n: 300, persona_seed: 1337}
 anonymization_ab: true          # named vs aliased arms (memorization quantification)

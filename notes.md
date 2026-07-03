@@ -231,3 +231,12 @@
 - Wrote `docs/FEASIBILITY_ADDENDUM.md` and updated `FEASIBILITY.md` with measured G0 data, throughput, and the revised compute/cost table.
 - Updated `README.md` and `PLAN.md` status so the repository no longer advertises G0 as not run.
 - GATE G0 final decision: PASS. Data checks passed; selected budget model SmolLM2 measured `4,747` decisions/hour and accepted valid JSON rate floor is `0.988`; P1 may begin.
+
+## [2026-07-03T05:17:00Z] P1/G1-PASS
+- Implemented `scripts/p1_freeze_universes.py` and tests for deterministic universe/snapshot helper logic.
+- Froze CALIB-2019 universe: `IIPR`, `IGC`, `GOLD`, `RIOT`, `CRBP`, `BLNK`, `PLUG`, `XXII`, `LEVI`, `VKTX` using selection date `2019-06-28`.
+- Froze OOS-2025 universe: `NVNI`, `TLRY`, `EDIT`, `CHPT`, `BLNK`, `FRSX`, `TPET`, `OGI`, `CCO`, `ICCM` using selection date `2024-12-20` and OOS start `2025-01-02`, after the max enabled-model cutoff proxy from G0.
+- Wrote `docs/G1_UNIVERSES.md`, `docs/G1_SNAPSHOT_MANIFEST.json`, and `docs/G1_LEAKAGE_SPOTCHECK.md`; spot check rendered 10 filtered prompts from frozen snapshots with zero post-asof included rows.
+- Corrected the P1 freezer to use raw Alpaca prices for universe market-cap filters after a QA pass caught split-adjusted historical prices.
+- Synced ignored raw snapshots to `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/` and uploaded the tracked manifest as `manifest.json`.
+- P1 used local CPU/network only; no local LLM weights, local inference, or Vertex heavy-compute jobs were launched. GATE G1 final decision: PASS; P2 may begin.

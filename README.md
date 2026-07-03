@@ -16,7 +16,7 @@ studies and counterfactuals. Nothing here is investment advice.
 | Gate | Meaning | Status |
 |---|---|---|
 | G0 | Data + throughput reality checks (`scripts/p0_gate_*.py`) | **PASS** (`docs/G0_REPORT.md`, `docs/G0_THROUGHPUT.md`) |
-| G1 | Universes + point-in-time snapshots frozen and hashed | not started |
+| G1 | Universes + point-in-time snapshots frozen and hashed | **PASS** (`docs/G1_UNIVERSES.md`, `docs/G1_SNAPSHOT_MANIFEST.json`) |
 | G2 | >=99% valid-JSON agent decisions; smoke sim | stub smoke PASS; real-model smoke pending |
 | G3 | Calibration-era fidelity (kill: sign-agreement <=52% both arms) | not started |
 | G4 | OOS budget checkpoint | not started |

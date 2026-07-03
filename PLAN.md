@@ -1,6 +1,6 @@
 # PLAN.md - AgoraSim (Idea 1: LLM-agent retail crowd simulation)
 
-Status: G0 PASS. Data and throughput reports are in `docs/`; P1 may begin.
+Status: G1 PASS. Universes and hashed snapshots are frozen; P2 may begin.
 
 ## 0. Objective (30-second version)
 
@@ -81,12 +81,12 @@ would be the stretch outcome. This document assumes neither.
   postmortem, reconsider scope before spending further.
 
 ### P1 — Universes and point-in-time datasets — est. $0 (CPU)
-- A-101 CALIB-2019 universe per rules U-C1..U-C4 (10 tickers, selection 2019-06-28).
-- A-102 OOS universe per U-O1..U-O3; freeze exact retail-proxy formula and the OOS
+- A-101 DONE: CALIB-2019 universe per rules U-C1..U-C4 (10 tickers, selection 2019-06-28).
+- A-102 DONE: OOS universe per U-O1..U-O3; freeze exact retail-proxy formula and the OOS
   window start date (must be > max model cutoff from G0) in a signed commit.
-- A-103 Snapshot bars + news + Robintrack per ticker into `data/snapshots/`,
+- A-103 DONE: Snapshot bars + news + Robintrack per ticker into `data/snapshots/`,
   SHA-256 each file, record in a snapshot manifest.
-- **GATE G1:** both universes frozen; every snapshot hashed; a leakage spot-check
+- **GATE G1 PASS:** both universes frozen; every snapshot hashed; a leakage spot-check
   (10 random prompts rendered, human-verified no post-asof content) passes.
 
 ### P2 — Agent + engine bring-up — est. $2–5

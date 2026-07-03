@@ -1,0 +1,318 @@
+{
+  "files": [
+    {
+      "bytes": 14422,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/BLNK/bars_1d.jsonl",
+      "path": "data/snapshots/g1/calib/BLNK/bars_1d.jsonl",
+      "sha256": "e0fbe603fe745b25cefbba31e53d5330c3569b3885b9e92708c8bfc999aa0932"
+    },
+    {
+      "bytes": 4488,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/BLNK/news.jsonl",
+      "path": "data/snapshots/g1/calib/BLNK/news.jsonl",
+      "sha256": "e86f8dfc130c939d882c9f61eb2c35f379294b290f67687360d57ab88a2e8880"
+    },
+    {
+      "bytes": 116476,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/BLNK/robintrack.csv",
+      "path": "data/snapshots/g1/calib/BLNK/robintrack.csv",
+      "sha256": "d0637b79dc09b0010f1b10a5734afc2b4a56081e2116bab0d8640a878799e3f6"
+    },
+    {
+      "bytes": 14580,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/CRBP/bars_1d.jsonl",
+      "path": "data/snapshots/g1/calib/CRBP/bars_1d.jsonl",
+      "sha256": "a53ae46c49614a7ab5d2c66e43d4c1d46aa9abb58f8129fb4be13cac3703dd95"
+    },
+    {
+      "bytes": 24777,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/CRBP/news.jsonl",
+      "path": "data/snapshots/g1/calib/CRBP/news.jsonl",
+      "sha256": "5d007c5d9d5ec1bed9b44c7a97c1d10cc28895db7503222b22166ff68a3f10f9"
+    },
+    {
+      "bytes": 116206,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/CRBP/robintrack.csv",
+      "path": "data/snapshots/g1/calib/CRBP/robintrack.csv",
+      "sha256": "d4f7f7150bc41e59dae064667bd837e8c41843368b6e613332101917d66fa012"
+    },
+    {
+      "bytes": 14629,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/GOLD/bars_1d.jsonl",
+      "path": "data/snapshots/g1/calib/GOLD/bars_1d.jsonl",
+      "sha256": "76cdd3986c7ca6b9c516a79f02a33fe6f9aaa3cb7080de3a759866368226887c"
+    },
+    {
+      "bytes": 18743,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/GOLD/news.jsonl",
+      "path": "data/snapshots/g1/calib/GOLD/news.jsonl",
+      "sha256": "b60e64a101cf84bb711d0812997dc6e5322122d77f9418dbfe976a0930126f3d"
+    },
+    {
+      "bytes": 114857,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/GOLD/robintrack.csv",
+      "path": "data/snapshots/g1/calib/GOLD/robintrack.csv",
+      "sha256": "f5a05bb59e61e95356c75ae205ec1d5f2025175d7a66bf1b035c323a979db728"
+    },
+    {
+      "bytes": 14752,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/IGC/bars_1d.jsonl",
+      "path": "data/snapshots/g1/calib/IGC/bars_1d.jsonl",
+      "sha256": "ffedb6fadfcc998c02affa2b9406da5700100795db59e223cf76202575a48ef5"
+    },
+    {
+      "bytes": 21709,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/IGC/news.jsonl",
+      "path": "data/snapshots/g1/calib/IGC/news.jsonl",
+      "sha256": "7e38187751f322927acc8af1f2d368f41dfed69782bb1991a68441c9ab89a53e"
+    },
+    {
+      "bytes": 116125,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/IGC/robintrack.csv",
+      "path": "data/snapshots/g1/calib/IGC/robintrack.csv",
+      "sha256": "bcef41df38fedc4e9aef69b8d5805e475b64668d206665b15521cf2148e38ab8"
+    },
+    {
+      "bytes": 15323,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/IIPR/bars_1d.jsonl",
+      "path": "data/snapshots/g1/calib/IIPR/bars_1d.jsonl",
+      "sha256": "9e90d2f583140fdf1b600eb5b84e7062442b73aa4a9a5052ac4b428f71a631bc"
+    },
+    {
+      "bytes": 85657,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/IIPR/news.jsonl",
+      "path": "data/snapshots/g1/calib/IIPR/news.jsonl",
+      "sha256": "dc057eba82b1a06b3098c617734e514caa5c12a7d7cf35b90752698ece20f337"
+    },
+    {
+      "bytes": 116314,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/IIPR/robintrack.csv",
+      "path": "data/snapshots/g1/calib/IIPR/robintrack.csv",
+      "sha256": "be5da2874f965f1e1c304da140747001d2e761bf33d77e5bfbec41e82ae7242c"
+    },
+    {
+      "bytes": 15238,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/LEVI/bars_1d.jsonl",
+      "path": "data/snapshots/g1/calib/LEVI/bars_1d.jsonl",
+      "sha256": "b7bf873bc4f16b8389ac281c9a817006cbcaeb540188f82225e5e3b2670b6fe6"
+    },
+    {
+      "bytes": 28264,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/LEVI/news.jsonl",
+      "path": "data/snapshots/g1/calib/LEVI/news.jsonl",
+      "sha256": "12229d5fc332b6140f8112d2dd83b0720f274eda3853a38aad00391e735d84a4"
+    },
+    {
+      "bytes": 116665,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/LEVI/robintrack.csv",
+      "path": "data/snapshots/g1/calib/LEVI/robintrack.csv",
+      "sha256": "e7018229507cb85ded06cf8b83193337555ef7ef6e2a8301870d97c3fa107ce8"
+    },
+    {
+      "bytes": 14741,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/PLUG/bars_1d.jsonl",
+      "path": "data/snapshots/g1/calib/PLUG/bars_1d.jsonl",
+      "sha256": "8f87d3be10cf62fdc879ff4567560671c2cdcd9b82a8a060481aca89a402bc0e"
+    },
+    {
+      "bytes": 48025,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/PLUG/news.jsonl",
+      "path": "data/snapshots/g1/calib/PLUG/news.jsonl",
+      "sha256": "282d21e755901119007d9f43f71e386d41915a39a5298cb05d3bf5e98a76f467"
+    },
+    {
+      "bytes": 120089,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/PLUG/robintrack.csv",
+      "path": "data/snapshots/g1/calib/PLUG/robintrack.csv",
+      "sha256": "cbc69bcca5171930575d5549791198ae961d35919dee88bf65f320ab991e446e"
+    },
+    {
+      "bytes": 14576,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/RIOT/bars_1d.jsonl",
+      "path": "data/snapshots/g1/calib/RIOT/bars_1d.jsonl",
+      "sha256": "f3ca694fd4107a344747b5877b3654c65caa9e46109efd9f4561e887873c0b0e"
+    },
+    {
+      "bytes": 7459,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/RIOT/news.jsonl",
+      "path": "data/snapshots/g1/calib/RIOT/news.jsonl",
+      "sha256": "8607fda924398df31a28ea6dafbed3345cf01717f97b6a084deddf018630692d"
+    },
+    {
+      "bytes": 115693,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/RIOT/robintrack.csv",
+      "path": "data/snapshots/g1/calib/RIOT/robintrack.csv",
+      "sha256": "16e1aded1d463b63f2ddc4a119f6ada2ff0e25dc59f97c45eb316ffeb99d2e9b"
+    },
+    {
+      "bytes": 14668,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/VKTX/bars_1d.jsonl",
+      "path": "data/snapshots/g1/calib/VKTX/bars_1d.jsonl",
+      "sha256": "07d070840e8f089630f6426511f7a8c141a750f734a8ca31c13d95eeca0d9a08"
+    },
+    {
+      "bytes": 22516,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/VKTX/news.jsonl",
+      "path": "data/snapshots/g1/calib/VKTX/news.jsonl",
+      "sha256": "9776e7fff70f45fcf4ed25413de8110693c423d37eb59f009b6b61ee43657fa8"
+    },
+    {
+      "bytes": 116125,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/VKTX/robintrack.csv",
+      "path": "data/snapshots/g1/calib/VKTX/robintrack.csv",
+      "sha256": "98ddc3588a1bdd49990fc29622923593dbf90feccd1a8f4536bff2f97f62fd99"
+    },
+    {
+      "bytes": 14614,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/XXII/bars_1d.jsonl",
+      "path": "data/snapshots/g1/calib/XXII/bars_1d.jsonl",
+      "sha256": "0460e7a8a829bb03d0028584b330c330a16e3c4b975da3667d656b0480ddd34f"
+    },
+    {
+      "bytes": 11790,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/XXII/news.jsonl",
+      "path": "data/snapshots/g1/calib/XXII/news.jsonl",
+      "sha256": "9ae26271d0f99a76e37e9613a0047d0d84c458c4fff9a3930533763fceb5e10c"
+    },
+    {
+      "bytes": 116044,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/calib/XXII/robintrack.csv",
+      "path": "data/snapshots/g1/calib/XXII/robintrack.csv",
+      "sha256": "dccb409c72398ec261740ea84a4a91bb41bc3aa8ad48058495623c54ba94f596"
+    },
+    {
+      "bytes": 44158,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/BLNK/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/BLNK/bars_1d.jsonl",
+      "sha256": "dfccbdbc1f517cccf7c8dab34897d7e001dbe29c22fa16443790bb39f9f7325c"
+    },
+    {
+      "bytes": 99635,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/BLNK/news.jsonl",
+      "path": "data/snapshots/g1/oos/BLNK/news.jsonl",
+      "sha256": "555fade9baa756a1cf8e2efe57a8d58d57d61555be79b9b280c2e7363f422aff"
+    },
+    {
+      "bytes": 43006,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/CCO/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/CCO/bars_1d.jsonl",
+      "sha256": "123859ff59cc183dfaa9404c5597b53087aa2cd062665013bc901ddc3596b7e5"
+    },
+    {
+      "bytes": 56317,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/CCO/news.jsonl",
+      "path": "data/snapshots/g1/oos/CCO/news.jsonl",
+      "sha256": "38586bfba69140113fc8bda4539cc30ad64c39af23ceda36f353c96fba84880e"
+    },
+    {
+      "bytes": 43972,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/CHPT/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/CHPT/bars_1d.jsonl",
+      "sha256": "29fd6a1cec615649c843c0fd2ca94e5e1e2ee7fb46af8ec27c11ccc7afe6f5ca"
+    },
+    {
+      "bytes": 94622,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/CHPT/news.jsonl",
+      "path": "data/snapshots/g1/oos/CHPT/news.jsonl",
+      "sha256": "e7a9a7837e665f8049b673a15aa4980e7561ef23fec6409a57c7db9b01228bcd"
+    },
+    {
+      "bytes": 43121,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/EDIT/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/EDIT/bars_1d.jsonl",
+      "sha256": "96b586f5120eb36a21ddc380c707e1ff3c0d600b1054637c9596c7512569b81e"
+    },
+    {
+      "bytes": 26502,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/EDIT/news.jsonl",
+      "path": "data/snapshots/g1/oos/EDIT/news.jsonl",
+      "sha256": "a7652a5976fdb7c67b2d99661aa182a4dda3c06c5eed33ffb8943d875e6b899b"
+    },
+    {
+      "bytes": 42701,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/FRSX/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/FRSX/bars_1d.jsonl",
+      "sha256": "97d5bbcb4628f7a09f0c0025934ca161f3efc0cc15917a7ca67239bd0ac6936a"
+    },
+    {
+      "bytes": 50414,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/FRSX/news.jsonl",
+      "path": "data/snapshots/g1/oos/FRSX/news.jsonl",
+      "sha256": "ee80b1d0312ede0042f31628bb4dd3d8553029f471580a24338b44fbd066fb9c"
+    },
+    {
+      "bytes": 43230,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/ICCM/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/ICCM/bars_1d.jsonl",
+      "sha256": "bac14e47f6aa982ce83056a9dce5b418bdab922997d58a8841301c6efb3172cd"
+    },
+    {
+      "bytes": 62578,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/ICCM/news.jsonl",
+      "path": "data/snapshots/g1/oos/ICCM/news.jsonl",
+      "sha256": "362a5cc726e12a126024cf224bfd96302baf552c24dfb8bd03df767b558ac65a"
+    },
+    {
+      "bytes": 43409,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/NVNI/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/NVNI/bars_1d.jsonl",
+      "sha256": "834fd88c79aed92a27d45b8ab59286eb8b04e446c70a666f497ca50369c18e02"
+    },
+    {
+      "bytes": 76264,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/NVNI/news.jsonl",
+      "path": "data/snapshots/g1/oos/NVNI/news.jsonl",
+      "sha256": "a9a8cf2d064e76c72624371b62b8ead2463737f46f5b6942e400276e8130c868"
+    },
+    {
+      "bytes": 42692,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/OGI/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/OGI/bars_1d.jsonl",
+      "sha256": "a6d39e5a8be71ac4b9af4f59da7b3e7e9f5df2f73f4a195d6073ef43dcddf623"
+    },
+    {
+      "bytes": 76215,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/OGI/news.jsonl",
+      "path": "data/snapshots/g1/oos/OGI/news.jsonl",
+      "sha256": "451a3ced1e2e3b3365a4787383117bce83d663c98914864041e455a4e11037ed"
+    },
+    {
+      "bytes": 44366,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/TLRY/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/TLRY/bars_1d.jsonl",
+      "sha256": "bfb93700d6270d88462c95b018431db3e373f73da114aa9d774d8a7127be016e"
+    },
+    {
+      "bytes": 291192,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/TLRY/news.jsonl",
+      "path": "data/snapshots/g1/oos/TLRY/news.jsonl",
+      "sha256": "52d68d75f92f9b1d9c7b240a0fc6adbfac5c8e50f039629447ab2d4a0331dba2"
+    },
+    {
+      "bytes": 43283,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/TPET/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/TPET/bars_1d.jsonl",
+      "sha256": "4322f87bf95b60ab4482a8fcbddfb192eb0088d04590202212b288044a5bef9d"
+    },
+    {
+      "bytes": 36429,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/TPET/news.jsonl",
+      "path": "data/snapshots/g1/oos/TPET/news.jsonl",
+      "sha256": "5a5b2ddcb40b6003771e265e1b937492ea02d3078d37e7868f06f4d66d6ba401"
+    }
+  ],
+  "generated_utc": "2026-07-03T05:16:55+00:00",
+  "selection": {
+    "calib_selection_date": "2019-06-28",
+    "calib_window": {
+      "end": "2019-12-31",
+      "start": "2019-07-01"
+    },
+    "oos_selection_date": "2024-12-20",
+    "oos_window": {
+      "end": "2026-06-30",
+      "start": "2025-01-02"
+    }
+  },
+  "snapshot_version": "g1"
+}
