@@ -538,3 +538,7 @@
 ## [2026-07-03T16:29:00Z] P3/A-301-IIPR-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 2,176 rows / 2,168 parsed. The run remains stable at the reduced chunk size.
+
+## [2026-07-03T16:39:00Z] P3/A-301-IIPR-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 2,432 rows / 2,424 parsed. The Qwen tranche continues to checkpoint cleanly to GCS.
