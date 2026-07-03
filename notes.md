@@ -380,3 +380,7 @@
 ## [2026-07-03T11:14:00Z] P3/A-301-IIPR-NAMED-POLL
 - Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 4,736 rows / 4,717 parsed. Current parsed rate remains above 99%, and all work is still executing on Vertex.
+
+## [2026-07-03T11:24:00Z] P3/A-301-IIPR-NAMED-POLL
+- Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 4,992 rows / 4,972 parsed. The shard is approaching the end of the Qwen half and remains under the budget guardrail.
