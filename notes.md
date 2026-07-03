@@ -697,3 +697,7 @@
 ## [2026-07-03T21:50:06Z] P3/A-302-IGC-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 1,024 rows / 1,024 parsed. Early IGC named outputs remain fully parse-valid.
+
+## [2026-07-03T22:01:24Z] P3/A-302-IGC-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 1,408 rows / 1,407 parsed. One non-parsed row has appeared, but the observed parse-valid rate remains high.
