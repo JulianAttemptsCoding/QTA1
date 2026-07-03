@@ -705,3 +705,7 @@
 ## [2026-07-03T22:12:18Z] P3/A-302-IGC-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 1,792 rows / 1,788 parsed. Parse-valid rate remains high while the Qwen tranche continues.
+
+## [2026-07-03T22:23:45Z] P3/A-302-IGC-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 2,176 rows / 2,172 parsed after a transient GCS copy miss retried cleanly.
