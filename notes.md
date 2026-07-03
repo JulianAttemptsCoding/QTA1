@@ -510,3 +510,7 @@
 ## [2026-07-03T15:19:00Z] P3/A-301-IIPR-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` is `JOB_STATE_RUNNING` with start time `2026-07-03T15:10:20Z`.
 - Vertex logs confirm Qwen loaded from `/tmp/agorasim-models/Qwen__Qwen2.5-1.5B-Instruct`; first `outputs.jsonl` checkpoint landed with 128 rows / 128 parsed.
+
+## [2026-07-03T15:29:00Z] P3/A-301-IIPR-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 512 rows / 509 parsed. Alias shard chunking is stable under the 128-row setting.
