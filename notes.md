@@ -689,3 +689,7 @@
 ## [2026-07-03T21:29:47Z] P3/A-302-IGC-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` is `JOB_STATE_RUNNING`, with Vertex start time `2026-07-03T21:21:55Z`.
 - First checkpoints are healthy: `outputs.jsonl` advanced to 256 rows / 256 parsed for `calib-2019-g1-igc-named-v1`.
+
+## [2026-07-03T21:39:58Z] P3/A-302-IGC-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 640 rows / 640 parsed. The IGC named shard is checkpointing cleanly in the first Qwen tranche.
