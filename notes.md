@@ -444,3 +444,7 @@
 ## [2026-07-03T13:54:00Z] P3/A-301-IIPR-NAMED-POLL
 - Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 9,344 rows / 9,309 parsed. The shard is past 73% completion and continues under the reduced chunk size.
+
+## [2026-07-03T14:04:00Z] P3/A-301-IIPR-NAMED-POLL
+- Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 9,600 rows / 9,563 parsed. Three quarters of the shard are complete and checkpointed in GCS.
