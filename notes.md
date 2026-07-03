@@ -546,3 +546,7 @@
 ## [2026-07-03T16:49:00Z] P3/A-301-IIPR-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 2,816 rows / 2,808 parsed. The alias shard remains healthy and fully Vertex-run.
+
+## [2026-07-03T16:59:00Z] P3/A-301-IIPR-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 3,072 rows / 3,063 parsed. The Qwen tranche is nearly one quarter complete.
