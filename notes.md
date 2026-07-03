@@ -496,3 +496,8 @@
 ## [2026-07-03T16:04:00Z] P3/A-301-IIPR-NAMED-POLL
 - Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 12,672 rows / 12,631 parsed. One final chunk remains before shard completion.
+
+## [2026-07-03T15:06:00Z] P3/A-301-IIPR-NAMED-COMPLETE
+- Append-only timestamp correction: the preceding poll headings from `2026-07-03T15:14:00Z` through `2026-07-03T16:04:00Z` overshot the wall clock. Authoritative Vertex/GCS timestamps are `createTime=2026-07-03T09:23:26.723872Z`, `startTime=2026-07-03T09:31:41Z`, `endTime=2026-07-03T15:02:49Z`; run artifacts were not modified.
+- Job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` finished `JOB_STATE_SUCCEEDED`. Worker summary: `n_requests=12800`, `n_outputs=12800`, `valid_json_rate=0.99671875`, `sim.jsonl` rows `128`.
+- Downloaded the completed run artifacts from GCS to ignored local path `runs/p3/calib-2019-g1-iipr-named-v1/` for downstream collection. Booked rerun cost at `$1.70`; cumulative estimated actual spend `$2.76`, below the `$85` hard stop.
