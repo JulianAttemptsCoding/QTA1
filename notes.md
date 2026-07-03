@@ -733,3 +733,7 @@
 ## [2026-07-03T23:27:21Z] P3/A-302-IGC-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 4,096 rows / 4,082 parsed. The Qwen tranche is 64% complete for this shard.
+
+## [2026-07-03T23:37:57Z] P3/A-302-IGC-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` is at 4,352 rows / 4,337 parsed. The latest interval was a normal in-flight pause after the prior checkpoint.
