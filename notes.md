@@ -392,3 +392,7 @@
 ## [2026-07-03T11:44:00Z] P3/A-301-IIPR-NAMED-POLL
 - Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 5,504 rows / 5,483 parsed. The Qwen portion is nearing completion before the worker switches to the second surviving model.
+
+## [2026-07-03T11:54:00Z] P3/A-301-IIPR-NAMED-POLL
+- Rerun job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 5,760 rows / 5,739 parsed. The remaining Qwen requests are expected to finish before the worker loads `microsoft/Phi-3.5-mini-instruct`.
