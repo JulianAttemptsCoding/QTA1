@@ -271,3 +271,7 @@
 ## [2026-07-03T07:21:00Z] QA/PLAN-GATE-TEXT-CORRECTION
 - Re-read the execution brief and caught that PLAN.md gate criteria must remain unchanged.
 - Restored the original G2 kill criterion text in PLAN.md; G2 PASS evidence remains in `docs/G2_REPORT.md`, README status, STATE.json, and this append-only log.
+
+## [2026-07-03T07:23:00Z] QA/GATE-TAGS
+- Pushed annotated tags `G0-PASS`, `G1-PASS`, and `G2-PASS` to `origin`.
+- `G2-PASS` points at the corrected `codex` tip so the tagged branch state preserves the original PLAN.md gate criterion text.
