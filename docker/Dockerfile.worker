@@ -21,11 +21,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 # Heavy, rarely-changing deps first (Docker layer cache).
+# pyairports + country_converter are runtime deps of `outlines` (vLLM's guided-decoding
+# backend) that vllm 0.6.3.post1 does not pull in; without them `import outlines` raises
+# ModuleNotFoundError: No module named 'pyairports' when guided JSON decoding is used.
 RUN pip install --upgrade pip && \
     pip install \
       "vllm==0.6.3.post1" \
       "huggingface_hub[hf_transfer]>=0.25,<1.0" \
-      "google-cloud-storage>=2.18"
+      "google-cloud-storage>=2.18" \
+      "pyairports" \
+      "country_converter"
 
 # Repo package + its light deps (numpy/pandas/pydantic/requests/pyyaml).
 COPY pyproject.toml /app/pyproject.toml
