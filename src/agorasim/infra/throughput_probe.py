@@ -23,8 +23,11 @@ from agorasim.schemas import parse_decision
 # leaves rationale at max_length=2000, so the guided decoder generates a rationale far
 # longer than the 160-token budget and the JSON gets truncated mid-string (invalid). A
 # tight rationale cap (240 chars ~= 60-80 tokens) lets the whole object close within budget
-# -> the operative fix for the valid-JSON gate (G0 >=90%). All fields required +
-# additionalProperties:False keeps small models from wandering off-schema.
+# -> the operative fix for the valid-JSON gate (G0 >=90%). All fields required.
+# NOTE: intentionally NO "additionalProperties": False. vllm 0.6.3.post1 bundles an older
+# lm-format-enforcer whose schema parser calls .get() on that boolean and crashes with
+# `AttributeError: 'bool' object has no attribute 'get'`. Guided decoding already emits
+# only the listed properties, so the constraint is redundant here anyway.
 DECISION_JSON_SCHEMA = {
     "type": "object",
     "properties": {
@@ -38,7 +41,6 @@ DECISION_JSON_SCHEMA = {
     },
     "required": ["action", "order_type", "qty", "limit_price", "confidence",
                  "horizon_days", "rationale"],
-    "additionalProperties": False,
 }
 
 
