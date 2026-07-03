@@ -623,3 +623,7 @@
 ## [2026-07-03T19:07:22Z] P3/A-301-IIPR-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` is at 8,576 rows / 8,550 parsed. The most recent poll was flat after the prior checkpoint; this remains within the observed chunk cadence.
+
+## [2026-07-03T19:17:28Z] P3/A-301-IIPR-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 8,960 rows / 8,934 parsed. The alias shard is roughly 70% through the full 12,800 request set.
