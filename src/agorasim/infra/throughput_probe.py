@@ -17,7 +17,7 @@ import time
 from agorasim.agents.personas import PersonaBank
 from agorasim.agents.prompt_builder import load_template, render
 from agorasim.infra.gcs import download_prefix, upload_file
-from agorasim.schemas import parse_decision
+from agorasim.schemas import AgentDecision, parse_decision
 
 
 def sanitize(model_id: str) -> str:
@@ -57,11 +57,16 @@ def main() -> None:
     args = ap.parse_args()
 
     from vllm import LLM, SamplingParams  # worker-image only
+    from vllm.sampling_params import GuidedDecodingParams
 
     local = f"/tmp/models/{sanitize(args.model)}"
     nfiles = download_prefix(f"{args.base}/models/{sanitize(args.model)}", local)
     convos = build_prompts(args.n)
-    sp = SamplingParams(max_tokens=160, temperature=0.7)
+    # Constrain generation to the AgentDecision JSON schema. Without this, small models
+    # ramble/loop until max_tokens and emit truncated (invalid) JSON — the operative fix
+    # for the >=90% (G0) / >=99% (G2) valid-JSON gates. This is also how the real sim runs.
+    gd = GuidedDecodingParams(json=AgentDecision.model_json_schema())
+    sp = SamplingParams(max_tokens=160, temperature=0.7, guided_decoding=gd)
 
     llm = LLM(model=local, dtype="half", gpu_memory_utilization=0.90,
               max_model_len=2048, enforce_eager=True)
@@ -70,10 +75,13 @@ def main() -> None:
     dt = time.time() - t0
 
     texts = [r.outputs[0].text for r in results]
-    valid = sum(1 for t in texts if parse_decision(t) is not None) / len(texts)
+    parsed = [parse_decision(t) for t in texts]
+    valid = sum(p is not None for p in parsed) / len(parsed)
+    invalid_examples = [t for t, p in zip(texts, parsed) if p is None][:3]
     rec = {"model": args.model, "cache_files": nfiles, "n": len(convos),
            "secs": round(dt, 2), "decisions_per_hour": round(len(convos) / dt * 3600),
-           "valid_json_rate": round(valid, 4)}
+           "valid_json_rate": round(valid, 4), "guided_decoding": True,
+           "invalid_examples": invalid_examples}
     print("THROUGHPUT_RESULT", json.dumps(rec), flush=True)
 
     with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as tf:
