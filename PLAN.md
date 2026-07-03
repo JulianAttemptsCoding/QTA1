@@ -1,7 +1,6 @@
-# PLAN.md — AgoraSim (Idea 1: LLM-agent retail crowd simulation)
+# PLAN.md - AgoraSim (Idea 1: LLM-agent retail crowd simulation)
 
-Status: G0 NOT RUN. Nothing downstream may execute until `scripts/p0_gate_data.py`
-and `scripts/p0_gate_throughput.py` both PASS and their reports land in `docs/`.
+Status: G0 PASS. Data and throughput reports are in `docs/`; P1 may begin.
 
 ## 0. Objective (30-second version)
 
@@ -67,15 +66,15 @@ would be the stretch outcome. This document assumes neither.
 ## 4. Phases, gates, kill criteria
 
 ### P0 — Environment and reality checks (local + one tiny Vertex job) — est. $1–3
-- A-001 Fill `.env` from `.env.example`; run `make test` (must stay green).
-- A-002 Run `scripts/p0_gate_data.py` with real keys → `docs/G0_REPORT.md`.
+- A-001 DONE: Fill `.env` from `.env.example`; run `make test` (must stay green).
+- A-002 DONE: Run `scripts/p0_gate_data.py` with real keys → `docs/G0_REPORT.md`.
   Must record: which Alpaca `feed` values the free keys accept for *historical* bars;
   earliest minute/daily bar for one liquid + one small-cap ticker; Alpaca news
   earliest date; Robintrack archive row counts; EDGAR/FRED reachability.
-- A-003 Build worker image (python 3.11 + vllm) → Artifact Registry; launch one spot
+- A-003 DONE: Build worker image (python 3.11 + vllm) → Artifact Registry; launch one spot
   T4 job running `scripts/p0_gate_throughput.py` → `docs/G0_THROUGHPUT.md`
   (tokens/s, decisions/hour, valid-JSON rate per model).
-- A-004 Update FEASIBILITY.md cost table with measured numbers.
+- A-004 DONE: Update FEASIBILITY.md cost table with measured numbers.
 - **GATE G0 (kill criteria):** any of — no workable historical bar feed for small
   caps; news history unusable; measured throughput < 2,000 decisions/hour on the
   best model; valid-JSON rate < 90% even after one prompt iteration → STOP, write

@@ -1,0 +1,38 @@
+{
+  "displayName": "agorasim-g0-throughput-qwen15-20260702-2351",
+  "jobSpec": {
+    "scheduling": {
+      "restartJobOnWorkerRestart": false,
+      "strategy": "SPOT"
+    },
+    "workerPoolSpecs": [
+      {
+        "containerSpec": {
+          "args": [
+            "scripts/p0_gate_throughput.py",
+            "--model-id",
+            "Qwen/Qwen2.5-1.5B-Instruct",
+            "--gcs-model-root",
+            "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/models",
+            "--gcs-output-uri",
+            "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/gates/g0/throughput/Qwen--Qwen2.5-1.5B-Instruct.json",
+            "--n-prompts",
+            "512"
+          ],
+          "env": [],
+          "imageUri": "us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:latest"
+        },
+        "diskSpec": {
+          "bootDiskSizeGb": 100,
+          "bootDiskType": "pd-ssd"
+        },
+        "machineSpec": {
+          "acceleratorCount": 1,
+          "acceleratorType": "NVIDIA_TESLA_T4",
+          "machineType": "n1-standard-8"
+        },
+        "replicaCount": 1
+      }
+    ]
+  }
+}

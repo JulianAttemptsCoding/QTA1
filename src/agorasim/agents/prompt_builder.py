@@ -10,13 +10,26 @@ Every rendered prompt is hashed; hashes go into the run manifest.
 from __future__ import annotations
 
 import hashlib
+import os
 from pathlib import Path
 
-PROMPT_DIR = Path(__file__).resolve().parents[3] / "prompts"
+
+def prompt_dir() -> Path:
+    candidates = []
+    if os.getenv("AGORASIM_PROMPT_DIR"):
+        candidates.append(Path(os.environ["AGORASIM_PROMPT_DIR"]))
+    candidates.extend([
+        Path.cwd() / "prompts",
+        Path(__file__).resolve().parents[3] / "prompts",
+    ])
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    return candidates[0]
 
 
 def load_template(name: str) -> str:
-    return (PROMPT_DIR / name).read_text()
+    return (prompt_dir() / name).read_text()
 
 
 def render(template: str, **kw: str) -> str:

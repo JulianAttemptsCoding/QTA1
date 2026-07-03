@@ -1,0 +1,15 @@
+substitutions:
+  _IMAGE_URI: us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:latest
+
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -f
+      - docker/Dockerfile.worker
+      - -t
+      - ${_IMAGE_URI}
+      - .
+
+images:
+  - ${_IMAGE_URI}

@@ -6,7 +6,13 @@ requires-python = ">=3.11"
 dependencies = ["numpy>=1.26", "pandas>=2.1", "pydantic>=2.6", "requests>=2.31", "pyyaml>=6.0"]
 
 [project.optional-dependencies]
-worker = ["vllm>=0.6"]           # Vertex GPU image only; never needed locally
+worker = [
+  "numpy==1.26.4",
+  "transformers==4.46.3",
+  "vllm==0.6.4.post1",
+  "huggingface_hub>=0.24",
+  "google-cloud-storage>=2.18",
+]           # Vertex GPU image only; never needed locally
 dev = ["pytest>=8.0"]
 
 [build-system]

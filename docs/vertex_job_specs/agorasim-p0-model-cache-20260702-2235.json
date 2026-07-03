@@ -1,0 +1,39 @@
+{
+  "displayName": "agorasim-p0-model-cache-20260702-2235",
+  "jobSpec": {
+    "scheduling": {
+      "restartJobOnWorkerRestart": false,
+      "strategy": "SPOT"
+    },
+    "workerPoolSpecs": [
+      {
+        "containerSpec": {
+          "args": [
+            "scripts/model_cache.py",
+            "--gcs-model-root",
+            "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/models",
+            "--gcs-sha-uri",
+            "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/models/MODEL_SHAS.md"
+          ],
+          "env": [
+            {
+              "name": "HF_TOKEN",
+              "value": "<redacted>"
+            }
+          ],
+          "imageUri": "us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:latest"
+        },
+        "diskSpec": {
+          "bootDiskSizeGb": 100,
+          "bootDiskType": "pd-ssd"
+        },
+        "machineSpec": {
+          "acceleratorCount": 1,
+          "acceleratorType": "NVIDIA_TESLA_T4",
+          "machineType": "n1-standard-8"
+        },
+        "replicaCount": 1
+      }
+    ]
+  }
+}
