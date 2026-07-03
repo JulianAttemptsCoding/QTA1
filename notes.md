@@ -627,3 +627,7 @@
 ## [2026-07-03T19:17:28Z] P3/A-301-IIPR-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 8,960 rows / 8,934 parsed. The alias shard is roughly 70% through the full 12,800 request set.
+
+## [2026-07-03T19:27:35Z] P3/A-301-IIPR-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 9,216 rows / 9,189 parsed. The Phi tranche remains stable, with progress continuing after normal chunk pauses.
