@@ -48,7 +48,7 @@ def sanitize(model_id: str) -> str:
     return model_id.replace("/", "__")
 
 
-def build_prompts(n: int) -> list[list[dict]]:
+def build_prompts(n: int) -> list[str]:
     sys_t = load_template("agent_system.j2")
     usr_t = load_template("decision_user.j2")
     # ~30 daily bars + a few headlines => representative ~900-token prompt
@@ -61,16 +61,21 @@ def build_prompts(n: int) -> list[list[dict]]:
         f"headline number {d} with some detail for the reader to weigh."
         for d in range(6))
     bank = PersonaBank(n)
-    convos: list[list[dict]] = []
+    # Raw text prompts (system + user), NOT chat-template messages. Passing chat messages
+    # via llm.chat() puts the instruct model in "assistant" mode where it writes verbose,
+    # multi-clause rationales that overflow the 160-token budget and truncate the JSON
+    # (valid-JSON ~0.18). Feeding the instruction as a plain completion via llm.generate()
+    # yields terse rationales that close within budget -> the operative fix for the valid-
+    # JSON gate (G0 >=90%). Guided decoding still enforces the JSON structure either way.
+    prompts: list[str] = []
     for i in range(n):
         p = bank.personas[i]
         system = render(sys_t, persona=p.render())
         user = render(usr_t, asof_date="2024-11-15", name_or_alias="ExampleCo (EXMP)",
                       bars_block=bars, news_block=news, shares=p.shares,
                       avg_cost="11.90", cash=f"{p.cash:.0f}")
-        convos.append([{"role": "system", "content": system},
-                       {"role": "user", "content": user}])
-    return convos
+        prompts.append(f"{system}\n\n{user}")
+    return prompts
 
 
 def main() -> None:
@@ -85,29 +90,32 @@ def main() -> None:
 
     local = f"/tmp/models/{sanitize(args.model)}"
     nfiles = download_prefix(f"{args.base}/models/{sanitize(args.model)}", local)
-    convos = build_prompts(args.n)
+    prompts = build_prompts(args.n)
     # Constrain generation to the AgentDecision JSON schema. Without this, small models
     # ramble/loop until max_tokens and emit truncated (invalid) JSON — the operative fix
     # for the >=90% (G0) / >=99% (G2) valid-JSON gates. This is also how the real sim runs.
     # backend="lm-format-enforcer": vLLM's other bundled JSON-schema decoder. Avoids the
-    # `outlines` import chain (outlines pulls a broken `pyairports` dep on vllm 0.6.3).
+    # `outlines` import chain (outlines pulls a broken `pyairports` dep).
     gd = GuidedDecodingParams(json=DECISION_JSON_SCHEMA,
                               backend="lm-format-enforcer")
     # temperature=0.0 (greedy): deterministic, no sampling tail that lengthens rationale.
     sp = SamplingParams(max_tokens=160, temperature=0.0, guided_decoding=gd)
 
+    # max_model_len=4096: the rendered prompt (persona + 30 bars + headlines) plus the
+    # 160-token generation must fit; 2048 was tight enough that long personas ate into the
+    # generation budget and truncated the JSON. llm.generate (raw completion), not llm.chat.
     llm = LLM(model=local, dtype="half", gpu_memory_utilization=0.90,
-              max_model_len=2048, enforce_eager=True)
+              max_model_len=4096, enforce_eager=True)
     t0 = time.time()
-    results = llm.chat(convos, sp)
+    results = llm.generate(prompts, sp)
     dt = time.time() - t0
 
     texts = [r.outputs[0].text for r in results]
     parsed = [parse_decision(t) for t in texts]
     valid = sum(p is not None for p in parsed) / len(parsed)
     invalid_examples = [t for t, p in zip(texts, parsed) if p is None][:3]
-    rec = {"model": args.model, "cache_files": nfiles, "n": len(convos),
-           "secs": round(dt, 2), "decisions_per_hour": round(len(convos) / dt * 3600),
+    rec = {"model": args.model, "cache_files": nfiles, "n": len(prompts),
+           "secs": round(dt, 2), "decisions_per_hour": round(len(prompts) / dt * 3600),
            "valid_json_rate": round(valid, 4), "guided_decoding": True,
            "invalid_examples": invalid_examples}
     print("THROUGHPUT_RESULT", json.dumps(rec), flush=True)
