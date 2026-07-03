@@ -603,3 +603,7 @@
 ## [2026-07-03T18:17:00Z] P3/A-301-IIPR-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
 - Phi outputs are checkpointing: `outputs.jsonl` advanced to 7,040 rows / 7,015 parsed after the model switch.
+
+## [2026-07-03T18:27:00Z] P3/A-301-IIPR-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 7,424 rows / 7,398 parsed. Phi chunking is stable after the model transition.
