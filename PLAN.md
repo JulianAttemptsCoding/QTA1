@@ -96,10 +96,8 @@ would be the stretch outcome. This document assumes neither.
 - A-202 DONE: Contamination probes (C-2) per model × OOS ticker → exclusion matrix.
 - A-203 DONE: `make smoke` (already passing with the stub) rerun against real models on a
   20-agent × 10-day slice of one CALIB ticker.
-- **GATE G2 PASS:** Qwen2.5-1.5B and Phi-3.5-mini reached valid-JSON `1.000` and
-  contamination max non-UNKNOWN `0.000` on Vertex. Both smoke paths showed
-  degenerate buy-side imbalance (`1.000`), which is tracked for F-06 diagnostics in
-  P3/P5 rather than a G2 kill criterion.
+- **GATE G2 (kill):** valid-JSON < 99% after 3 prompt iterations on ≥ 2 model
+  families → drop failing families; if < 2 families survive, STOP.
 
 ### P3 — Calibration era (RQ1 + RQ2) — est. $10–18
 - A-301 Run CALIB-2019: 10 tickers × 100 agents × ~126 trading days × {named, alias}

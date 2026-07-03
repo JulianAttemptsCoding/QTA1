@@ -267,3 +267,7 @@
 - Final G2 survivors: `Qwen/Qwen2.5-1.5B-Instruct` and `microsoft/Phi-3.5-mini-instruct`; both reached valid JSON `1.000` and contamination max non-UNKNOWN `0.000`.
 - Generated `docs/G2_REPORT.md`; GATE G2 final decision: PASS. Both smoke paths had mean absolute flow imbalance `1.000`, so P3/P5 should treat F-06 herding/entropy diagnostics as high priority.
 - Actualized P2 Vertex budget: four short spot T4 jobs totaling about `$0.20`, cumulative project estimate `$0.70`. No Codex-owned Vertex jobs remain active.
+
+## [2026-07-03T07:21:00Z] QA/PLAN-GATE-TEXT-CORRECTION
+- Re-read the execution brief and caught that PLAN.md gate criteria must remain unchanged.
+- Restored the original G2 kill criterion text in PLAN.md; G2 PASS evidence remains in `docs/G2_REPORT.md`, README status, STATE.json, and this append-only log.
