@@ -594,3 +594,8 @@
 ## [2026-07-03T18:49:00Z] P3/A-301-IIPR-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 6,016 rows / 5,997 parsed. The Qwen tranche is within three chunks of completion.
+
+## [2026-07-03T18:07:00Z] P3/A-301-IIPR-ALIAS-MODEL-SWITCH
+- Append-only timestamp correction: recent alias poll headings from `2026-07-03T18:09:00Z` through `2026-07-03T18:49:00Z` were written ahead of the actual UTC clock while polling. Authoritative timestamps are the Vertex/GCS timestamps in this entry and subsequent entries.
+- `outputs.jsonl` reached 6,400 rows / 6,381 parsed, completing the Qwen request tranche for the alias shard.
+- Vertex logs confirm `microsoft/Phi-3.5-mini-instruct` loaded from `/tmp/agorasim-models/microsoft__Phi-3.5-mini-instruct` at `2026-07-03T18:06:07Z`, with memory profiling completed on the T4 worker. One vLLM KV-cache recompute warning was observed; the job remains `JOB_STATE_RUNNING`.
