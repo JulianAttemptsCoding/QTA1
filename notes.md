@@ -43,3 +43,13 @@
 - P-17 model_cache Vertex job LAUNCHED (first Vertex spend): job_id 2444747620275453952, region us-central1, n1-standard-8 (no GPU, on-demand), bootDisk 200GB pd-ssd. HF_TOKEN passed via temp job YAML (/tmp/mc_job.yaml) -> job submitted -> temp YAML DELETED (never committed, R4). Models: 4 ungated + 2 gated (gated skipped non-fatal if license not accepted).
 - Polling per P-14 (120s). Will not end while job RUNNING (R: never end with active Vertex job).
 - Next: on SUCCESS, read docs/MODEL_SHAS.md from GCS manifest -> then throughput probe (T4 spot) per cached model -> docs/G0_THROUGHPUT.md -> full GATE G0 decision.
+
+## [2026-07-03T03:47:42Z] P0/A-003 -- model_cache SUCCEEDED + GATE G0 throughput launched
+- model_cache job 2444747620275453952 = JOB_STATE_SUCCEEDED (wall ~8min, est $0.05). Manifest gs://.../models/_cache_manifest.json:
+  - OK (weights in GCS): Qwen/Qwen2.5-1.5B-Instruct (sha 989aa79, 21 files), Qwen/Qwen2.5-3B-Instruct (aa8e725, 25), microsoft/Phi-3.5-mini-instruct (2fe1924, 41), HuggingFaceTB/SmolLM2-1.7B-Instruct (31b70e2, 41).
+  - SKIP: meta-llama/Llama-3.2-3B-Instruct + google/gemma-2-2b-it = GatedRepoError 403 (HF token license not accepted). Non-fatal per P-05. Proceeding with 4 ungated (>= min models needed).
+- SHAs recorded docs/MODEL_SHAS.md; configs/models.yaml revisions pinned; corrected MODEL_SHAS.md uploaded to GCS (stale copy had wrong --dash URIs).
+- Housekeeping: deleted stale --dash model dirs (from pre-compaction attempt, 22:58Z) left in GCS; kept current __underscore dirs (03:29Z, match sanitize()). Verified all 4 __ dirs have safetensors shards (2/6/6/2).
+- GATE G0 throughput LAUNCHED via scripts/launch_g0_throughput.sh (background task b89g58r10): 4 jobs, ONE per model, SERIAL (T4 quota==1), n1-standard-8 + 1x T4 SPOT, --n 512. First job agorasim-g0-thru-Qwen__Qwen2.5-1.5B-Instruct = PENDING. Each writes gs://.../runs/g0_throughput/<model>.json (decisions_per_hour + valid_json_rate).
+- G0 kill criteria (PLAN): throughput < 2000 dec/hr OR valid-JSON < 90%. Polling per P-14; will not end while jobs run.
+- Next: on ALL_THROUGHPUT_JOBS_DONE -> assemble docs/G0_THROUGHPUT.md -> full GATE G0 decision + docs/FEASIBILITY_ADDENDUM.md (A-004).

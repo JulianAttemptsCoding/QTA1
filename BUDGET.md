@@ -7,4 +7,5 @@ On-demand `n1-standard-8` (no GPU) ≈ **$0.38/hr** (model_cache download job; o
 
 | # | job id | display name | machine | gpu | spot | wall h | $/hr | est $ | cumulative $ |
 |---|--------|--------------|---------|-----|------|--------|------|-------|--------------|
-| 1 | 2444747620275453952 | agorasim-model-cache | n1-standard-8 | none | no | TBD | 0.38 | TBD | TBD |
+| 1 | 2444747620275453952 | agorasim-model-cache | n1-standard-8 | none | no | 0.14 | 0.38 | 0.05 | 0.05 |
+| 2 | (g0-thru x4 serial) | agorasim-g0-thru-* | n1-standard-8 | T4 | yes | ~0.8 tot | 0.30 | ~0.24 | ~0.29 |
