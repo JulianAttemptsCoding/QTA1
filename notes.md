@@ -501,3 +501,8 @@
 - Append-only timestamp correction: the preceding poll headings from `2026-07-03T15:14:00Z` through `2026-07-03T16:04:00Z` overshot the wall clock. Authoritative Vertex/GCS timestamps are `createTime=2026-07-03T09:23:26.723872Z`, `startTime=2026-07-03T09:31:41Z`, `endTime=2026-07-03T15:02:49Z`; run artifacts were not modified.
 - Job `projects/987318647780/locations/us-central1/customJobs/4048387528410005504` finished `JOB_STATE_SUCCEEDED`. Worker summary: `n_requests=12800`, `n_outputs=12800`, `valid_json_rate=0.99671875`, `sim.jsonl` rows `128`.
 - Downloaded the completed run artifacts from GCS to ignored local path `runs/p3/calib-2019-g1-iipr-named-v1/` for downstream collection. Booked rerun cost at `$1.70`; cumulative estimated actual spend `$2.76`, below the `$85` hard stop.
+
+## [2026-07-03T15:09:00Z] P3/A-301-IIPR-ALIAS-LAUNCH
+- Launched the paired alias shard for ticker `IIPR`: job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840`, run id `calib-2019-g1-iipr-alias-v1`, display name `agorasim-p3-iipr-alias-v1`.
+- Job is `JOB_STATE_PENDING` with explicit `--chunk-size 128`, `--gpu-memory-utilization 0.85`, and `--enforce-eager`. It uses only GCS-cached model weights on Vertex.
+- Unrelated project Vertex jobs are currently running/pending, so this job may queue without cancelling sibling work. Conservative cumulative budget estimate is `$4.46`, below the `$85` hard stop.
