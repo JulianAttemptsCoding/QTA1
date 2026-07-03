@@ -22,12 +22,20 @@ WORKDIR /app
 
 # Heavy, rarely-changing deps first (Docker layer cache). Guided JSON decoding uses the
 # lm-format-enforcer backend (bundled with vLLM) to avoid the `outlines` import chain,
-# which pulls a broken `pyairports` dependency on vllm 0.6.3.
-# transformers is pinned to 4.46.3: newer releases removed `LogitsWarper`, which
-# lm-format-enforcer's transformers integration still imports (ImportError otherwise).
+# which pulls a broken `pyairports` dependency.
+# vLLM pinned to 0.6.4.post1 (NOT 0.6.3.post1): the lm-format-enforcer bundled with 0.6.3
+# does NOT enforce JSON-schema `maxLength` on strings, so small models ramble a long
+# rationale and the JSON is truncated at max_tokens (valid-JSON ~0.18). 0.6.4.post1 ships a
+# newer lm-format-enforcer that honors maxLength -> the rationale is capped at 240 chars and
+# the object closes within budget (the operative fix for the G0 >=90% valid-JSON gate).
+# torch pinned to the cu121 wheel first so vllm reuses it (T4 sm_75 CUDA build), matching a
+# proven-working stack. transformers pinned 4.46.3: newer releases removed `LogitsWarper`,
+# which lm-format-enforcer's transformers integration still imports (ImportError otherwise).
 RUN pip install --upgrade pip && \
+    pip install --index-url https://download.pytorch.org/whl/cu121 \
+      "torch==2.5.1+cu121" "torchvision==0.20.1+cu121" && \
     pip install \
-      "vllm==0.6.3.post1" \
+      "vllm==0.6.4.post1" \
       "transformers==4.46.3" \
       "huggingface_hub[hf_transfer]>=0.25,<1.0" \
       "google-cloud-storage>=2.18"
