@@ -615,3 +615,7 @@
 ## [2026-07-03T18:47:07Z] P3/A-301-IIPR-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 8,064 rows / 8,038 parsed. A brief flat poll resolved with the next Phi checkpoint; no intervention needed.
+
+## [2026-07-03T18:57:15Z] P3/A-301-IIPR-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 8,320 rows / 8,294 parsed. The Phi tranche continues to checkpoint after short in-flight pauses.
