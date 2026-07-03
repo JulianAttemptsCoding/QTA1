@@ -69,3 +69,13 @@
 - Fix (commit): throughput_probe now uses SamplingParams(guided_decoding=GuidedDecodingParams(json=AgentDecision.model_json_schema())) + records up to 3 invalid_examples. This is the same constrained-decoding the real sim needs for G2 (>=99%). NOTE: wire the same into agents/vllm_batch.run_offline at P2.
 - Rebuilding worker:v3 (Cloud Build bhn6w055f). On SUCCESS -> re-validate Qwen1.5B (expect ~100% valid) -> run all 4 -> docs/G0_THROUGHPUT.md -> GATE G0.
 - NOT a G0 kill: the 22% was a probe/decoding artifact (infra), not a working-run model-capability measurement.
+
+## [2026-07-03T05:20:00Z] P0/A-003 -- guided-decoding stack fixed (v3->v7); rationale-truncation root cause
+- v3 FAILED: `ModuleNotFoundError: No module named 'pyairports'` -- default `outlines` guided backend pulls a broken pyairports dep on vllm 0.6.3.post1. Pinning pyairports (v4) did not help (pip resolved a 3.1kB stub).
+- v4->v5: switched GuidedDecodingParams backend to "lm-format-enforcer" (vLLM's other bundled JSON decoder, no outlines chain). v5 FAILED: `ImportError: cannot import name 'LogitsWarper' from transformers.generation.logits_process` -- lm-format-enforcer's transformers integration imports LogitsWarper, removed in transformers >=4.48.
+- v5->v6: pinned transformers==4.46.3 (still has LogitsWarper). v6 guided decoding RUNS (job 8758660157430300672 SUCCEEDED, no crash). BUT valid_json_rate=0.2344 (23%), still < 90% G0. decisions_per_hour=2709 (>2000 OK).
+- Root cause of the 23%: invalid_examples were all truncated mid-rationale (e.g. "...Limited risk appetite and medium-term<cut>"). The probe passed AgentDecision.model_json_schema() to the decoder, which leaves rationale at max_length=2000; the decoder generated a rationale far longer than the max_tokens=160 budget, so the JSON never closed.
+- Idea source: peeked codex/scripts/p0_gate_throughput.py (sibling project). They pass a HAND-BUILT schema with `rationale maxLength: 240` (~60-80 tokens) + `additionalProperties:False` + all-required, and sample at temperature=0.0. A tight rationale cap lets the whole object close within 160 tokens. Applied same mechanism (did not copy code).
+- Fix (v7): throughput_probe now uses module-level DECISION_JSON_SCHEMA (rationale maxLength 240, additionalProperties False, all required) instead of the pydantic schema, and SamplingParams(temperature=0.0). Rebuilding worker:v7 (Cloud Build).
+- On SUCCESS -> re-validate Qwen1.5B (expect >=0.90 valid) -> run all 4 via launcher -> docs/G0_THROUGHPUT.md -> GATE G0.
+- NONE of v3-v6 were G0 kills: all were probe/decoding infra faults, not working-run model-capability measurements.

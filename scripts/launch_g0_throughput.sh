@@ -46,8 +46,9 @@ scheduling:
 EOF
   NAME="$(gcloud ai custom-jobs create --region="${REGION}" \
       --display-name="agorasim-g0-thru-${SAN}" --config="$YAML" \
-      --format='value(name)' 2>/dev/null | tail -1)"
+      --format='value(name)' 2>/dev/null | grep -E 'customJobs/[0-9]+' | tail -1)"
   rm -f "$YAML"
+  if [ -z "$NAME" ]; then echo "SUBMIT_FAILED: ${MODEL}"; exit 1; fi
   echo "submitted: ${NAME}"
   # Serial: wait for terminal state before next model (T4 quota == 1).
   while true; do

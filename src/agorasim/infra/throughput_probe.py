@@ -17,7 +17,29 @@ import time
 from agorasim.agents.personas import PersonaBank
 from agorasim.agents.prompt_builder import load_template, render
 from agorasim.infra.gcs import download_prefix, upload_file
-from agorasim.schemas import AgentDecision, parse_decision
+from agorasim.schemas import parse_decision
+
+# Hand-built decoding schema (NOT AgentDecision.model_json_schema()). The pydantic schema
+# leaves rationale at max_length=2000, so the guided decoder generates a rationale far
+# longer than the 160-token budget and the JSON gets truncated mid-string (invalid). A
+# tight rationale cap (240 chars ~= 60-80 tokens) lets the whole object close within budget
+# -> the operative fix for the valid-JSON gate (G0 >=90%). All fields required +
+# additionalProperties:False keeps small models from wandering off-schema.
+DECISION_JSON_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "action": {"type": "string", "enum": ["buy", "sell", "hold"]},
+        "order_type": {"type": "string", "enum": ["market", "limit"]},
+        "qty": {"type": "integer", "minimum": 0, "maximum": 1_000_000},
+        "limit_price": {"type": "number", "minimum": 0.01},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "horizon_days": {"type": "integer", "enum": list(range(1, 31))},
+        "rationale": {"type": "string", "maxLength": 240},
+    },
+    "required": ["action", "order_type", "qty", "limit_price", "confidence",
+                 "horizon_days", "rationale"],
+    "additionalProperties": False,
+}
 
 
 def sanitize(model_id: str) -> str:
@@ -67,9 +89,10 @@ def main() -> None:
     # for the >=90% (G0) / >=99% (G2) valid-JSON gates. This is also how the real sim runs.
     # backend="lm-format-enforcer": vLLM's other bundled JSON-schema decoder. Avoids the
     # `outlines` import chain (outlines pulls a broken `pyairports` dep on vllm 0.6.3).
-    gd = GuidedDecodingParams(json=AgentDecision.model_json_schema(),
+    gd = GuidedDecodingParams(json=DECISION_JSON_SCHEMA,
                               backend="lm-format-enforcer")
-    sp = SamplingParams(max_tokens=160, temperature=0.7, guided_decoding=gd)
+    # temperature=0.0 (greedy): deterministic, no sampling tail that lengthens rationale.
+    sp = SamplingParams(max_tokens=160, temperature=0.0, guided_decoding=gd)
 
     llm = LLM(model=local, dtype="half", gpu_memory_utilization=0.90,
               max_model_len=2048, enforce_eager=True)
