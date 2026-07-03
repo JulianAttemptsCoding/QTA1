@@ -17,14 +17,16 @@ studies and counterfactuals. Nothing here is investment advice.
 |---|---|---|
 | G0 | Data + throughput reality checks (`scripts/p0_gate_*.py`) | **PASS** (`docs/G0_REPORT.md`, `docs/G0_THROUGHPUT.md`) |
 | G1 | Universes + point-in-time snapshots frozen and hashed | **PASS** (`docs/G1_UNIVERSES.md`, `docs/G1_SNAPSHOT_MANIFEST.json`) |
-| G2 | >=99% valid-JSON agent decisions; smoke sim | stub smoke PASS; real-model smoke pending |
+| G2 | >=99% valid-JSON agent decisions; smoke sim | **PASS** (`docs/G2_REPORT.md`) |
 | G3 | Calibration-era fidelity (kill: sign-agreement <=52% both arms) | not started |
 | G4 | OOS budget checkpoint | not started |
 | G5 | Full reproducibility from manifests | not started |
 
-Local test suite: `pytest -q` - 26/26 passing. Stub smoke:
+Local test suite: `pytest -q` - 34/34 passing. Stub smoke:
 `python scripts/p2_smoke_sim.py --config configs/sim_smoke.yaml` - PASS
-(parse-valid 0.995, auction price dynamics exercised).
+(parse-valid 0.995, auction price dynamics exercised). Real-model G2 smoke:
+Qwen2.5-1.5B and Phi-3.5-mini both reached valid-JSON `1.000` and contamination
+max non-UNKNOWN `0.000` on Vertex.
 
 ## Quickstart
 
@@ -54,6 +56,9 @@ docs/G0_REPORT.md        G0 data gate evidence
 docs/G0_THROUGHPUT.md    G0 Vertex throughput evidence
 docs/FEASIBILITY_ADDENDUM.md  G0 kill-criteria decision and budget update
 docs/MODEL_SHAS.md       Vertex-cached model manifest and revisions
+docs/G1_UNIVERSES.md     frozen CALIB/OOS universes and selection dates
+docs/G1_SNAPSHOT_MANIFEST.json  hashed point-in-time snapshot manifest
+docs/G2_REPORT.md        real-model smoke and contamination gate evidence
 docs/TRIALS.md           registered trial count
 configs/                 smoke / calibration / OOS experiment configs
 prompts/                 agent system+user templates, contamination probes

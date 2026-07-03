@@ -1,0 +1,47 @@
+{
+  "displayName": "agorasim-g2-phi35-rerun-20260703-0659",
+  "jobSpec": {
+    "scheduling": {
+      "restartJobOnWorkerRestart": false,
+      "strategy": "SPOT"
+    },
+    "workerPoolSpecs": [
+      {
+        "containerSpec": {
+          "args": [
+            "scripts/p2_gate_real_model.py",
+            "--model-id",
+            "microsoft/Phi-3.5-mini-instruct",
+            "--gcs-model-root",
+            "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/models",
+            "--gcs-snapshot-manifest",
+            "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/manifest.json",
+            "--gcs-output-uri",
+            "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/gates/g2/microsoft--Phi-3.5-mini-instruct.json",
+            "--ticker",
+            "IIPR",
+            "--n-agents",
+            "20",
+            "--n-days",
+            "10",
+            "--gpu-memory-utilization",
+            "0.85",
+            "--enforce-eager"
+          ],
+          "env": [],
+          "imageUri": "us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:latest"
+        },
+        "diskSpec": {
+          "bootDiskSizeGb": 100,
+          "bootDiskType": "pd-ssd"
+        },
+        "machineSpec": {
+          "acceleratorCount": 1,
+          "acceleratorType": "NVIDIA_TESLA_T4",
+          "machineType": "n1-standard-8"
+        },
+        "replicaCount": 1
+      }
+    ]
+  }
+}

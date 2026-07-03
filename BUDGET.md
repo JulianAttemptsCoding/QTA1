@@ -18,3 +18,7 @@
 | 2026-07-03T03:22:00Z | projects/987318647780/locations/us-central1/customJobs/8943441882571079680 | agorasim-g0-throughput-smollm2-lmfe-20260703-0322 | n1-standard-8 | 1x NVIDIA_TESLA_T4 | spot | 0.14 | 0.30 | 0.04 | 0.43 |
 | 2026-07-03T03:44:00Z | projects/987318647780/locations/us-central1/customJobs/6129255065417940992 | agorasim-g0-throughput-smollm2-enum-20260703-0344 | n1-standard-8 | 1x NVIDIA_TESLA_T4 | spot | 0.01 | 0.30 | 0.01 | 0.44 |
 | 2026-07-03T04:16:00Z | projects/987318647780/locations/us-central1/customJobs/6892474464768884736 | agorasim-g0-throughput-smollm2-manifest-20260703-0416 | n1-standard-8 | 1x NVIDIA_TESLA_T4 | spot | 0.21 | 0.30 | 0.06 | 0.50 |
+| 2026-07-03T05:43:00Z | projects/987318647780/locations/us-central1/customJobs/4485025586032410624 | agorasim-g2-qwen15-20260703-0543 | n1-standard-8 | 1x NVIDIA_TESLA_T4 | spot | 0.17 | 0.30 | 0.05 | 0.55 |
+| 2026-07-03T06:18:00Z | projects/987318647780/locations/us-central1/customJobs/8714609323575083008 | agorasim-g2-qwen15-rerun-20260703-0618 | n1-standard-8 | 1x NVIDIA_TESLA_T4 | spot | 0.18 | 0.30 | 0.05 | 0.60 |
+| 2026-07-03T06:31:00Z | projects/987318647780/locations/us-central1/customJobs/1480702422111223808 | agorasim-g2-phi35-20260703-0631 | n1-standard-8 | 1x NVIDIA_TESLA_T4 | spot | 0.15 | 0.30 | 0.05 | 0.65 |
+| 2026-07-03T06:59:00Z | projects/987318647780/locations/us-central1/customJobs/5330717153559576576 | agorasim-g2-phi35-rerun-20260703-0659 | n1-standard-8 | 1x NVIDIA_TESLA_T4 | spot | 0.15 | 0.30 | 0.05 | 0.70 |

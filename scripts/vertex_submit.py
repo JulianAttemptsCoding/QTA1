@@ -47,6 +47,18 @@ def common_parser() -> argparse.ArgumentParser:
     throughput.add_argument("--n-prompts", type=int, default=512)
     throughput.add_argument("--gpu-memory-utilization", type=float)
     throughput.add_argument("--enforce-eager", action="store_true")
+
+    p2 = sub.add_parser("p2-gate")
+    p2.add_argument("--display-name", required=True)
+    p2.add_argument("--model-id", required=True)
+    p2.add_argument("--gcs-model-root", required=True)
+    p2.add_argument("--gcs-snapshot-manifest", required=True)
+    p2.add_argument("--gcs-output-uri", required=True)
+    p2.add_argument("--ticker", default="IIPR")
+    p2.add_argument("--n-agents", type=int, default=20)
+    p2.add_argument("--n-days", type=int, default=10)
+    p2.add_argument("--gpu-memory-utilization", type=float)
+    p2.add_argument("--enforce-eager", action="store_true")
     return parser
 
 
@@ -64,7 +76,7 @@ def main() -> int:
         if os.getenv("HF_TOKEN"):
             env["HF_TOKEN"] = os.environ["HF_TOKEN"]
         display_name = args.display_name
-    else:
+    elif args.kind == "throughput":
         container_args = [
             "scripts/p0_gate_throughput.py",
             "--model-id",
@@ -75,6 +87,30 @@ def main() -> int:
             args.gcs_output_uri,
             "--n-prompts",
             str(args.n_prompts),
+        ]
+        if args.gpu_memory_utilization is not None:
+            container_args.extend(["--gpu-memory-utilization", str(args.gpu_memory_utilization)])
+        if args.enforce_eager:
+            container_args.append("--enforce-eager")
+        env = {}
+        display_name = args.display_name
+    else:
+        container_args = [
+            "scripts/p2_gate_real_model.py",
+            "--model-id",
+            args.model_id,
+            "--gcs-model-root",
+            args.gcs_model_root,
+            "--gcs-snapshot-manifest",
+            args.gcs_snapshot_manifest,
+            "--gcs-output-uri",
+            args.gcs_output_uri,
+            "--ticker",
+            args.ticker,
+            "--n-agents",
+            str(args.n_agents),
+            "--n-days",
+            str(args.n_days),
         ]
         if args.gpu_memory_utilization is not None:
             container_args.extend(["--gpu-memory-utilization", str(args.gpu_memory_utilization)])

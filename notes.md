@@ -240,3 +240,30 @@
 - Corrected the P1 freezer to use raw Alpaca prices for universe market-cap filters after a QA pass caught split-adjusted historical prices.
 - Synced ignored raw snapshots to `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/` and uploaded the tracked manifest as `manifest.json`.
 - P1 used local CPU/network only; no local LLM weights, local inference, or Vertex heavy-compute jobs were launched. GATE G1 final decision: PASS; P2 may begin.
+
+## [2026-07-03T05:43:00Z] P2/A-201-A-203-QWEN15-LAUNCH
+- Implemented `scripts/p2_gate_real_model.py`, `scripts/p2_collect_gate.py`, and collector tests; Cloud Build `07221b55-260a-48e2-9cf9-8ad9adbcf994` pushed worker digest `sha256:71e1a1bbbb72fa00fec2001ee22105c40fc7b145b0a03cf35a31fb028f3e5f88`.
+- Queued P2 real-model gate job `projects/987318647780/locations/us-central1/customJobs/4485025586032410624` for `Qwen/Qwen2.5-1.5B-Instruct`.
+- Job reads G1 snapshots from `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/manifest.json`, cached model weights from GCS, and writes `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/gates/g2/Qwen--Qwen2.5-1.5B-Instruct.json`.
+- Budget estimate added: assume <=0.25 h at $0.30/h = $0.08; cumulative estimate $0.58.
+
+## [2026-07-03T06:18:00Z] P2/A-201-A-203-QWEN15-SCORER-FIX
+- First Qwen P2 job `projects/987318647780/locations/us-central1/customJobs/4485025586032410624` succeeded with valid JSON `1.000`, but QA found the contamination scorer counted `UNKNOWN.` as non-UNKNOWN.
+- Patched `scripts/p2_gate_real_model.py` to normalize punctuation around UNKNOWN answers, rebuilt worker image with Cloud Build `02e0b581-a0ce-47eb-96ae-b97aa07c239e`, digest `sha256:30432e187ff1cb76a626fde5eab25b7d1edff9f51296c30d4f59d9dd5c40fdc1`.
+- Queued corrected Qwen P2 rerun `projects/987318647780/locations/us-central1/customJobs/8714609323575083008`; budget estimate adds another <=0.25 h at $0.30/h = $0.08, cumulative estimate $0.63 after actualizing the first Qwen run at about $0.05.
+
+## [2026-07-03T06:31:00Z] P2/A-201-A-203-PHI35-LAUNCH
+- Corrected Qwen P2 rerun `projects/987318647780/locations/us-central1/customJobs/8714609323575083008` succeeded: valid JSON `1.000`, contamination max non-UNKNOWN `0.000`; Qwen family survives G2.
+- Queued Phi P2 real-model gate job `projects/987318647780/locations/us-central1/customJobs/1480702422111223808` with `--enforce-eager --gpu-memory-utilization 0.85`, matching the G0 Phi memory workaround.
+- Budget estimate added: assume <=0.25 h at $0.30/h = $0.08; cumulative estimate $0.68 after actualizing the two Qwen P2 jobs at about $0.10 total.
+
+## [2026-07-03T06:59:00Z] P2/A-201-A-203-PHI35-SCORER-FIX
+- Phi P2 job `projects/987318647780/locations/us-central1/customJobs/1480702422111223808` succeeded with valid JSON `1.000`, but QA found the contamination scorer counted `Answer: UNKNOWN ...` as non-UNKNOWN.
+- Patched `scripts/p2_gate_real_model.py` to strip an `ANSWER:` prefix before applying the UNKNOWN detector, rebuilt worker image with Cloud Build `815ba04d-3fe8-4fd6-8b09-9861af9d4168`, digest `sha256:3af89b314af44064655b3cec7460b5eb8ff956f207c5b740fc0351ca383318fa`.
+- Queued corrected Phi P2 rerun `projects/987318647780/locations/us-central1/customJobs/5330717153559576576`; budget estimate adds another <=0.25 h at $0.30/h = $0.08, cumulative estimate $0.73 after actualizing the first Phi P2 job at about $0.05.
+
+## [2026-07-03T07:09:00Z] P2/G2-PASS
+- Corrected Phi rerun `projects/987318647780/locations/us-central1/customJobs/5330717153559576576` succeeded on Vertex and overwrote the Phi G2 result at `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/gates/g2/microsoft--Phi-3.5-mini-instruct.json`.
+- Final G2 survivors: `Qwen/Qwen2.5-1.5B-Instruct` and `microsoft/Phi-3.5-mini-instruct`; both reached valid JSON `1.000` and contamination max non-UNKNOWN `0.000`.
+- Generated `docs/G2_REPORT.md`; GATE G2 final decision: PASS. Both smoke paths had mean absolute flow imbalance `1.000`, so P3/P5 should treat F-06 herding/entropy diagnostics as high priority.
+- Actualized P2 Vertex budget: four short spot T4 jobs totaling about `$0.20`, cumulative project estimate `$0.70`. No Codex-owned Vertex jobs remain active.

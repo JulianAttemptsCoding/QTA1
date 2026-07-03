@@ -1,8 +1,8 @@
 {
-  "phase": "P2",
-  "last_completed_task": "A-103",
+  "phase": "P3",
+  "last_completed_task": "A-203",
   "active_jobs": [],
-  "budget_est_usd": 0.50,
+  "budget_est_usd": 0.70,
   "blockers": [],
   "trials_registered": 4
 }

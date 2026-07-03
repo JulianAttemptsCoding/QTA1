@@ -1,6 +1,7 @@
 # PLAN.md - AgoraSim (Idea 1: LLM-agent retail crowd simulation)
 
-Status: G1 PASS. Universes and hashed snapshots are frozen; P2 may begin.
+Status: G2 PASS. Real-model smoke and contamination probes passed on Vertex for
+two surviving model families; P3 calibration may begin.
 
 ## 0. Objective (30-second version)
 
@@ -90,13 +91,15 @@ would be the stretch outcome. This document assumes neither.
   (10 random prompts rendered, human-verified no post-asof content) passes.
 
 ### P2 — Agent + engine bring-up — est. $2–5
-- A-201 Prompt iteration on the worker until valid-JSON ≥ 99% per model (log every
+- A-201 DONE: Prompt iteration on the worker until valid-JSON ≥ 99% per model (log every
   iteration; prompts are hashed into manifests).
-- A-202 Contamination probes (C-2) per model × OOS ticker → exclusion matrix.
-- A-203 `make smoke` (already passing with the stub) rerun against real models on a
+- A-202 DONE: Contamination probes (C-2) per model × OOS ticker → exclusion matrix.
+- A-203 DONE: `make smoke` (already passing with the stub) rerun against real models on a
   20-agent × 10-day slice of one CALIB ticker.
-- **GATE G2 (kill):** valid-JSON < 99% after 3 prompt iterations on ≥ 2 model
-  families → drop failing families; if < 2 families survive, STOP.
+- **GATE G2 PASS:** Qwen2.5-1.5B and Phi-3.5-mini reached valid-JSON `1.000` and
+  contamination max non-UNKNOWN `0.000` on Vertex. Both smoke paths showed
+  degenerate buy-side imbalance (`1.000`), which is tracked for F-06 diagnostics in
+  P3/P5 rather than a G2 kill criterion.
 
 ### P3 — Calibration era (RQ1 + RQ2) — est. $10–18
 - A-301 Run CALIB-2019: 10 tickers × 100 agents × ~126 trading days × {named, alias}
