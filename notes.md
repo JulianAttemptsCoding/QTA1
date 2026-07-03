@@ -36,3 +36,10 @@
 - Cloud Build launched: build id daaf6fdf-cbac-4d17-b023-6387c063d692, target image us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:v1. Status WORKING (polling per P-14).
 - GCS base = gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim.
 - Next (blocked on image SUCCESS): launch model_cache Vertex job (HF_TOKEN via temp job YAML, never committed) -> download six models to GCS + record SHAs (docs/MODEL_SHAS.md); then throughput probe (T4 spot) per cached model -> assemble docs/G0_THROUGHPUT.md -> evaluate full GATE G0.
+
+## [2026-07-03T03:25:59Z] P0/A-003 -- git rebranch + model_cache Vertex job launched
+- Repo restructure (user request): renamed branch main -> claude; pushed claude; set claude as GitHub default; DELETED remote main. Only branch on QTA1 now = claude. Local branch claude matches working folder (.env gitignored, untracked).
+- Worker image build SUCCESS; tags [v1, latest] in us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker.
+- P-17 model_cache Vertex job LAUNCHED (first Vertex spend): job_id 2444747620275453952, region us-central1, n1-standard-8 (no GPU, on-demand), bootDisk 200GB pd-ssd. HF_TOKEN passed via temp job YAML (/tmp/mc_job.yaml) -> job submitted -> temp YAML DELETED (never committed, R4). Models: 4 ungated + 2 gated (gated skipped non-fatal if license not accepted).
+- Polling per P-14 (120s). Will not end while job RUNNING (R: never end with active Vertex job).
+- Next: on SUCCESS, read docs/MODEL_SHAS.md from GCS manifest -> then throughput probe (T4 spot) per cached model -> docs/G0_THROUGHPUT.md -> full GATE G0 decision.

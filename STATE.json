@@ -1,7 +1,9 @@
 {
   "phase": "P0",
-  "last_completed_task": "A-002",
-  "active_jobs": [],
+  "last_completed_task": "A-003-scaffold",
+  "active_jobs": [
+    {"kind": "model_cache", "job_id": "2444747620275453952", "region": "us-central1", "machine": "n1-standard-8", "gpu": null, "launched": "2026-07-03"}
+  ],
   "budget_est_usd": 0.0,
   "blockers": ["robintrack-archive-soft: no local export; CALIB-only, needed for P3 (see notes.md)"],
   "trials_registered": 0
