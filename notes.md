@@ -671,3 +671,10 @@
 ## [2026-07-03T21:09:10Z] P3/A-301-IIPR-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` is at 12,544 rows / 12,510 parsed. Two 128-row chunks remain before the 12,800-row target.
+
+## [2026-07-03T21:17:35Z] P3/A-301-IIPR-ALIAS-COMPLETE
+- Vertex job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` completed with `JOB_STATE_SUCCEEDED` at `2026-07-03T21:14:31Z`.
+- Downloaded artifacts from `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-iipr-alias-v1` into ignored local path `runs/p3/calib-2019-g1-iipr-alias-v1/`.
+- Artifact QA: `requests.jsonl` 12,800 rows, `outputs.jsonl` 12,800 rows / 12,765 parsed, `sim.jsonl` 128 rows, worker `valid_json_rate=0.997265625`.
+- Collector QA over the available P3 artifacts passed: G3 kill condition does not fire for the current IIPR named+alias artifact set.
+- Budget actual recorded: 6.11 T4 spot wall hours at `$0.30/hr` = `$1.83`; cumulative ledger now `$4.59`, well below the `$85` R5 hard stop.
