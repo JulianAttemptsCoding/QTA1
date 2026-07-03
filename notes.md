@@ -667,3 +667,7 @@
 ## [2026-07-03T20:58:56Z] P3/A-301-IIPR-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 12,288 rows / 12,254 parsed. Four 128-row chunks remain before the 12,800-row target.
+
+## [2026-07-03T21:09:10Z] P3/A-301-IIPR-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/8686057205624995840` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` is at 12,544 rows / 12,510 parsed. Two 128-row chunks remain before the 12,800-row target.
