@@ -11,7 +11,11 @@ C-3 Anonymization A/B: run identical experiments with ticker/company aliased
 """
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
+from typing import Optional
+
+_PRICE_RE = re.compile(r"\$?\s*(\d+(?:\.\d+)?)")
 
 
 @dataclass(frozen=True)
@@ -29,3 +33,18 @@ class ProbeResult:
 def model_passes(probe: ProbeResult, max_recall: float = 0.10) -> bool:
     """Exclude a model for a ticker if it recalls post-cutoff facts above chance-ish level."""
     return probe.recall_rate <= max_recall
+
+
+def extract_price(text: str) -> Optional[float]:
+    """First plausible USD price in a free-form recall answer; None if UNKNOWN / no number."""
+    if not text or "UNKNOWN" in text.upper():
+        return None
+    m = _PRICE_RE.search(text.replace(",", ""))
+    return float(m.group(1)) if m else None
+
+
+def is_recall(answer_price: Optional[float], actual_close: float, tol: float = 0.15) -> bool:
+    """True iff the model's answer is within `tol` (relative) of the real post-cutoff close."""
+    if answer_price is None or actual_close <= 0:
+        return False
+    return abs(answer_price - actual_close) / actual_close <= tol
