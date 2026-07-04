@@ -759,3 +759,7 @@
 - Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 8,448 rows / 8,410 parsed. The Qwen tranche has completed and Phi outputs are checkpointing.
 - PowerShell-safe Vertex log query for explicit Phi load lines returned no matching lines, so current status is based on Vertex job state plus GCS artifact counts.
+
+## [2026-07-04T01:51:09Z] P3/A-302-IGC-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 8,832 rows / 8,794 parsed. The Phi tranche continues to checkpoint after the model switch.
