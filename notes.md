@@ -817,3 +817,7 @@
 - GCS output directory: `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-igc-alias-v1`.
 - Spec recorded at `docs/vertex_job_specs/agorasim-p3-igc-alias-v1.json`; the launch keeps `--chunk-size 128`, `--gpu-memory-utilization 0.85`, and `--enforce-eager` so model weights/inference remain on Vertex.
 - Budget state estimate advanced to `$8.53` cumulative, still below the `$85` R5 hard stop.
+
+## [2026-07-04T04:10:42Z] P3/A-303-IGC-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/6284292802004123648` is `JOB_STATE_RUNNING`, with Vertex start time `2026-07-04T04:01:00Z`.
+- First checkpoints are healthy: `outputs.jsonl` advanced to 384 rows / 383 parsed for `calib-2019-g1-igc-alias-v1`.
