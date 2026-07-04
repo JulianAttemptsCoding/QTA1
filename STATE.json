@@ -1,9 +1,12 @@
 {
-  "phase": "P2->P4",
-  "last_completed_task": "P2 COMPLETE: GATE G2 PASS (2 families 1.0 valid-JSON) + A-202 contamination = 0.0 recall all (model,ticker), NO exclusions (docs/G2_CONTAMINATION.md). OOS window empirically post-cutoff.",
-  "next_task": "P4 OOS main run (RQ3): build sim engine runner (scripts/run_sim_phase.py MISSING) driving agents x tickers x days through run_offline, applying market/clearing.py (flow_imbalance + call_auction), logging JSONL + RunManifest to GCS. Smoke locally, launch Vertex OOS run on roster (alias arm primary). Register trials in docs/TRIALS.md before stats. P3 CALIB remains gated on Robintrack.",
-  "worker_image": "us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:v13",
-  "active_jobs": [],
+  "phase": "P4",
+  "last_completed_task": "P4 sim engine BUILT + validated live: scripts/run_sim_phase.py (per-model worker) + collect_sim_phase.py (crowd aggregator, 45 tests). Found+fixed host-RAM OOM in run_offline (bounded batch 256 + swap_space 2, commit 94bbb44). Pilot oos-pilot-v2 (worker:v15, 3 models x 2 tickers x 30 agents x 20 days, alias) generating real decisions.",
+  "next_task": "1) Collect pilot: `python scripts/collect_sim_phase.py --base gs://.../agorasim --run-id oos-pilot-v2` -> signals.jsonl (verify flow_imbalance/auction non-degenerate). 2) THROUGHPUT: real ~900-tok prompts on T4 are slow (~256 decisions/~8min, KV preemption at max_model_len 4096). Before the FULL P4 run trim prompt (e.g. 20 bars/3 news) and/or max_model_len 2048 and raise chunk to ~512 so 250k decisions fit budget/time. 3) Full P4 OOS main (10 tkr x ~100-200 agents x ~125 days, alias primary) -> collect -> P5 stats (evals/prediction.py IC/DM/DSR, bootstrap) vs baselines (D-09). Register trials in docs/TRIALS.md BEFORE stats. P3 CALIB still gated on Robintrack.",
+  "worker_image": "us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:v15",
+  "active_jobs": [
+    {"kind": "oos_pilot_v2", "run_id": "oos-pilot-v2", "image": "worker:v15", "arm": "alias",
+     "jobs": {"Qwen/Qwen2.5-1.5B-Instruct": "3949756937351987200", "Qwen/Qwen2.5-3B-Instruct": "5179028529391599616", "microsoft/Phi-3.5-mini-instruct": "2524367655289225216"}}
+  ],
   "g0_results": {
     "Qwen/Qwen2.5-1.5B-Instruct": {"valid_json_rate": 1.0, "decisions_per_hour": 3885, "viable": true},
     "Qwen/Qwen2.5-3B-Instruct": {"valid_json_rate": 1.0, "decisions_per_hour": 3034, "viable": true},
