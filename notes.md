@@ -130,3 +130,11 @@
 - Leakage spot-check (docs/G1_LEAKAGE_SPOTCHECK.md): 7 deterministic ticker/date renders via production prompt templates; every check post_asof=0 (max included bar == as-of, max news <= as-of). Result PASS (L-01 point-in-time enforced).
 - GATE G1: OOS side COMPLETE (frozen + hashed + leakage PASS). CALIB side PENDING Robintrack (deferred per PLAN section 4). Not tagging gate-g1 as fully passed until CALIB frozen; OOS is sufficient to proceed with P2 (contamination probes + smoke run on OOS tickers) which is the next Vertex-heavy phase.
 - Next: P2 agent bring-up (A-201/202/203) on OOS tickers, OR acquire Robintrack to close CALIB. Leaning P2 (OOS is the prediction track; Robintrack revisit stays scheduled for P3-prep).
+
+## [2026-07-04T14:10:00Z] P2 -- GATE G2 PASS (real-model valid-JSON); SmolLM2 dropped
+- A-201 (commit 7a052f6): guided decoding + T4 settings wired into production agents/vllm_batch.run_offline; canonical DECISION_JSON_SCHEMA in schemas.py shared with throughput_probe. A-203 (commit 93ea6d6): scripts/p2_gate_real_model.py + agents/sim_prompts.py (point-in-time L-01 request assembly, L-02 alias arm); 38 unit tests green.
+- G2 smoke: 4 models x TLRY (frozen OOS), 20 personas x 10 point-in-time days = 200 real decisions each, guided decoding, worker:v12, run in PARALLEL (T4 spot, quota=4).
+  - Qwen2.5-1.5B: valid 1.0 ; Qwen2.5-3B: valid 1.0 ; Phi-3.5-mini: valid 1.0 ; SmolLM2-1.7B: valid 0.96.
+- GATE G2 = PASS: 2 model families (Qwen, Phi) at 1.0 valid-JSON >= 0.99. SmolLM2 DROPPED (8/200 invalid = genuine model-quality failures under guided decoding: negative qty, malformed object, and prompt regurgitation -- NOT prompt-fixable; declined to game the metric by coercing negative share counts).
+- Post-G2 roster: Qwen2.5-1.5B (3885/hr), Qwen2.5-3B (3034/hr), Phi-3.5-mini (1985/hr, marginal thruput but 1.0 valid -> family diversity). docs/G2_REPORT.md written.
+- C-1 contamination control satisfied by construction (OOS 2025-01-02.. strictly post every enabled-model cutoff). C-3 alias arm wired in sim_prompts. Next: A-202 C-2 recall probes -> exclusion matrix, then P4 OOS main run (RQ3). P3 CALIB still gated on Robintrack.

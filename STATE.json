@@ -1,8 +1,8 @@
 {
-  "phase": "P1",
-  "last_completed_task": "P1: OOS universe FROZEN (10 tickers), snapshots+SHA256 manifest, leakage spot-check PASS. GATE G1 = OOS-complete; CALIB deferred (Robintrack).",
-  "next_task": "Either (a) P3-prep: acquire Robintrack popularity_export -> `python scripts/p1_freeze_universes.py --track calib` to close G1 fully; or (b) P2 agent bring-up on OOS tickers (A-201 valid-JSON>=99% wired into real sim, A-202 contamination probes, A-203 smoke). P2 is Vertex-heavy (use >=2 concurrent T4 spot jobs, quota=4).",
-  "worker_image": "us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:v11",
+  "phase": "P2",
+  "last_completed_task": "GATE G2 PASS: real-model smoke on TLRY (200 decisions each, worker:v12). Qwen1.5B/3B + Phi-3.5 = 1.0 valid-JSON (2 families); SmolLM2=0.96 DROPPED (negative qty, malformed, prompt regurgitation). docs/G2_REPORT.md written.",
+  "next_task": "A-202 contamination C-2 recall probes -> per (model,ticker) exclusion matrix (C-1 satisfied by post-cutoff OOS; C-3 alias arm wired). Then P4 OOS main run (RQ3) on the surviving roster; P3 CALIB still gated on Robintrack.",
+  "worker_image": "us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:v12",
   "active_jobs": [],
   "g0_results": {
     "Qwen/Qwen2.5-1.5B-Instruct": {"valid_json_rate": 1.0, "decisions_per_hour": 3885, "viable": true},
@@ -10,7 +10,9 @@
     "HuggingFaceTB/SmolLM2-1.7B-Instruct": {"valid_json_rate": 0.9961, "decisions_per_hour": 4859, "viable": true},
     "microsoft/Phi-3.5-mini-instruct": {"valid_json_rate": 1.0, "decisions_per_hour": 1985, "viable": "marginal (thruput 1985 < 2000)"}
   },
-  "viable_model_roster": ["Qwen/Qwen2.5-1.5B-Instruct", "Qwen/Qwen2.5-3B-Instruct", "HuggingFaceTB/SmolLM2-1.7B-Instruct"],
+  "viable_model_roster": ["Qwen/Qwen2.5-1.5B-Instruct", "Qwen/Qwen2.5-3B-Instruct", "microsoft/Phi-3.5-mini-instruct"],
+  "roster_note": "Post-G2 roster = 2 families (Qwen 1.5B+3B, Phi-3.5). SmolLM2 DROPPED at G2 (real-prompt valid-JSON 0.96 < 0.99: negative qty, malformed JSON, prompt regurgitation under guided decoding). Phi throughput-marginal (1985/hr) but valid-JSON 1.0 -> kept for family diversity.",
+  "g2_results": {"Qwen/Qwen2.5-1.5B-Instruct": 1.0, "Qwen/Qwen2.5-3B-Instruct": 1.0, "microsoft/Phi-3.5-mini-instruct": 1.0, "HuggingFaceTB/SmolLM2-1.7B-Instruct": 0.96},
   "g1_universes": {
     "oos": {"status": "FROZEN", "selection_date": "2024-12-20", "window": ["2025-01-02", "2026-06-30"],
             "tickers": ["NVNI", "TLRY", "EDIT", "CHPT", "BLNK", "FRSX", "TPET", "OGI", "CCO", "ICCM"],
