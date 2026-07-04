@@ -845,3 +845,10 @@
 ## [2026-07-04T05:17:21Z] P3/A-303-IGC-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/6284292802004123648` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 3,072 rows / 3,065 parsed. The Qwen tranche is approaching the halfway point.
+
+## [2026-07-04T05:26:37Z] P3/A-303-IGC-ALIAS-SHUTDOWN-HANDOFF
+- Preparing for local computer shutdown. No key computation is local: active model weights/inference are on Vertex job `projects/987318647780/locations/us-central1/customJobs/6284292802004123648`.
+- Job state is `JOB_STATE_RUNNING`; display `agorasim-p3-igc-alias-v1`; create time `2026-07-04T03:57:09.218398Z`; start time `2026-07-04T04:01:00Z`.
+- Active run id is `calib-2019-g1-igc-alias-v1`; GCS output directory is `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-igc-alias-v1`.
+- Latest `outputs.jsonl` checkpoint before shutdown handoff: 3,328 rows / 3,319 parsed.
+- Resume by checking the Vertex job state and GCS outputs, then continue polling or collect artifacts if the job has reached `JOB_STATE_SUCCEEDED`. Local app shutdown should not stop the Vertex job or remove GCS progress.
