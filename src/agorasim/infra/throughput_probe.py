@@ -3,7 +3,8 @@
 One model per process (process isolation avoids GPU-memory bleed between models); the
 launcher loops models in a shell for-loop. Loads the model from the GCS cache written by
 model_cache, renders `--n` representative decision prompts via the real templates, runs
-them through vLLM chat, and parses each output with agorasim.schemas.parse_decision.
+them through vLLM generate (raw completion), and parses each output with
+agorasim.schemas.parse_decision.
 
 Run: python -m agorasim.infra.throughput_probe --base gs://BUCKET/agorasim --model ID [--n 512]
 """

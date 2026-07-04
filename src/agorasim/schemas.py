@@ -51,6 +51,16 @@ def parse_decision(raw: str) -> Optional[AgentDecision]:
         return None
     if not isinstance(payload, dict):
         return None
+    # Small models routinely emit `"limit_price": 0` for hold/market orders (a placeholder,
+    # not a real limit). The guided-decoding JSON schema declares minimum 0.01, but
+    # lm-format-enforcer does not enforce numeric bounds, so the 0 reaches here and trips the
+    # AgentDecision `gt=0` field constraint -> the whole decision is dropped as invalid. A
+    # non-positive limit price is meaningless (there is no such limit order), so coerce it to
+    # None = "no limit" (market). This is the operative fix that lifted Qwen3B/Phi-3.5 from
+    # ~0% to ~100% valid-JSON on Gate G0 without loosening the limit-order invariant.
+    lp = payload.get("limit_price")
+    if isinstance(lp, (int, float)) and not isinstance(lp, bool) and lp <= 0:
+        payload["limit_price"] = None
     try:
         return AgentDecision(**{k: v for k, v in payload.items() if k in AgentDecision.model_fields})
     except Exception:
