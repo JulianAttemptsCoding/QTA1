@@ -958,3 +958,7 @@
 ## [2026-07-04T17:21:06Z] P3/A-304-GOLD-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/955074291383140352` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 8,320 rows / 8,291 parsed, with current valid JSON rate `0.996514`.
+
+## [2026-07-04T17:32:36Z] P3/A-304-GOLD-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/955074291383140352` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 8,704 rows / 8,675 parsed, with current valid JSON rate `0.996668`.
