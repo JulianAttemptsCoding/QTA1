@@ -1,14 +1,20 @@
 {
   "phase": "P0",
-  "last_completed_task": "A-003 valid-JSON solved: worker:v10 (vllm 0.6.4 + raw generate + max_model_len 4096) -> Qwen1.5B valid_json_rate 1.0",
-  "worker_image": "us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:v10",
-  "active_jobs": [
-    {"kind": "g0_throughput_4model", "image": "worker:v10", "poll_task": "b1es3xtl8", "gpu": "T4", "spot": true, "region": "us-central1",
-     "jobs": {"Qwen/Qwen2.5-1.5B-Instruct": "4250768036664967168", "Qwen/Qwen2.5-3B-Instruct": "688420731414904832", "microsoft/Phi-3.5-mini-instruct": "4890279183751577600", "HuggingFaceTB/SmolLM2-1.7B-Instruct": "500958396925607936"}}
-  ],
-  "quota_request": {"quota_id": "CustomModelTrainingPreemptibleT4GPUsPerProjectPerRegion", "region": "us-central1", "from": 1, "to": 4, "preference_id": "agorasim-t4-spot-uscentral1", "state": "reconciling"},
-  "shared_project_note": "GCP project + GCS bucket shared with sibling 'codex' project; codex P3 calib job (4048387528410005504, p3_calibration_worker.py) was RUNNING on the shared T4 as of 09:23Z - NOT launched by claude, do not kill.",
-  "budget_est_usd": 0.55,
+  "last_completed_task": "A-003 GATE G0 (compute) PASS: 4/4 models valid-JSON >=0.996, 3/4 thruput >=2000; valid-JSON solved (worker:v11). docs/G0_THROUGHPUT.md written.",
+  "next_task": "A-004: write docs/FEASIBILITY_ADDENDUM.md (G0 data+compute synthesis), then tag gate-g0, then start P1 (universe.py -> freeze universes -> snapshots+manifest+leakage checks -> GATE G1).",
+  "worker_image": "us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:v11",
+  "active_jobs": [],
+  "g0_results": {
+    "Qwen/Qwen2.5-1.5B-Instruct": {"valid_json_rate": 1.0, "decisions_per_hour": 3885, "viable": true},
+    "Qwen/Qwen2.5-3B-Instruct": {"valid_json_rate": 1.0, "decisions_per_hour": 3034, "viable": true},
+    "HuggingFaceTB/SmolLM2-1.7B-Instruct": {"valid_json_rate": 0.9961, "decisions_per_hour": 4859, "viable": true},
+    "microsoft/Phi-3.5-mini-instruct": {"valid_json_rate": 1.0, "decisions_per_hour": 1985, "viable": "marginal (thruput 1985 < 2000)"}
+  },
+  "viable_model_roster": ["Qwen/Qwen2.5-1.5B-Instruct", "Qwen/Qwen2.5-3B-Instruct", "HuggingFaceTB/SmolLM2-1.7B-Instruct"],
+  "quota_request": {"quota_id": "CustomModelTrainingPreemptibleT4GPUsPerProjectPerRegion", "region": "us-central1", "from": 1, "to": 4, "preference_id": "agorasim-t4-spot-uscentral1", "state": "GRANTED (effective value=4)"},
+  "shared_project_note": "GCP project + GCS bucket shared with sibling 'codex' project. Codex jobs (display names agorasim-p3-*, script scripts/p3_calibration_worker.py which does NOT exist in the claude repo) may appear in the job list and consume the shared T4 quota. Do NOT kill codex jobs. claude jobs are named agorasim-g0-thru-* / agorasim-model-cache.",
+  "resume_notes": "NO local key processes. All heavy compute runs on Vertex (cloud), unaffected by local shutdown. All G0 Vertex jobs already SUCCEEDED; results durable in gs://.../runs/g0_throughput/. Local background poll tasks were watchers only and can be safely lost. Repo fully committed+pushed to github JulianAttemptsCoding/QTA1 branch 'claude'. To resume: read this file + notes.md, then start next_task.",
+  "budget_est_usd": 0.9,
   "blockers": ["robintrack-archive-soft: no local export; CALIB-only, needed for P3 (see notes.md)"],
   "trials_registered": 0
 }

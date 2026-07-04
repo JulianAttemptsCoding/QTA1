@@ -99,3 +99,16 @@
 - T4 QUOTA: per user request, filed Cloud Quotas preference agorasim-t4-spot-uscentral1 to raise CustomModelTrainingPreemptibleT4GPUsPerProjectPerRegion in us-central1 from 1 -> 4 (parallelism). State: reconciling (Google may auto-approve small spot bumps or route to review). If granted, the 4 g0 jobs run in parallel; if not, serial after codex.
 - Cost: ~5 single-model T4 validation runs during the v7->v10 debug (~0.5-0.7 GPU-hr spot, ~$0.15-0.20) + upcoming 4-model run (~0.5 GPU-hr, ~$0.15). budget_est ~ $0.55 cumulative. Far under $85.
 - Next: on ALL_G0_TERMINAL -> read 4 result JSONs -> docs/G0_THROUGHPUT.md -> GATE G0 decision + docs/FEASIBILITY_ADDENDUM.md (A-004).
+
+## [2026-07-03T10:05:00Z] P0/A-003 -- GATE G0 (compute) PASS + SHUTDOWN CHECKPOINT
+- SHUTDOWN-SAFE: local machine going down for hours. NO local key processes -- per R1 all heavy compute + LLM inference runs on Vertex (cloud), unaffected by local shutdown. All G0 Vertex jobs already reached SUCCEEDED before shutdown; results are durable in GCS. Local background poll tasks were watchers only -> safe to lose. Repo committed + pushed to github JulianAttemptsCoding/QTA1 branch 'claude'.
+- FINAL G0 4-model results (worker:v11, T4 spot, n=512, guided decoding, ran in PARALLEL after T4 spot quota granted 1->4 in us-central1):
+  - Qwen/Qwen2.5-1.5B-Instruct: valid_json_rate 1.0, 3885 dec/hr -> VIABLE
+  - Qwen/Qwen2.5-3B-Instruct: valid_json_rate 1.0, 3034 dec/hr -> VIABLE
+  - HuggingFaceTB/SmolLM2-1.7B-Instruct: valid_json_rate 0.9961 (2/512 invalid), 4859 dec/hr -> VIABLE
+  - microsoft/Phi-3.5-mini-instruct: valid_json_rate 1.0, 1985 dec/hr -> MARGINAL (throughput 0.75% under the 2000 bar; kept optional/deprioritized)
+- GATE G0 (compute) = PASS: 3/4 models clear both bars (valid-JSON >=0.90 AND thruput >=2000), valid-JSON fully solved (all >=0.996). Combined with G0 (data) PASS (docs/G0_REPORT.md) -> GATE G0 cleared. Wrote docs/G0_THROUGHPUT.md.
+- Viable roster for the sim: Qwen2.5-1.5B, Qwen2.5-3B, SmolLM2-1.7B (spans size tiers for scaling/ablation arms). Phi-3.5 optional.
+- Job ids (us-central1): Qwen1.5B 1439756609092845568, Qwen3B 6894741657745358848, Phi-3.5 4645193643873796096, SmolLM2 2339350634660102144 (all SUCCEEDED).
+- SHARED PROJECT reminder: GCP project + bucket shared with sibling 'codex'. Codex jobs (agorasim-p3-*, scripts/p3_calibration_worker.py -- not in claude repo) may appear in `gcloud ai custom-jobs list` and use the shared T4 quota. Do NOT kill them.
+- RESUME POINT (next session): A-004 = write docs/FEASIBILITY_ADDENDUM.md (synthesize G0 data+compute), git tag gate-g0, then begin P1: universe.py -> freeze universes -> snapshots + manifest + leakage checks -> GATE G1. See STATE.json next_task.
