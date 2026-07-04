@@ -998,3 +998,10 @@
 ## [2026-07-04T19:13:54Z] P3/A-304-GOLD-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/955074291383140352` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 12,032 rows / 11,994 parsed, with current valid JSON rate `0.996842`.
+
+## [2026-07-04T19:38:24Z] P3/A-304-GOLD-NAMED-COMPLETE
+- Vertex job `projects/987318647780/locations/us-central1/customJobs/955074291383140352` completed with `JOB_STATE_SUCCEEDED` at `2026-07-04T19:35:04Z`.
+- Downloaded artifacts from `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-gold-named-v1` into ignored local path `runs/p3/calib-2019-g1-gold-named-v1/`.
+- Artifact QA: `requests.jsonl` 12,800 rows, `outputs.jsonl` 12,800 rows / 12,759 parsed, `sim.jsonl` 128 rows, worker `valid_json_rate=0.996796875`.
+- Collector QA over the available P3 artifacts passed: G3 kill condition does not fire for the current IIPR, IGC, and GOLD named artifact set.
+- Budget actual recorded: 6.45 T4 spot wall hours at `$0.30/hr` = `$1.93`; cumulative ledger now `$10.25`, well below the `$85` R5 hard stop.
