@@ -795,3 +795,7 @@
 ## [2026-07-04T03:23:53Z] P3/A-302-IGC-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` is at 11,776 rows / 11,732 parsed. The shard has 1,024 outputs remaining before the 12,800-output target.
+
+## [2026-07-04T03:33:37Z] P3/A-302-IGC-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 12,160 rows / 12,115 parsed. Five chunks remain, and a transient GCS copy miss retried cleanly.
