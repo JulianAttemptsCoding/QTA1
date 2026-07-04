@@ -771,3 +771,7 @@
 ## [2026-07-04T02:12:37Z] P3/A-302-IGC-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` is at 9,472 rows / 9,433 parsed. The latest interval was a normal in-flight pause after the prior checkpoint.
+
+## [2026-07-04T02:23:22Z] P3/A-302-IGC-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 9,856 rows / 9,816 parsed. The Phi tranche is over halfway complete.
