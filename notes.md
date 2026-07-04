@@ -745,3 +745,7 @@
 ## [2026-07-03T23:58:46Z] P3/A-302-IGC-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 4,992 rows / 4,970 parsed. The Qwen tranche is approaching the final 1,408 outputs before model switch.
+
+## [2026-07-04T00:09:10Z] P3/A-302-IGC-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 5,248 rows / 5,224 parsed. UTC date rolled to `2026-07-04`; timestamps in this log remain authoritative UTC.
