@@ -1,19 +1,8 @@
 {
   "phase": "P3",
-  "last_completed_task": "A-302-IGC-NAMED",
-  "active_jobs": [
-    {
-      "kind": "p3_calibration_shard",
-      "job": "projects/987318647780/locations/us-central1/customJobs/6284292802004123648",
-      "run_id": "calib-2019-g1-igc-alias-v1",
-      "ticker": "IGC",
-      "arm": "alias",
-      "gpu": "T4",
-      "spot": true,
-      "region": "us-central1"
-    }
-  ],
-  "budget_est_usd": 8.53,
+  "last_completed_task": "A-303-IGC-ALIAS",
+  "active_jobs": [],
+  "budget_est_usd": 8.32,
   "blockers": [],
   "trials_registered": 4
 }

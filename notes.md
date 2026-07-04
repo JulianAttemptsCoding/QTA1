@@ -852,3 +852,10 @@
 - Active run id is `calib-2019-g1-igc-alias-v1`; GCS output directory is `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-igc-alias-v1`.
 - Latest `outputs.jsonl` checkpoint before shutdown handoff: 3,328 rows / 3,319 parsed.
 - Resume by checking the Vertex job state and GCS outputs, then continue polling or collect artifacts if the job has reached `JOB_STATE_SUCCEEDED`. Local app shutdown should not stop the Vertex job or remove GCS progress.
+
+## [2026-07-04T13:06:35Z] P3/A-303-IGC-ALIAS-COMPLETE
+- Resumed after local shutdown; Vertex job `projects/987318647780/locations/us-central1/customJobs/6284292802004123648` had completed with `JOB_STATE_SUCCEEDED` at `2026-07-04T09:50:06Z`.
+- Downloaded artifacts from `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-igc-alias-v1` into ignored local path `runs/p3/calib-2019-g1-igc-alias-v1/`.
+- Artifact QA: `requests.jsonl` 12,800 rows, `outputs.jsonl` 12,800 rows / 12,755 parsed, `sim.jsonl` 128 rows, worker `valid_json_rate=0.996484375`.
+- Collector QA over the available P3 artifacts passed: G3 kill condition does not fire for the current IIPR and IGC named+alias artifact set.
+- Budget actual recorded: 5.88 T4 spot wall hours at `$0.30/hr` = `$1.76`; cumulative ledger now `$8.32`, well below the `$85` R5 hard stop.
