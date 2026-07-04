@@ -18,31 +18,7 @@ import time
 from agorasim.agents.personas import PersonaBank
 from agorasim.agents.prompt_builder import load_template, render
 from agorasim.infra.gcs import download_prefix, upload_file
-from agorasim.schemas import parse_decision
-
-# Hand-built decoding schema (NOT AgentDecision.model_json_schema()). The pydantic schema
-# leaves rationale at max_length=2000, so the guided decoder generates a rationale far
-# longer than the 160-token budget and the JSON gets truncated mid-string (invalid). A
-# tight rationale cap (240 chars ~= 60-80 tokens) lets the whole object close within budget
-# -> the operative fix for the valid-JSON gate (G0 >=90%). All fields required.
-# NOTE: intentionally NO "additionalProperties": False. vllm 0.6.3.post1 bundles an older
-# lm-format-enforcer whose schema parser calls .get() on that boolean and crashes with
-# `AttributeError: 'bool' object has no attribute 'get'`. Guided decoding already emits
-# only the listed properties, so the constraint is redundant here anyway.
-DECISION_JSON_SCHEMA = {
-    "type": "object",
-    "properties": {
-        "action": {"type": "string", "enum": ["buy", "sell", "hold"]},
-        "order_type": {"type": "string", "enum": ["market", "limit"]},
-        "qty": {"type": "integer", "minimum": 0, "maximum": 1_000_000},
-        "limit_price": {"type": "number", "minimum": 0.01},
-        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
-        "horizon_days": {"type": "integer", "enum": list(range(1, 31))},
-        "rationale": {"type": "string", "maxLength": 240},
-    },
-    "required": ["action", "order_type", "qty", "limit_price", "confidence",
-                 "horizon_days", "rationale"],
-}
+from agorasim.schemas import DECISION_JSON_SCHEMA, parse_decision
 
 
 def sanitize(model_id: str) -> str:

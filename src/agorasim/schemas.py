@@ -35,6 +35,31 @@ class AgentDecision(BaseModel):
         return self
 
 
+# Canonical JSON schema handed to vLLM guided decoding (lm-format-enforcer backend). This is
+# the single source of truth for BOTH the G0 throughput probe and the production sim
+# inference path (agents/vllm_batch), so they constrain generation identically. Deliberately
+# NOT AgentDecision.model_json_schema(): the pydantic schema leaves `rationale` at
+# max_length=2000, which lets small models generate a rationale longer than the token budget
+# so the JSON truncates mid-string (valid-JSON collapses to ~0.18). A tight rationale cap
+# (240 chars) lets the object close within ~160 tokens. Also NOT "additionalProperties": false
+# -- the lm-format-enforcer bundled with older vLLM crashes on that boolean; guided decoding
+# already restricts output to the listed properties, so it is redundant.
+DECISION_JSON_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "action": {"type": "string", "enum": ["buy", "sell", "hold"]},
+        "order_type": {"type": "string", "enum": ["market", "limit"]},
+        "qty": {"type": "integer", "minimum": 0, "maximum": 1_000_000},
+        "limit_price": {"type": "number", "minimum": 0.01},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "horizon_days": {"type": "integer", "enum": list(range(1, 31))},
+        "rationale": {"type": "string", "maxLength": 240},
+    },
+    "required": ["action", "order_type", "qty", "limit_price", "confidence",
+                 "horizon_days", "rationale"],
+}
+
+
 def parse_decision(raw: str) -> Optional[AgentDecision]:
     """Best-effort extraction of one AgentDecision from raw LLM text. None on failure."""
     if not raw:

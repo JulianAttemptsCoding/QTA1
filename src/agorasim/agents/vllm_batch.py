@@ -31,25 +31,40 @@ def answered_ids(out_path: Path) -> set[str]:
 
 
 def run_offline(requests_path: Path, out_path: Path, model_id: str,
-                max_new_tokens: int = 160, chunk: int = 2048) -> None:  # pragma: no cover
+                max_new_tokens: int = 160, chunk: int = 2048,
+                gpu_memory_utilization: float = 0.90,
+                max_model_len: int = 4096) -> None:  # pragma: no cover
     try:
         from vllm import LLM, SamplingParams  # heavy import; Vertex worker only
+        from vllm.sampling_params import GuidedDecodingParams
     except ImportError as e:
         raise RuntimeError(
             "vLLM not installed. This module runs inside the Vertex custom job image "
             "(see infra/vertex_launch.py). Locally, use tests + smoke scripts only."
         ) from e
+    from agorasim.schemas import DECISION_JSON_SCHEMA, parse_decision
+
     done = answered_ids(out_path)
     todo = [r for r in iter_jsonl(requests_path) if r["request_id"] not in done]
-    llm = LLM(model=model_id, dtype="auto", gpu_memory_utilization=0.90)
+    # Guided JSON decoding is the operative fix for the >=99% valid-JSON gate (G2): it
+    # constrains every generation to the AgentDecision schema. Same schema + backend the G0
+    # probe validated (docs/G0_THROUGHPUT.md). dtype="half" + enforce_eager for T4 (sm_75,
+    # no bf16, FlashAttention-2 unsupported); max_model_len 4096 leaves room for the ~160-tok
+    # JSON after the ~900-tok prompt. Prompts are raw completion strings (built upstream with
+    # the chat template already applied where needed) -> terse rationales that close.
+    guided = GuidedDecodingParams(json=DECISION_JSON_SCHEMA, backend="lm-format-enforcer")
+    llm = LLM(model=model_id, dtype="half", gpu_memory_utilization=gpu_memory_utilization,
+              max_model_len=max_model_len, enforce_eager=True)
     with out_path.open("a") as out:
         for i in range(0, len(todo), chunk):
             batch = todo[i:i + chunk]
             params = [SamplingParams(temperature=r["sampling"]["temperature"],
-                                     seed=r["sampling"]["seed"],
-                                     max_tokens=max_new_tokens) for r in batch]
+                                     seed=r["sampling"].get("seed"),
+                                     max_tokens=max_new_tokens,
+                                     guided_decoding=guided) for r in batch]
             results = llm.generate([r["prompt"] for r in batch], params)
             for req, res in zip(batch, results):
-                out.write(json.dumps({"request_id": req["request_id"],
-                                      "raw_text": res.outputs[0].text}) + "\n")
+                raw = res.outputs[0].text
+                out.write(json.dumps({"request_id": req["request_id"], "raw_text": raw,
+                                      "parsed": parse_decision(raw) is not None}) + "\n")
             out.flush()
