@@ -1,8 +1,8 @@
 {
-  "phase": "P2",
-  "last_completed_task": "GATE G2 PASS: real-model smoke on TLRY (200 decisions each, worker:v12). Qwen1.5B/3B + Phi-3.5 = 1.0 valid-JSON (2 families); SmolLM2=0.96 DROPPED (negative qty, malformed, prompt regurgitation). docs/G2_REPORT.md written.",
-  "next_task": "A-202 contamination C-2 recall probes -> per (model,ticker) exclusion matrix (C-1 satisfied by post-cutoff OOS; C-3 alias arm wired). Then P4 OOS main run (RQ3) on the surviving roster; P3 CALIB still gated on Robintrack.",
-  "worker_image": "us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:v12",
+  "phase": "P2->P4",
+  "last_completed_task": "P2 COMPLETE: GATE G2 PASS (2 families 1.0 valid-JSON) + A-202 contamination = 0.0 recall all (model,ticker), NO exclusions (docs/G2_CONTAMINATION.md). OOS window empirically post-cutoff.",
+  "next_task": "P4 OOS main run (RQ3): build sim engine runner (scripts/run_sim_phase.py MISSING) driving agents x tickers x days through run_offline, applying market/clearing.py (flow_imbalance + call_auction), logging JSONL + RunManifest to GCS. Smoke locally, launch Vertex OOS run on roster (alias arm primary). Register trials in docs/TRIALS.md before stats. P3 CALIB remains gated on Robintrack.",
+  "worker_image": "us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:v13",
   "active_jobs": [],
   "g0_results": {
     "Qwen/Qwen2.5-1.5B-Instruct": {"valid_json_rate": 1.0, "decisions_per_hour": 3885, "viable": true},

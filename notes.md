@@ -138,3 +138,10 @@
 - GATE G2 = PASS: 2 model families (Qwen, Phi) at 1.0 valid-JSON >= 0.99. SmolLM2 DROPPED (8/200 invalid = genuine model-quality failures under guided decoding: negative qty, malformed object, and prompt regurgitation -- NOT prompt-fixable; declined to game the metric by coercing negative share counts).
 - Post-G2 roster: Qwen2.5-1.5B (3885/hr), Qwen2.5-3B (3034/hr), Phi-3.5-mini (1985/hr, marginal thruput but 1.0 valid -> family diversity). docs/G2_REPORT.md written.
 - C-1 contamination control satisfied by construction (OOS 2025-01-02.. strictly post every enabled-model cutoff). C-3 alias arm wired in sim_prompts. Next: A-202 C-2 recall probes -> exclusion matrix, then P4 OOS main run (RQ3). P3 CALIB still gated on Robintrack.
+
+## [2026-07-04T14:40:00Z] P2 COMPLETE -- A-202 contamination: no exclusions
+- Ran scripts/p2_contamination.py (worker:v13) for the roster (Qwen1.5B, Qwen3B, Phi-3.5) x 5 OOS tickers (TLRY,CHPT,NVNI,BLNK,OGI) x 10 post-cutoff dates x {named,alias} = 100 recall probes/model, 3 jobs in PARALLEL (spot; brief PENDING while codex held 1 T4, then scheduled).
+- Result: named_recall = alias_recall = gap = 0.0 for EVERY (model,ticker). NO exclusions. docs/G2_CONTAMINATION.md written.
+- Interpretation: models cannot recall these small caps' 2025-2026 closing prices -> OOS window is empirically post-cutoff (C-1 confirmed), no memorization (C-2), zero named-vs-alias advantage (C-3). Full roster proceeds to P4 on all 10 OOS tickers; alias arm primary for RQ3.
+- P2 done (A-201 guided decoding in prod path; A-202 contamination; A-203 real-model smoke; GATE G2 PASS, tag gate-g2). Budget est ~$1.5 cumulative (many short spot T4 jobs), far under $85.
+- NEXT = P4 OOS main (RQ3). Gap: scripts/run_sim_phase.py does NOT exist -- must build the sim-engine runner (agents x tickers x days -> run_offline -> parse -> market/clearing.py flow_imbalance + call_auction per day -> JSONL + RunManifest -> GCS). Then register trials (docs/TRIALS.md) and launch the Vertex OOS run. P3 CALIB still gated on Robintrack (revisit).
