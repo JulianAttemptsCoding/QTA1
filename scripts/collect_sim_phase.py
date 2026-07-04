@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import subprocess
 import tempfile
 from collections import defaultdict
@@ -18,6 +19,9 @@ from pathlib import Path
 from agorasim.agents.sim_prompts import read_jsonl
 from agorasim.market import call_auction, flow_imbalance
 from agorasim.schemas import parse_decision
+
+# On Windows the CLI is gcloud.cmd, which bare subprocess (shell=False) cannot resolve.
+GCLOUD = shutil.which("gcloud") or shutil.which("gcloud.cmd") or "gcloud"
 
 
 def parse_request_id(rid: str) -> tuple[str, str, str]:
@@ -74,7 +78,7 @@ def main() -> int:
     # picks up ADC for an account without bucket access (403); the gcloud CLI uses the
     # authorized user. See STATE.json collector_auth_note.
     raw_dir = Path(tempfile.mkdtemp())
-    subprocess.run(["gcloud", "storage", "cp", "--recursive",
+    subprocess.run([GCLOUD, "storage", "cp", "--recursive",
                     f"{args.base}/runs/{args.run_id}/raw", str(raw_dir)], check=True)
     raw_records: list[dict] = []
     for f in sorted(raw_dir.rglob("*.jsonl")):
@@ -85,7 +89,7 @@ def main() -> int:
     rows = aggregate(raw_records, load_closes(Path(args.snapshots)))
     out = Path(tempfile.mkdtemp()) / "signals.jsonl"
     out.write_text("\n".join(json.dumps(r) for r in rows) + "\n")
-    subprocess.run(["gcloud", "storage", "cp", str(out),
+    subprocess.run([GCLOUD, "storage", "cp", str(out),
                     f"{args.base}/runs/{args.run_id}/signals.jsonl"], check=True)
 
     summary = rows[-1]

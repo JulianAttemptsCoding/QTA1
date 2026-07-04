@@ -18,11 +18,15 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import subprocess
 import tempfile
 from pathlib import Path
 
 import numpy as np
+
+# On Windows the CLI is gcloud.cmd, which bare subprocess (shell=False) cannot resolve.
+GCLOUD = shutil.which("gcloud") or shutil.which("gcloud.cmd") or "gcloud"
 
 from agorasim.agents.sim_prompts import read_jsonl
 from agorasim.evals.prediction import (
@@ -126,7 +130,7 @@ def main() -> int:
     args = ap.parse_args()
 
     tmp = Path(tempfile.mkdtemp())
-    subprocess.run(["gcloud", "storage", "cp", f"{BASE}/runs/{args.run_id}/signals.jsonl",
+    subprocess.run([GCLOUD, "storage", "cp", f"{BASE}/runs/{args.run_id}/signals.jsonl",
                     str(tmp / "signals.jsonl")], check=True)
     signals = read_jsonl(tmp / "signals.jsonl")
     closes_by_tk = ticker_closes(Path(args.snapshots))
