@@ -775,3 +775,7 @@
 ## [2026-07-04T02:23:22Z] P3/A-302-IGC-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 9,856 rows / 9,816 parsed. The Phi tranche is over halfway complete.
+
+## [2026-07-04T02:33:59Z] P3/A-302-IGC-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 10,240 rows / 10,200 parsed. The shard has reached 80% of the full 12,800-output target.
