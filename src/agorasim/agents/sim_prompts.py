@@ -39,7 +39,7 @@ def news_line(n: dict) -> str:
 
 
 def point_in_time_blocks(bars_all: list[dict], news_all: list[dict], asof: str,
-                         n_bars: int = 30, n_news: int = 5) -> tuple[str, str, list[dict]]:
+                         n_bars: int = 20, n_news: int = 3) -> tuple[str, str, list[dict]]:
     """Render the (bars_block, news_block, included_bars) visible strictly as of `asof`."""
     cutoff = parse_date(asof)
     bars = [b for b in sorted(bars_all, key=lambda r: r["t"]) if parse_date(b["t"]) <= cutoff][-n_bars:]

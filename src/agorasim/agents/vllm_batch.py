@@ -31,9 +31,9 @@ def answered_ids(out_path: Path) -> set[str]:
 
 
 def run_offline(requests_path: Path, out_path: Path, model_id: str,
-                max_new_tokens: int = 160, chunk: int = 256,
+                max_new_tokens: int = 160, chunk: int = 512,
                 gpu_memory_utilization: float = 0.90,
-                max_model_len: int = 4096, swap_space: int = 2) -> None:  # pragma: no cover
+                max_model_len: int = 2048, swap_space: int = 2) -> None:  # pragma: no cover
     try:
         from vllm import LLM, SamplingParams  # heavy import; Vertex worker only
         from vllm.sampling_params import GuidedDecodingParams
@@ -49,14 +49,14 @@ def run_offline(requests_path: Path, out_path: Path, model_id: str,
     # Guided JSON decoding is the operative fix for the >=99% valid-JSON gate (G2): it
     # constrains every generation to the AgentDecision schema. Same schema + backend the G0
     # probe validated (docs/G0_THROUGHPUT.md). dtype="half" + enforce_eager for T4 (sm_75,
-    # no bf16, FlashAttention-2 unsupported); max_model_len 4096 leaves room for the ~160-tok
-    # JSON after the ~900-tok prompt. Prompts are raw completion strings (built upstream with
-    # the chat template already applied where needed) -> terse rationales that close.
-    # chunk=256 (not thousands): handing vLLM the whole run at once lets its scheduler queue
+    # no bf16, FlashAttention-2 unsupported). max_model_len 2048 + chunk 512 mirror the fast G0
+    # config (3885 dec/hr, no OOM at n=512): with the trimmed ~600-700-tok prompt (20 bars /
+    # 3 news, see sim_prompts) 2048 leaves room for the 160-tok JSON and ~2x the KV concurrency
+    # of 4096, so the pilot's preemption/slowdown is avoided. Prompts are raw completion strings.
+    # chunk=512 (not thousands): handing vLLM the whole run at once lets its scheduler queue
     # every sequence and spill KV to CPU (swap_space), OOM-ing the ~30 GiB host on n1-standard-8
-    # (observed in the OOS pilot). Feeding ~256 prompts per generate() call bounds in-flight
-    # sequences + host RAM; swap_space capped at 2 GiB for the same reason. Throughput is
-    # unaffected (a T4 saturates well below 256 concurrent decodes).
+    # (observed in the first OOS pilot). Feeding <=512 prompts per generate() call bounds
+    # in-flight sequences + host RAM; swap_space capped at 2 GiB for the same reason.
     guided = GuidedDecodingParams(json=DECISION_JSON_SCHEMA, backend="lm-format-enforcer")
     llm = LLM(model=model_id, dtype="half", gpu_memory_utilization=gpu_memory_utilization,
               max_model_len=max_model_len, enforce_eager=True, swap_space=swap_space)
