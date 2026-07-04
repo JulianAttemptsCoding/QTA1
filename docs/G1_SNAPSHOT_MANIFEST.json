@@ -1,0 +1,138 @@
+{
+  "files": [
+    {
+      "bytes": 44158,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/BLNK/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/BLNK/bars_1d.jsonl",
+      "sha256": "dfccbdbc1f517cccf7c8dab34897d7e001dbe29c22fa16443790bb39f9f7325c"
+    },
+    {
+      "bytes": 99635,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/BLNK/news.jsonl",
+      "path": "data/snapshots/g1/oos/BLNK/news.jsonl",
+      "sha256": "555fade9baa756a1cf8e2efe57a8d58d57d61555be79b9b280c2e7363f422aff"
+    },
+    {
+      "bytes": 43006,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/CCO/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/CCO/bars_1d.jsonl",
+      "sha256": "123859ff59cc183dfaa9404c5597b53087aa2cd062665013bc901ddc3596b7e5"
+    },
+    {
+      "bytes": 56317,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/CCO/news.jsonl",
+      "path": "data/snapshots/g1/oos/CCO/news.jsonl",
+      "sha256": "38586bfba69140113fc8bda4539cc30ad64c39af23ceda36f353c96fba84880e"
+    },
+    {
+      "bytes": 43972,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/CHPT/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/CHPT/bars_1d.jsonl",
+      "sha256": "29fd6a1cec615649c843c0fd2ca94e5e1e2ee7fb46af8ec27c11ccc7afe6f5ca"
+    },
+    {
+      "bytes": 94622,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/CHPT/news.jsonl",
+      "path": "data/snapshots/g1/oos/CHPT/news.jsonl",
+      "sha256": "e7a9a7837e665f8049b673a15aa4980e7561ef23fec6409a57c7db9b01228bcd"
+    },
+    {
+      "bytes": 43121,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/EDIT/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/EDIT/bars_1d.jsonl",
+      "sha256": "96b586f5120eb36a21ddc380c707e1ff3c0d600b1054637c9596c7512569b81e"
+    },
+    {
+      "bytes": 26502,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/EDIT/news.jsonl",
+      "path": "data/snapshots/g1/oos/EDIT/news.jsonl",
+      "sha256": "a7652a5976fdb7c67b2d99661aa182a4dda3c06c5eed33ffb8943d875e6b899b"
+    },
+    {
+      "bytes": 42701,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/FRSX/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/FRSX/bars_1d.jsonl",
+      "sha256": "97d5bbcb4628f7a09f0c0025934ca161f3efc0cc15917a7ca67239bd0ac6936a"
+    },
+    {
+      "bytes": 50414,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/FRSX/news.jsonl",
+      "path": "data/snapshots/g1/oos/FRSX/news.jsonl",
+      "sha256": "ee80b1d0312ede0042f31628bb4dd3d8553029f471580a24338b44fbd066fb9c"
+    },
+    {
+      "bytes": 43230,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/ICCM/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/ICCM/bars_1d.jsonl",
+      "sha256": "bac14e47f6aa982ce83056a9dce5b418bdab922997d58a8841301c6efb3172cd"
+    },
+    {
+      "bytes": 62578,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/ICCM/news.jsonl",
+      "path": "data/snapshots/g1/oos/ICCM/news.jsonl",
+      "sha256": "362a5cc726e12a126024cf224bfd96302baf552c24dfb8bd03df767b558ac65a"
+    },
+    {
+      "bytes": 43409,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/NVNI/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/NVNI/bars_1d.jsonl",
+      "sha256": "834fd88c79aed92a27d45b8ab59286eb8b04e446c70a666f497ca50369c18e02"
+    },
+    {
+      "bytes": 76264,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/NVNI/news.jsonl",
+      "path": "data/snapshots/g1/oos/NVNI/news.jsonl",
+      "sha256": "a9a8cf2d064e76c72624371b62b8ead2463737f46f5b6942e400276e8130c868"
+    },
+    {
+      "bytes": 42692,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/OGI/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/OGI/bars_1d.jsonl",
+      "sha256": "a6d39e5a8be71ac4b9af4f59da7b3e7e9f5df2f73f4a195d6073ef43dcddf623"
+    },
+    {
+      "bytes": 76215,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/OGI/news.jsonl",
+      "path": "data/snapshots/g1/oos/OGI/news.jsonl",
+      "sha256": "451a3ced1e2e3b3365a4787383117bce83d663c98914864041e455a4e11037ed"
+    },
+    {
+      "bytes": 44366,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/TLRY/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/TLRY/bars_1d.jsonl",
+      "sha256": "bfb93700d6270d88462c95b018431db3e373f73da114aa9d774d8a7127be016e"
+    },
+    {
+      "bytes": 291192,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/TLRY/news.jsonl",
+      "path": "data/snapshots/g1/oos/TLRY/news.jsonl",
+      "sha256": "52d68d75f92f9b1d9c7b240a0fc6adbfac5c8e50f039629447ab2d4a0331dba2"
+    },
+    {
+      "bytes": 43283,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/TPET/bars_1d.jsonl",
+      "path": "data/snapshots/g1/oos/TPET/bars_1d.jsonl",
+      "sha256": "4322f87bf95b60ab4482a8fcbddfb192eb0088d04590202212b288044a5bef9d"
+    },
+    {
+      "bytes": 36429,
+      "gcs_uri": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/TPET/news.jsonl",
+      "path": "data/snapshots/g1/oos/TPET/news.jsonl",
+      "sha256": "5a5b2ddcb40b6003771e265e1b937492ea02d3078d37e7868f06f4d66d6ba401"
+    }
+  ],
+  "generated_utc": "2026-07-04T13:21:41+00:00",
+  "selection": {
+    "calib_selection_date": "2019-06-28",
+    "calib_window": {
+      "end": "2019-12-31",
+      "start": "2019-07-01"
+    },
+    "oos_selection_date": "2024-12-20",
+    "oos_window": {
+      "end": "2026-06-30",
+      "start": "2025-01-02"
+    }
+  },
+  "snapshot_version": "g1"
+}

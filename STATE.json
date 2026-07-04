@@ -1,7 +1,7 @@
 {
-  "phase": "P0",
-  "last_completed_task": "A-003 GATE G0 (compute) PASS: 4/4 models valid-JSON >=0.996, 3/4 thruput >=2000; valid-JSON solved (worker:v11). docs/G0_THROUGHPUT.md written.",
-  "next_task": "A-004: write docs/FEASIBILITY_ADDENDUM.md (G0 data+compute synthesis), then tag gate-g0, then start P1 (universe.py -> freeze universes -> snapshots+manifest+leakage checks -> GATE G1).",
+  "phase": "P1",
+  "last_completed_task": "P1: OOS universe FROZEN (10 tickers), snapshots+SHA256 manifest, leakage spot-check PASS. GATE G1 = OOS-complete; CALIB deferred (Robintrack).",
+  "next_task": "Either (a) P3-prep: acquire Robintrack popularity_export -> `python scripts/p1_freeze_universes.py --track calib` to close G1 fully; or (b) P2 agent bring-up on OOS tickers (A-201 valid-JSON>=99% wired into real sim, A-202 contamination probes, A-203 smoke). P2 is Vertex-heavy (use >=2 concurrent T4 spot jobs, quota=4).",
   "worker_image": "us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:v11",
   "active_jobs": [],
   "g0_results": {
@@ -11,10 +11,17 @@
     "microsoft/Phi-3.5-mini-instruct": {"valid_json_rate": 1.0, "decisions_per_hour": 1985, "viable": "marginal (thruput 1985 < 2000)"}
   },
   "viable_model_roster": ["Qwen/Qwen2.5-1.5B-Instruct", "Qwen/Qwen2.5-3B-Instruct", "HuggingFaceTB/SmolLM2-1.7B-Instruct"],
+  "g1_universes": {
+    "oos": {"status": "FROZEN", "selection_date": "2024-12-20", "window": ["2025-01-02", "2026-06-30"],
+            "tickers": ["NVNI", "TLRY", "EDIT", "CHPT", "BLNK", "FRSX", "TPET", "OGI", "CCO", "ICCM"],
+            "snapshots_gcs": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/",
+            "leakage_spotcheck": "PASS"},
+    "calib": {"status": "PENDING", "reason": "Robintrack popularity_export not yet downloaded (robintrack.net defunct SPA); code+tests complete, run `--track calib` once data/raw/robintrack/popularity_export/ populated",
+              "selection_date": "2019-06-28", "window": ["2019-07-01", "2019-12-31"]}
+  },
   "quota_request": {"quota_id": "CustomModelTrainingPreemptibleT4GPUsPerProjectPerRegion", "region": "us-central1", "from": 1, "to": 4, "preference_id": "agorasim-t4-spot-uscentral1", "state": "GRANTED (effective value=4)"},
-  "shared_project_note": "GCP project + GCS bucket shared with sibling 'codex' project. Codex jobs (display names agorasim-p3-*, script scripts/p3_calibration_worker.py which does NOT exist in the claude repo) may appear in the job list and consume the shared T4 quota. Do NOT kill codex jobs. claude jobs are named agorasim-g0-thru-* / agorasim-model-cache.",
-  "resume_notes": "NO local key processes. All heavy compute runs on Vertex (cloud), unaffected by local shutdown. All G0 Vertex jobs already SUCCEEDED; results durable in gs://.../runs/g0_throughput/. Local background poll tasks were watchers only and can be safely lost. Repo fully committed+pushed to github JulianAttemptsCoding/QTA1 branch 'claude'. To resume: read this file + notes.md, then start next_task.",
+  "shared_project_note": "GCP project + GCS bucket shared with sibling 'codex' project. Codex jobs (display names agorasim-p3-*, script scripts/p3_calibration_worker.py which does NOT exist in the claude repo) may appear in the job list and consume the shared T4 quota. Do NOT kill codex jobs. claude jobs are named agorasim-g0-thru-* / agorasim-model-cache / agorasim-g1-*.",
   "budget_est_usd": 0.9,
-  "blockers": ["robintrack-archive-soft: no local export; CALIB-only, needed for P3 (see notes.md)"],
+  "blockers": ["robintrack-archive: robintrack.net defunct; need popularity_export CSVs for CALIB (P3). OOS unaffected."],
   "trials_registered": 0
 }
