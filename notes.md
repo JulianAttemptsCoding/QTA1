@@ -821,3 +821,7 @@
 ## [2026-07-04T04:10:42Z] P3/A-303-IGC-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/6284292802004123648` is `JOB_STATE_RUNNING`, with Vertex start time `2026-07-04T04:01:00Z`.
 - First checkpoints are healthy: `outputs.jsonl` advanced to 384 rows / 383 parsed for `calib-2019-g1-igc-alias-v1`.
+
+## [2026-07-04T04:22:06Z] P3/A-303-IGC-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/6284292802004123648` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` is at 768 rows / 767 parsed. The latest interval was a normal in-flight pause after the prior checkpoint.
