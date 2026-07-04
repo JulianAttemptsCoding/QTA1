@@ -10,12 +10,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import tempfile
 from collections import defaultdict
 from pathlib import Path
 
 from agorasim.agents.sim_prompts import read_jsonl
-from agorasim.infra.gcs import download_prefix, upload_file
 from agorasim.market import call_auction, flow_imbalance
 from agorasim.schemas import parse_decision
 
@@ -70,8 +70,12 @@ def main() -> int:
     ap.add_argument("--snapshots", default="data/snapshots/g1/oos")
     args = ap.parse_args()
 
+    # gcloud CLI (not the google-cloud-storage client) for GCS: locally the Python client
+    # picks up ADC for an account without bucket access (403); the gcloud CLI uses the
+    # authorized user. See STATE.json collector_auth_note.
     raw_dir = Path(tempfile.mkdtemp())
-    download_prefix(f"{args.base}/runs/{args.run_id}/raw", str(raw_dir))
+    subprocess.run(["gcloud", "storage", "cp", "--recursive",
+                    f"{args.base}/runs/{args.run_id}/raw", str(raw_dir)], check=True)
     raw_records: list[dict] = []
     for f in sorted(raw_dir.rglob("*.jsonl")):
         raw_records.extend(read_jsonl(f))
@@ -81,7 +85,8 @@ def main() -> int:
     rows = aggregate(raw_records, load_closes(Path(args.snapshots)))
     out = Path(tempfile.mkdtemp()) / "signals.jsonl"
     out.write_text("\n".join(json.dumps(r) for r in rows) + "\n")
-    upload_file(str(out), f"{args.base}/runs/{args.run_id}/signals.jsonl")
+    subprocess.run(["gcloud", "storage", "cp", str(out),
+                    f"{args.base}/runs/{args.run_id}/signals.jsonl"], check=True)
 
     summary = rows[-1]
     print("COLLECT_DONE", json.dumps(summary), flush=True)
