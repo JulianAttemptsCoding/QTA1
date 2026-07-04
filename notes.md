@@ -753,3 +753,9 @@
 ## [2026-07-04T00:19:26Z] P3/A-302-IGC-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` is at 5,504 rows / 5,475 parsed. The Qwen tranche is 896 outputs from the model switch.
+
+## [2026-07-04T01:38:35Z] P3/A-302-IGC-NAMED-RESUME-POLL
+- Resumed polling after an interactive handoff gap; no local heavy compute was run during the gap.
+- Job `projects/987318647780/locations/us-central1/customJobs/37070043120402432` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 8,448 rows / 8,410 parsed. The Qwen tranche has completed and Phi outputs are checkpointing.
+- PowerShell-safe Vertex log query for explicit Phi load lines returned no matching lines, so current status is based on Vertex job state plus GCS artifact counts.
