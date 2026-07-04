@@ -837,3 +837,7 @@
 ## [2026-07-04T04:55:12Z] P3/A-303-IGC-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/6284292802004123648` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 2,176 rows / 2,171 parsed. The Qwen tranche continues to checkpoint normally.
+
+## [2026-07-04T05:06:10Z] P3/A-303-IGC-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/6284292802004123648` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 2,688 rows / 2,682 parsed. The Qwen tranche continues with normal checkpoint pacing.
