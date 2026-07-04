@@ -878,3 +878,7 @@
 ## [2026-07-04T13:41:24Z] P3/A-304-GOLD-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/955074291383140352` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 1,024 rows / 1,023 parsed for `calib-2019-g1-gold-named-v1`; progress remains consistent with prior P3 calibration shards.
+
+## [2026-07-04T13:52:06Z] P3/A-304-GOLD-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/955074291383140352` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` is at 1,280 rows / 1,276 parsed, for a current valid JSON rate of `0.996875`.
