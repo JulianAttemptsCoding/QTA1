@@ -31,9 +31,9 @@ def answered_ids(out_path: Path) -> set[str]:
 
 
 def run_offline(requests_path: Path, out_path: Path, model_id: str,
-                max_new_tokens: int = 160, chunk: int = 2048,
+                max_new_tokens: int = 160, chunk: int = 256,
                 gpu_memory_utilization: float = 0.90,
-                max_model_len: int = 4096) -> None:  # pragma: no cover
+                max_model_len: int = 4096, swap_space: int = 2) -> None:  # pragma: no cover
     try:
         from vllm import LLM, SamplingParams  # heavy import; Vertex worker only
         from vllm.sampling_params import GuidedDecodingParams
@@ -52,9 +52,14 @@ def run_offline(requests_path: Path, out_path: Path, model_id: str,
     # no bf16, FlashAttention-2 unsupported); max_model_len 4096 leaves room for the ~160-tok
     # JSON after the ~900-tok prompt. Prompts are raw completion strings (built upstream with
     # the chat template already applied where needed) -> terse rationales that close.
+    # chunk=256 (not thousands): handing vLLM the whole run at once lets its scheduler queue
+    # every sequence and spill KV to CPU (swap_space), OOM-ing the ~30 GiB host on n1-standard-8
+    # (observed in the OOS pilot). Feeding ~256 prompts per generate() call bounds in-flight
+    # sequences + host RAM; swap_space capped at 2 GiB for the same reason. Throughput is
+    # unaffected (a T4 saturates well below 256 concurrent decodes).
     guided = GuidedDecodingParams(json=DECISION_JSON_SCHEMA, backend="lm-format-enforcer")
     llm = LLM(model=model_id, dtype="half", gpu_memory_utilization=gpu_memory_utilization,
-              max_model_len=max_model_len, enforce_eager=True)
+              max_model_len=max_model_len, enforce_eager=True, swap_space=swap_space)
     with out_path.open("a") as out:
         for i in range(0, len(todo), chunk):
             batch = todo[i:i + chunk]
