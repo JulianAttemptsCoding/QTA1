@@ -870,3 +870,7 @@
 ## [2026-07-04T13:21:59Z] P3/A-304-GOLD-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/955074291383140352` is `JOB_STATE_RUNNING`, with Vertex start time `2026-07-04T13:12:05Z`.
 - First checkpoints are healthy: `outputs.jsonl` advanced to 256 rows / 255 parsed for `calib-2019-g1-gold-named-v1`.
+
+## [2026-07-04T13:30:13Z] P3/A-304-GOLD-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/955074291383140352` remains `JOB_STATE_RUNNING`.
+- GCS checkpoint is healthy after a transient copy retry: `outputs.jsonl` is present with 640 rows / 639 parsed and object timestamp `2026-07-04T13:29:57Z`.
