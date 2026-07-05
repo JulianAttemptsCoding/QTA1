@@ -42,6 +42,14 @@ realism track are endogenous; the simulated price never needs to track the real 
 | imbalance_uw, 1d | 290 | +0.018 | [−0.086, +0.119] | 0.462 | −1.12 (0.26) |
 | imbalance_uw, 5d | 250 | **−0.135** | **[−0.267, −0.005]** | 0.388 | 0.43 (0.66) |
 
+![RQ3 crowd prediction vs actual](figures/rq3_prediction_vs_actual.png)
+
+*Figure (`scripts/p6_plot.py --run-id oos-main-v2`).* **A** — pooled crowd signal vs actual
+5-day forward return (Spearman IC −0.137); the fit slopes down. **B** — TLRY: the crowd stays
+net-bullish (green bars) through a −20% price slide (black line), the contrarian pattern in one
+name. **C** — IC by signal × horizon with 95% block-bootstrap CIs: ≈0 at 1 day (CI spans zero),
+≈−0.14 at 5 days (CI excludes zero).
+
 **Reading.**
 1. **No 1-day predictability.** IC ≈ +0.02 with a CI straddling zero and hit rate < 0.5. The
    crowd tells you nothing about tomorrow.
