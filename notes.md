@@ -1585,3 +1585,7 @@
 ## [2026-07-05T22:23:56Z] P3/A-309-CRBP-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/4746150801536188416` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 3,712 rows / 3,697 parsed, with current valid JSON rate `0.995959`.
+
+## [2026-07-05T22:34:56Z] P3/A-309-CRBP-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/4746150801536188416` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 3,968 rows / 3,953 parsed, with current valid JSON rate `0.996220`.
