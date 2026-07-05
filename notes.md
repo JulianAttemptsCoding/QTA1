@@ -1218,3 +1218,7 @@
 ## [2026-07-05T05:38:40Z] P3/A-306-RIOT-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/6728667023439560704` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 7,168 rows / 7,153 parsed, with current valid JSON rate `0.997907`.
+
+## [2026-07-05T05:49:38Z] P3/A-306-RIOT-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/6728667023439560704` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 7,552 rows / 7,537 parsed, with current valid JSON rate `0.998014`.
