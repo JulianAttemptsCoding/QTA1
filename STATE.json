@@ -1,19 +1,8 @@
 {
   "phase": "P3",
-  "last_completed_task": "A-307-RIOT-ALIAS",
-  "active_jobs": [
-    {
-      "kind": "p3_calibration_shard",
-      "job": "projects/987318647780/locations/us-central1/customJobs/3986555392510394368",
-      "run_id": "calib-2019-g1-crbp-named-v1",
-      "ticker": "CRBP",
-      "arm": "named",
-      "gpu": "T4",
-      "spot": true,
-      "region": "us-central1"
-    }
-  ],
-  "budget_est_usd": 17.78,
+  "last_completed_task": "A-308-CRBP-NAMED",
+  "active_jobs": [],
+  "budget_est_usd": 17.66,
   "blockers": [],
-  "trials_registered": 8
+  "trials_registered": 9
 }

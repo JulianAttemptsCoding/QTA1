@@ -1536,3 +1536,10 @@
 ## [2026-07-05T20:07:15Z] P3/A-308-CRBP-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/3986555392510394368` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 11,776 rows / 11,743 parsed, with current valid JSON rate `0.997198`.
+
+## [2026-07-05T20:41:04Z] P3/A-308-CRBP-NAMED-COMPLETE
+- Vertex job `projects/987318647780/locations/us-central1/customJobs/3986555392510394368` completed as `JOB_STATE_SUCCEEDED` at `2026-07-05T20:38:42Z`.
+- Downloaded five expected artifacts from `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-crbp-named-v1/` into ignored local run storage for QA.
+- Raw QA: `requests.jsonl` 12,800 rows; `outputs.jsonl` 12,800 rows / 12,765 parsed; valid JSON rate `0.997266`; `sim.jsonl` 128 rows.
+- Collector QA: `scripts/p3_collect_calibration.py` completed on local `runs/p3`; CRBP named appears in RQ1/RQ2 summaries and G3 kill condition still does not fire on available P3 artifacts.
+- Budget ledger updated with 6.10 wall hours at `$0.30/hr` (`$1.83`), bringing cumulative estimated spend to `$17.66`.
