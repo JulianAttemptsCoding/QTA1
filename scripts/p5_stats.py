@@ -171,12 +171,12 @@ def main() -> int:
 
 def write_report(run_id: str, n_trials: int, results: dict) -> None:
     lines = [
-        f"# P5_STATS — RQ3 prediction statistics ({run_id})", "",
+        f"# P5_STATS -- RQ3 prediction statistics ({run_id})", "",
         "Generated (UTC): 2026-07-05", "",
         "Crowd flow-imbalance signal vs realized forward real returns on the G1-frozen OOS-10 "
         "universe (alias arm). Estimators: agorasim.evals.prediction. DSR uses the registered "
         f"trial count n_trials={n_trials} (docs/TRIALS.md, D-11).", "",
-        "| signal × horizon | ticker-days | IC | IC 95% CI | hit rate | strat SR | DM vs mom5 (p) | DSR |",
+        "| signal x horizon | ticker-days | IC | IC 95% CI | hit rate | strat SR | DM vs mom5 (p) | DSR |",
         "|---|---:|---:|---|---:|---:|---:|---:|",
     ]
     for k, v in results.items():
@@ -188,8 +188,8 @@ def write_report(run_id: str, n_trials: int, results: dict) -> None:
               "directional loss); p is two-sided. DSR = P(true SR > 0) deflated for 4 trials.", "",
               "Interpretation is written after inspecting the numbers; a near-zero IC / DSR < 0.5 "
               "is the expected honest outcome for weak small models on hard-to-trade small caps "
-              "(PLAN §1) and is reported as such, not buried."]
-    Path("docs/P5_STATS.md").write_text("\n".join(lines) + "\n")
+              "(PLAN section 1) and is reported as such, not buried."]
+    Path("docs/P5_STATS.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":

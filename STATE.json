@@ -1,35 +1,31 @@
 {
-  "phase": "P4",
-  "last_completed_task": "P4 sim engine VALIDATED end-to-end (oos-pilot-v2): 3 models x 2 tickers x 30 agents x 20 days = 3600 real decisions, valid_rate 0.9994, 40 ticker-days, flow_imbalance non-degenerate (mean +0.52 = LLM optimism bias), auction crosses daily. signals.jsonl uploaded. docs/P4_PILOT.md. Host-OOM fixed (94bbb44).",
-  "next_task": "1) Collect pilot: `python scripts/collect_sim_phase.py --base gs://.../agorasim --run-id oos-pilot-v2` -> signals.jsonl (verify flow_imbalance/auction non-degenerate). 2) THROUGHPUT: real ~900-tok prompts on T4 are slow (~256 decisions/~8min, KV preemption at max_model_len 4096). Before the FULL P4 run trim prompt (e.g. 20 bars/3 news) and/or max_model_len 2048 and raise chunk to ~512 so 250k decisions fit budget/time. 3) Full P4 OOS main (10 tkr x ~100-200 agents x ~125 days, alias primary) -> collect -> P5 stats (evals/prediction.py IC/DM/DSR, bootstrap) vs baselines (D-09). Register trials in docs/TRIALS.md BEFORE stats. P3 CALIB still gated on Robintrack.",
-  "worker_image": "us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:v15",
-  "active_jobs": [
-    {"kind": "oos_main_v2", "run_id": "oos-main-v2", "image": "worker:v17", "arm": "alias",
-     "params": "10 tickers x 15 agents/model x 30 days (crowd 45/ticker-day, 4500 decisions/model), chunk 128",
-     "note": "oos-main-v1 (chunk 512) CANCELLED: 2/3 jobs hung >1h in KV preemption thrash (512 > ~156 concurrency). v17 chunk 128 avoids it.",
-     "jobs": {"Qwen/Qwen2.5-1.5B-Instruct": "3749254394957266944", "Qwen/Qwen2.5-3B-Instruct": "4154578361420611584", "microsoft/Phi-3.5-mini-instruct": "7557034685759488000"}}
-  ],
-  "collector_auth_note": "collect_sim_phase.py google-cloud-storage client uses local ADC (account hellotherestarwar@gmail.com) which lacks bucket list/read. Run the collector on the Vertex worker (service-account), or `gcloud auth application-default login`. Pilot workaround: `gcloud storage cp gs://.../runs/<run_id>/raw/*.jsonl <local>` then aggregate locally. NOTE Git-Bash /tmp != Windows C:\\tmp -- use a repo-relative dir for the local raw.",
+  "phase": "P6 (RQ3 track complete)",
+  "last_completed_task": "FULL RQ3 PIPELINE COMPLETE: oos-main-v2 (13500 decisions, 0.9994 valid, 300 ticker-days) -> collect -> P5 stats -> P6 docs/RESULTS.md + docs/ONEPAGER.md. Result: no 1-day IC (~0); small contrarian 5-day IC ~-0.14 (95% CI excludes 0) but does NOT beat momentum (DM n.s.); crowd shows optimism/herding bias. Honest negative-ish result per PLAN section 1.",
+  "next_task": "OPTIONAL (RQ3 track done): (a) multi-window/longer OOS run to test the -0.14 5d-IC stability; (b) scaling curve A-402 + ablations A-403 (news-off/personas-off); (c) P3 CALIB (RQ1 realism / RQ2 fidelity) once Robintrack popularity_export sourced (robintrack.net defunct) -> p1_freeze_universes.py --track calib. Chunk 128 is the stable inference config.",
+  "worker_image": "us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:v17",
+  "active_jobs": [],
+  "rq3_result": {"run_id": "oos-main-v2", "n_decisions": 13500, "valid_rate": 0.9994, "ticker_days": 300,
+    "ic_1d": "~+0.017 (CI includes 0, no predictability)", "ic_5d": "~-0.137 (CI [-0.271,-0.007] excludes 0; contrarian)",
+    "dm_vs_momentum": "not significant (p>=0.26)", "crowd_bias": "optimism/herding, mean imbalance ~+0.5"},
+  "collector_auth_note": "collect_sim_phase.py + p5_stats.py now use the gcloud CLI (GCLOUD=shutil.which) for GCS -- the google-cloud-storage Python client picks up local ADC (hellotherestarwar@gmail.com) without bucket access. Git-Bash /tmp != Windows C:\\tmp: use repo-relative dirs for local raw.",
   "g0_results": {
     "Qwen/Qwen2.5-1.5B-Instruct": {"valid_json_rate": 1.0, "decisions_per_hour": 3885, "viable": true},
     "Qwen/Qwen2.5-3B-Instruct": {"valid_json_rate": 1.0, "decisions_per_hour": 3034, "viable": true},
-    "HuggingFaceTB/SmolLM2-1.7B-Instruct": {"valid_json_rate": 0.9961, "decisions_per_hour": 4859, "viable": true},
-    "microsoft/Phi-3.5-mini-instruct": {"valid_json_rate": 1.0, "decisions_per_hour": 1985, "viable": "marginal (thruput 1985 < 2000)"}
+    "HuggingFaceTB/SmolLM2-1.7B-Instruct": {"valid_json_rate": 0.9961, "decisions_per_hour": 4859, "viable": "dropped at G2 (0.96 real-prompt)"},
+    "microsoft/Phi-3.5-mini-instruct": {"valid_json_rate": 1.0, "decisions_per_hour": 1985, "viable": true}
   },
   "viable_model_roster": ["Qwen/Qwen2.5-1.5B-Instruct", "Qwen/Qwen2.5-3B-Instruct", "microsoft/Phi-3.5-mini-instruct"],
-  "roster_note": "Post-G2 roster = 2 families (Qwen 1.5B+3B, Phi-3.5). SmolLM2 DROPPED at G2 (real-prompt valid-JSON 0.96 < 0.99: negative qty, malformed JSON, prompt regurgitation under guided decoding). Phi throughput-marginal (1985/hr) but valid-JSON 1.0 -> kept for family diversity.",
   "g2_results": {"Qwen/Qwen2.5-1.5B-Instruct": 1.0, "Qwen/Qwen2.5-3B-Instruct": 1.0, "microsoft/Phi-3.5-mini-instruct": 1.0, "HuggingFaceTB/SmolLM2-1.7B-Instruct": 0.96},
   "g1_universes": {
     "oos": {"status": "FROZEN", "selection_date": "2024-12-20", "window": ["2025-01-02", "2026-06-30"],
             "tickers": ["NVNI", "TLRY", "EDIT", "CHPT", "BLNK", "FRSX", "TPET", "OGI", "CCO", "ICCM"],
-            "snapshots_gcs": "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/oos/",
             "leakage_spotcheck": "PASS"},
-    "calib": {"status": "PENDING", "reason": "Robintrack popularity_export not yet downloaded (robintrack.net defunct SPA); code+tests complete, run `--track calib` once data/raw/robintrack/popularity_export/ populated",
-              "selection_date": "2019-06-28", "window": ["2019-07-01", "2019-12-31"]}
+    "calib": {"status": "PENDING", "reason": "Robintrack popularity_export not sourced (robintrack.net defunct); code+tests complete", "selection_date": "2019-06-28", "window": ["2019-07-01", "2019-12-31"]}
   },
-  "quota_request": {"quota_id": "CustomModelTrainingPreemptibleT4GPUsPerProjectPerRegion", "region": "us-central1", "from": 1, "to": 4, "preference_id": "agorasim-t4-spot-uscentral1", "state": "GRANTED (effective value=4)"},
-  "shared_project_note": "GCP project + GCS bucket shared with sibling 'codex' project. Codex jobs (display names agorasim-p3-*, script scripts/p3_calibration_worker.py which does NOT exist in the claude repo) may appear in the job list and consume the shared T4 quota. Do NOT kill codex jobs. claude jobs are named agorasim-g0-thru-* / agorasim-model-cache / agorasim-g1-*.",
-  "budget_est_usd": 0.9,
-  "blockers": ["robintrack-archive: robintrack.net defunct; need popularity_export CSVs for CALIB (P3). OOS unaffected."],
-  "trials_registered": 0
+  "quota_request": {"quota_id": "CustomModelTrainingPreemptibleT4GPUsPerProjectPerRegion", "region": "us-central1", "from": 1, "to": 4, "state": "GRANTED (effective value=4)"},
+  "shared_project_note": "GCP project + GCS bucket shared with sibling 'codex' project. Codex jobs (agorasim-p3-*, scripts/p3_calibration_worker.py) may appear in the job list; do NOT kill them. claude jobs: agorasim-g0-thru-* / g2-* / oosmain* / model-cache.",
+  "gates": {"G0": "PASS (data+compute)", "G1": "OOS PASS (CALIB pending Robintrack)", "G2": "PASS", "G3": "N/A (CALIB-gated)", "G4": "budget ok (~$8 of $85)", "G5": "reproducible (manifests+trials)"},
+  "budget_est_usd": 8.0,
+  "blockers": ["robintrack-archive: robintrack.net defunct; need popularity_export CSVs for CALIB/P3 (RQ1/RQ2). OOS/RQ3 complete without it."],
+  "trials_registered": 4
 }
