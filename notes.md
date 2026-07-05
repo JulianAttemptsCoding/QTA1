@@ -1403,3 +1403,10 @@
 ## [2026-07-05T14:02:00Z] P3/A-307-RIOT-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/130788016225517568` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 11,904 rows / 11,881 parsed, with current valid JSON rate `0.998068`.
+
+## [2026-07-05T14:28:22Z] P3/A-307-RIOT-ALIAS-COMPLETE
+- Vertex job `projects/987318647780/locations/us-central1/customJobs/130788016225517568` completed as `JOB_STATE_SUCCEEDED` at `2026-07-05T14:28:06Z`.
+- Downloaded five expected artifacts from `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-riot-alias-v1/` into ignored local run storage for QA.
+- Raw QA: `requests.jsonl` 12,800 rows; `outputs.jsonl` 12,800 rows / 12,777 parsed; valid JSON rate `0.998203`; `sim.jsonl` 128 rows.
+- Collector QA: `scripts/p3_collect_calibration.py` completed on local `runs/p3`; RIOT alias appears in RQ1/RQ2 summaries and G3 kill condition still does not fire on available P3 artifacts.
+- Budget ledger updated with 6.03 wall hours at `$0.30/hr` (`$1.81`), bringing cumulative estimated spend to `$15.83`.
