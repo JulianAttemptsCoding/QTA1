@@ -1492,3 +1492,7 @@
 ## [2026-07-05T18:05:28Z] P3/A-308-CRBP-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/3986555392510394368` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 7,808 rows / 7,780 parsed, with current valid JSON rate `0.996414`.
+
+## [2026-07-05T18:16:31Z] P3/A-308-CRBP-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/3986555392510394368` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 8,192 rows / 8,163 parsed, with current valid JSON rate `0.996460`.
