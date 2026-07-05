@@ -169,3 +169,22 @@
 - P6 (A-601): docs/RESULTS.md (ICAIF-style) + docs/ONEPAGER.md written from the real numbers. Honest framing: engineering thesis holds (99.94% valid-JSON, full reproducible pipeline, ~$8 spot); alpha thesis does not on this evidence (tiny, contrarian, doesn't beat momentum, one 30-day window). Main measurable crowd property = quantified optimism/herding bias.
 - GATES: G0 PASS, G1 OOS PASS (CALIB pending Robintrack), G2 PASS, G4 budget ok (~$8/$85), G5 reproducible (manifests+trials). G3 N/A (CALIB-gated).
 - RQ3 track DONE end-to-end. Remaining OPTIONAL: robustness multi-window, scaling/ablations (A-402/403), and P3 CALIB RQ1/RQ2 (blocked on Robintrack). Repo publish-ready (A-602: 50 tests green, no secrets, clean).
+
+## [2026-07-05T15:00:00Z] QA audit -> docs/QA_ANSWERS.md (30 questions, CPU-only)
+- Answered all A-F questions from artifacts + cheap CPU recompute (scripts/qa_analysis.py). No GPU launched. Key findings:
+  - A1: shipped bootstrap was POOLED ticker-day blocks (not whole-day); whole-day-blocked 5d IC CI = [-0.236,-0.011] (cw) -- still excludes 0 but barely.
+  - A3: within-day CROSS-SECTIONAL IC = -0.044 (t=-0.73, NOT sig). The -0.137 is entirely a TIME-SERIES effect; no cross-sectional stock-picking.
+  - A4: dropping NVNI flips the day-blocked CI to INCLUDE 0 [-0.195,+0.012] -> significance is load-bearing on one ticker.
+  - A5: mean imbalance +0.506, 82% net-long, 29% saturated >0.9; IC on <=0.9 subsample only -0.084.
+  - A6: run-window 5d momentum IC = -0.288 (strong reversal regime) vs -0.037 full-history; partial(imb,fwd|mom)=-0.116 (crowd ~distinct from reversal but window is special).
+  - A7: DSR was computed on the sign-follow STRATEGY Sharpe (~always-long), sr_var=var of 4 combo SRs -> non-load-bearing; IC+CI is the honest stat.
+  - B8/B11: pilot IC (~-0.19 on TLRY/CHPT) WAS viewed before the 30d window was finalized; pilot days overlap main for TLRY/CHPT. 30d chosen for speed after the chunk-512 hang, not returns. Trials registered a3b00a9 (05:09) before any main stats.
+  - C12: buy 50.5/hold 39.6/sell 9.9 overall; HUGELY heterogeneous by model (Qwen1.5B buy 82%, Qwen3B hold 74%/net -0.145, Phi buy 64%). Personas modulate correctly (fomo 100% buy, contrarian 16%). Decision entropy mean 0.834 -- NEW metric, never computed before.
+  - C13: temp = 0.7/1.0 mix (NOT 0.0); seeds 1000+ai; persona seeds 1337/2337/3337.
+  - C16: 70% of alias-arm ticker-days have the real ticker symbol in visible headlines -> alias arm substantially leaky (label hidden, news identifies).
+  - C17: bias vs scale NON-monotonic (1.5B +0.73, 3B -0.15, Phi +0.64).
+  - D19: AR(1) IC -0.060; momentum(1/5/20) full-history ICs -0.02..-0.06; logistic acc 0.572=base (no edge). D18/D21 (single-LLM, named-arm) NOT run -> NEW-TRIAL, ~$0.05 / ~$2.
+  - D20: stylized facts on auction paths show heavy tails + some clustering BUT auction last_price is anchored to the actual close -> confounded (not free-running).
+  - D23: throughput levers ARE in v17 (20 bars/3 news, mml 2048, chunk 128); measured 2231-2738 dec/hr, main run ~2h wall ~$2.00.
+  - E25: G5 clean rerun byte-identical. E27: total spend ~$11.84 (oos-main-v1 chunk-512 hang WASTED $4.37); headroom ~$73.
+- Added scripts/qa_analysis.py; RESULTS.md now points to QA_ANSWERS.md for the robustness caveats (NVNI-dependence, cross-sectional null, alias leak).

@@ -76,6 +76,13 @@ contrarian 5-day IC.
 - **Single recent regime.** 30 trading days across 10 correlated small caps (one 2026 window).
   The −0.14 5-day IC is suggestive, not robust; it could be an artifact of these names trending
   down while the crowd stayed bullish. A multi-window / longer run is needed before any claim.
+- **Fragile significance (see `docs/QA_ANSWERS.md`).** Under the correct whole-day block bootstrap
+  the 95% CI is [−0.236, −0.011] (barely excludes 0); **dropping the single ticker NVNI flips the
+  CI to include 0**. The effect is entirely *time-series* — the within-day cross-sectional IC is
+  −0.04 (t = −0.73, not distinguishable from zero), so there is no cross-sectional stock-picking.
+  The run's 30-day window was also an unusually strong mean-reversion regime (plain 5-day price
+  reversal IC −0.29 vs −0.04 on full history). Treat the headline number as a weak, regime- and
+  ticker-dependent signal, not an established effect.
 - **Not tradeable.** Even at face value the effect is tiny, at a horizon and in names that are
   hard/expensive to trade — exactly the non-goal stated up front (PLAN §1).
 - **Alias-arm leakage.** The alias arm hides the ticker label but real news headlines still name
