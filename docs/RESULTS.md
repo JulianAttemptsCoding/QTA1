@@ -50,6 +50,15 @@ net-bullish (green bars) through a −20% price slide (black line), the contrari
 name. **C** — IC by signal × horizon with 95% block-bootstrap CIs: ≈0 at 1 day (CI spans zero),
 ≈−0.14 at 5 days (CI excludes zero).
 
+![Crowd-predicted vs actual price over OOS](figures/rq3_predicted_vs_actual_price.png)
+
+*Figure (`scripts/p6_plot_prices.py --run-id oos-main-v2`).* OOS-10 median price index, rebased
+to 100 at the window start. The **crowd-predicted** path (free-run of the daily imbalance,
+scaled by each name's realized volatility) climbs to ~+44%, while the **actual** basket ends
+~−9%. The widening gap is the crowd's price-forecast error: it stays persistently optimistic
+as the real small caps drift down — the visual form of the +0.5 mean imbalance and the
+contrarian 5-day IC.
+
 **Reading.**
 1. **No 1-day predictability.** IC ≈ +0.02 with a CI straddling zero and hit rate < 0.5. The
    crowd tells you nothing about tomorrow.
