@@ -4,9 +4,10 @@
   "next_task": "1) Collect pilot: `python scripts/collect_sim_phase.py --base gs://.../agorasim --run-id oos-pilot-v2` -> signals.jsonl (verify flow_imbalance/auction non-degenerate). 2) THROUGHPUT: real ~900-tok prompts on T4 are slow (~256 decisions/~8min, KV preemption at max_model_len 4096). Before the FULL P4 run trim prompt (e.g. 20 bars/3 news) and/or max_model_len 2048 and raise chunk to ~512 so 250k decisions fit budget/time. 3) Full P4 OOS main (10 tkr x ~100-200 agents x ~125 days, alias primary) -> collect -> P5 stats (evals/prediction.py IC/DM/DSR, bootstrap) vs baselines (D-09). Register trials in docs/TRIALS.md BEFORE stats. P3 CALIB still gated on Robintrack.",
   "worker_image": "us-central1-docker.pkg.dev/project-c779f701-1a49-4a58-b54/agorasim/worker:v15",
   "active_jobs": [
-    {"kind": "oos_main_v1", "run_id": "oos-main-v1", "image": "worker:v16", "arm": "alias",
-     "params": "10 tickers x 20 agents/model x 60 days (crowd 60/ticker-day, 12000 decisions/model)",
-     "jobs": {"Qwen/Qwen2.5-1.5B-Instruct": "1190563293773692928", "Qwen/Qwen2.5-3B-Instruct": "1973063729029316608", "microsoft/Phi-3.5-mini-instruct": "5035511475641253888"}}
+    {"kind": "oos_main_v2", "run_id": "oos-main-v2", "image": "worker:v17", "arm": "alias",
+     "params": "10 tickers x 15 agents/model x 30 days (crowd 45/ticker-day, 4500 decisions/model), chunk 128",
+     "note": "oos-main-v1 (chunk 512) CANCELLED: 2/3 jobs hung >1h in KV preemption thrash (512 > ~156 concurrency). v17 chunk 128 avoids it.",
+     "jobs": {"Qwen/Qwen2.5-1.5B-Instruct": "3749254394957266944", "Qwen/Qwen2.5-3B-Instruct": "4154578361420611584", "microsoft/Phi-3.5-mini-instruct": "7557034685759488000"}}
   ],
   "collector_auth_note": "collect_sim_phase.py google-cloud-storage client uses local ADC (account hellotherestarwar@gmail.com) which lacks bucket list/read. Run the collector on the Vertex worker (service-account), or `gcloud auth application-default login`. Pilot workaround: `gcloud storage cp gs://.../runs/<run_id>/raw/*.jsonl <local>` then aggregate locally. NOTE Git-Bash /tmp != Windows C:\\tmp -- use a repo-relative dir for the local raw.",
   "g0_results": {
