@@ -1150,3 +1150,7 @@
 ## [2026-07-05T02:25:12Z] P3/A-306-RIOT-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/6728667023439560704` is `JOB_STATE_RUNNING`, with Vertex start time `2026-07-05T02:19:47Z`.
 - First checkpoint is healthy: `outputs.jsonl` advanced to 128 rows / 128 parsed for `calib-2019-g1-riot-named-v1`.
+
+## [2026-07-05T02:36:46Z] P3/A-306-RIOT-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/6728667023439560704` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 640 rows / 640 parsed, with current valid JSON rate `1.0`.
