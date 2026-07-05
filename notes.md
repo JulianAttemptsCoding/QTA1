@@ -1416,3 +1416,7 @@
 - Run ID `calib-2019-g1-crbp-named-v1`; GCS output `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-crbp-named-v1`.
 - Generated and retained Vertex job spec at `docs/vertex_job_specs/agorasim-p3-crbp-named-v1.json`.
 - State now tracks CRBP named as the only active job, with budget estimate set to `$17.78` pending actual completion cost.
+
+## [2026-07-05T14:44:47Z] P3/A-308-CRBP-NAMED-STARTUP
+- Job `projects/987318647780/locations/us-central1/customJobs/3986555392510394368` is `JOB_STATE_RUNNING`; worker start time `2026-07-05T14:35:28Z`.
+- `requests.jsonl` is present in GCS and `outputs.jsonl` has started: 256 rows / 256 parsed, valid JSON rate `1.000000`.
