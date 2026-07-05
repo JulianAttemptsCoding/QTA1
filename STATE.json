@@ -1,8 +1,19 @@
 {
   "phase": "P3",
   "last_completed_task": "A-305-GOLD-ALIAS",
-  "active_jobs": [],
-  "budget_est_usd": 12.2,
+  "active_jobs": [
+    {
+      "kind": "p3_calibration_shard",
+      "job": "projects/987318647780/locations/us-central1/customJobs/6728667023439560704",
+      "run_id": "calib-2019-g1-riot-named-v1",
+      "ticker": "RIOT",
+      "arm": "named",
+      "gpu": "T4",
+      "spot": true,
+      "region": "us-central1"
+    }
+  ],
+  "budget_est_usd": 14.15,
   "blockers": [],
   "trials_registered": 6
 }
