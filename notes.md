@@ -1270,3 +1270,10 @@
 ## [2026-07-05T08:02:19Z] P3/A-306-RIOT-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/6728667023439560704` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 12,160 rows / 12,143 parsed, with current valid JSON rate `0.998602`.
+
+## [2026-07-05T08:22:58Z] P3/A-306-RIOT-NAMED-COMPLETE
+- Vertex job `projects/987318647780/locations/us-central1/customJobs/6728667023439560704` completed as `JOB_STATE_SUCCEEDED` at `2026-07-05T08:20:03Z`.
+- Downloaded five expected artifacts from `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-riot-named-v1/` into ignored local run storage for QA.
+- Raw QA: `requests.jsonl` 12,800 rows; `outputs.jsonl` 12,800 rows / 12,783 parsed; valid JSON rate `0.998672`; `sim.jsonl` 128 rows.
+- Collector QA: `scripts/p3_collect_calibration.py` completed on local `runs/p3`; RIOT named appears in RQ1/RQ2 summaries and G3 kill condition still does not fire on available P3 artifacts.
+- Budget ledger updated with 6.05 wall hours at `$0.30/hr` (`$1.82`), bringing cumulative estimated spend to `$14.02`.
