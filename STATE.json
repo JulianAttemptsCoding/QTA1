@@ -1,19 +1,8 @@
 {
   "phase": "P3",
-  "last_completed_task": "A-304-GOLD-NAMED",
-  "active_jobs": [
-    {
-      "kind": "p3_calibration_shard",
-      "job": "projects/987318647780/locations/us-central1/customJobs/6483278018352513024",
-      "run_id": "calib-2019-g1-gold-alias-v1",
-      "ticker": "GOLD",
-      "arm": "alias",
-      "gpu": "T4",
-      "spot": true,
-      "region": "us-central1"
-    }
-  ],
-  "budget_est_usd": 12.18,
+  "last_completed_task": "A-305-GOLD-ALIAS",
+  "active_jobs": [],
+  "budget_est_usd": 12.2,
   "blockers": [],
-  "trials_registered": 5
+  "trials_registered": 6
 }
