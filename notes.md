@@ -1146,3 +1146,7 @@
 - GCS output directory: `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-riot-named-v1`; pre-launch manifest is present in GCS.
 - Spec recorded at `docs/vertex_job_specs/agorasim-p3-riot-named-v1.json`; the launch keeps `--chunk-size 128`, `--gpu-memory-utilization 0.85`, and `--enforce-eager` so model weights/inference remain on Vertex.
 - Budget state estimate advanced to `$14.15` cumulative, still below the `$85` R5 hard stop.
+
+## [2026-07-05T02:25:12Z] P3/A-306-RIOT-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/6728667023439560704` is `JOB_STATE_RUNNING`, with Vertex start time `2026-07-05T02:19:47Z`.
+- First checkpoint is healthy: `outputs.jsonl` advanced to 128 rows / 128 parsed for `calib-2019-g1-riot-named-v1`.
