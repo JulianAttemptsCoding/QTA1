@@ -1553,3 +1553,7 @@
 ## [2026-07-05T20:55:52Z] P3/A-309-CRBP-ALIAS-STARTUP
 - Job `projects/987318647780/locations/us-central1/customJobs/4746150801536188416` is `JOB_STATE_RUNNING`; worker start time `2026-07-05T20:46:31Z`.
 - `requests.jsonl` is present in GCS and `outputs.jsonl` has started: 256 rows / 255 parsed, valid JSON rate `0.996094`.
+
+## [2026-07-05T21:06:57Z] P3/A-309-CRBP-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/4746150801536188416` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 768 rows / 767 parsed, with current valid JSON rate `0.998698`.
