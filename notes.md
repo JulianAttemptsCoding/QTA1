@@ -1749,3 +1749,9 @@
 - Raw QA: `requests.jsonl` 12,800 rows; `outputs.jsonl` 12,800 rows / 12,766 parsed; valid JSON rate `0.997344`; `sim.jsonl` 128 rows.
 - Collector QA: `scripts/p3_collect_calibration.py` completed on local `runs/p3`; BLNK named appears in RQ1/RQ2 summaries (`Spearman 0.153`, sign agreement `0.535`, mean entropy `1.076`) and G3 kill condition still does not fire on available P3 artifacts.
 - Budget ledger updated with 6.00 wall hours at `$0.30/hr` (`$1.80`), bringing cumulative estimated spend to `$21.25`.
+
+## [2026-07-06T21:01:26Z] P3/A-311-BLNK-ALIAS-LAUNCH
+- Launched BLNK alias calibration shard on Vertex: `projects/987318647780/locations/us-central1/customJobs/2952389939796377600` (`agorasim-p3-blnk-alias-v1`), initial state `JOB_STATE_PENDING`.
+- Run ID `calib-2019-g1-blnk-alias-v1`; GCS output `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-blnk-alias-v1`.
+- Generated and retained Vertex job spec at `docs/vertex_job_specs/agorasim-p3-blnk-alias-v1.json`.
+- State now tracks BLNK alias as the only active job, with budget estimate set to `$23.20` pending actual completion cost.
