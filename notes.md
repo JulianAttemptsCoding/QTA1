@@ -1626,3 +1626,7 @@
 ## [2026-07-06T15:14:31Z] P3/A-310-BLNK-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/2104974338036858880` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 640 rows / 639 parsed, with current valid JSON rate `0.998438`.
+
+## [2026-07-06T15:25:30Z] P3/A-310-BLNK-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/2104974338036858880` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 1,152 rows / 1,151 parsed, with current valid JSON rate `0.999132`.
