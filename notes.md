@@ -1605,3 +1605,10 @@
 ## [2026-07-05T23:18:46Z] P3/A-309-CRBP-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/4746150801536188416` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 5,504 rows / 5,481 parsed, with current valid JSON rate `0.995821`.
+
+## [2026-07-06T14:52:19Z] P3/A-309-CRBP-ALIAS-COMPLETE
+- Vertex job `projects/987318647780/locations/us-central1/customJobs/4746150801536188416` completed as `JOB_STATE_SUCCEEDED` at `2026-07-06T02:40:56Z`.
+- Downloaded five expected artifacts from `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-crbp-alias-v1/` into ignored local run storage for QA.
+- Raw QA: `requests.jsonl` 12,800 rows; `outputs.jsonl` 12,800 rows / 12,758 parsed; valid JSON rate `0.996719`; `sim.jsonl` 128 rows.
+- Collector QA: `scripts/p3_collect_calibration.py` completed on local `runs/p3`; CRBP alias appears in RQ1/RQ2 summaries (`Spearman 0.154`, sign agreement `0.693`, mean entropy `1.072`) and G3 kill condition still does not fire on available P3 artifacts.
+- Budget ledger updated with 5.95 wall hours at `$0.30/hr` (`$1.79`), bringing cumulative estimated spend to `$19.45`.
