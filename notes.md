@@ -1759,3 +1759,7 @@
 ## [2026-07-06T21:10:16Z] P3/A-311-BLNK-ALIAS-STARTUP
 - Job `projects/987318647780/locations/us-central1/customJobs/2952389939796377600` is `JOB_STATE_RUNNING`; worker start time `2026-07-06T21:04:39Z`.
 - `requests.jsonl` is present in GCS and `outputs.jsonl` has started: 128 rows / 128 parsed, valid JSON rate `1.000000`.
+
+## [2026-07-06T21:26:59Z] P3/A-311-BLNK-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/2952389939796377600` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 768 rows / 768 parsed, with current valid JSON rate `1.000000`.
