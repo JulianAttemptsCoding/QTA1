@@ -1742,3 +1742,10 @@
 ## [2026-07-06T20:35:16Z] P3/A-310-BLNK-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/2104974338036858880` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 12,160 rows / 12,126 parsed, with current valid JSON rate `0.997204`.
+
+## [2026-07-06T21:00:04Z] P3/A-310-BLNK-NAMED-COMPLETE
+- Vertex job `projects/987318647780/locations/us-central1/customJobs/2104974338036858880` completed as `JOB_STATE_SUCCEEDED` at `2026-07-06T20:53:56Z`.
+- Downloaded five expected artifacts from `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-blnk-named-v1/` into ignored local run storage for QA.
+- Raw QA: `requests.jsonl` 12,800 rows; `outputs.jsonl` 12,800 rows / 12,766 parsed; valid JSON rate `0.997344`; `sim.jsonl` 128 rows.
+- Collector QA: `scripts/p3_collect_calibration.py` completed on local `runs/p3`; BLNK named appears in RQ1/RQ2 summaries (`Spearman 0.153`, sign agreement `0.535`, mean entropy `1.076`) and G3 kill condition still does not fire on available P3 artifacts.
+- Budget ledger updated with 6.00 wall hours at `$0.30/hr` (`$1.80`), bringing cumulative estimated spend to `$21.25`.

@@ -33,3 +33,4 @@
 | 2026-07-05T08:26:23Z | projects/987318647780/locations/us-central1/customJobs/130788016225517568 | agorasim-p3-riot-alias-v1 | n1-standard-8 | 1x NVIDIA_TESLA_T4 | spot | 6.03 | 0.30 | 1.81 | 15.83 |
 | 2026-07-05T14:32:30Z | projects/987318647780/locations/us-central1/customJobs/3986555392510394368 | agorasim-p3-crbp-named-v1 | n1-standard-8 | 1x NVIDIA_TESLA_T4 | spot | 6.10 | 0.30 | 1.83 | 17.66 |
 | 2026-07-05T20:43:40Z | projects/987318647780/locations/us-central1/customJobs/4746150801536188416 | agorasim-p3-crbp-alias-v1 | n1-standard-8 | 1x NVIDIA_TESLA_T4 | spot | 5.95 | 0.30 | 1.79 | 19.45 |
+| 2026-07-06T14:53:53Z | projects/987318647780/locations/us-central1/customJobs/2104974338036858880 | agorasim-p3-blnk-named-v1 | n1-standard-8 | 1x NVIDIA_TESLA_T4 | spot | 6.00 | 0.30 | 1.80 | 21.25 |
