@@ -1622,3 +1622,7 @@
 ## [2026-07-06T15:03:05Z] P3/A-310-BLNK-NAMED-STARTUP
 - Job `projects/987318647780/locations/us-central1/customJobs/2104974338036858880` is `JOB_STATE_RUNNING`; worker start time `2026-07-06T14:57:36Z`.
 - `requests.jsonl` is present in GCS and `outputs.jsonl` has started: 128 rows / 127 parsed, valid JSON rate `0.992188`.
+
+## [2026-07-06T15:14:31Z] P3/A-310-BLNK-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/2104974338036858880` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 640 rows / 639 parsed, with current valid JSON rate `0.998438`.
