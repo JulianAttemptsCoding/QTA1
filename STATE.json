@@ -1,19 +1,8 @@
 {
   "phase": "P3",
-  "last_completed_task": "A-313-PLUG-ALIAS",
-  "active_jobs": [
-    {
-      "kind": "p3_calibration_shard",
-      "job": "projects/987318647780/locations/us-central1/customJobs/419028837737693184",
-      "run_id": "calib-2019-g1-xxii-named-v1",
-      "ticker": "XXII",
-      "arm": "named",
-      "gpu": "T4",
-      "spot": true,
-      "region": "us-central1"
-    }
-  ],
-  "budget_est_usd": 28.74,
+  "last_completed_task": "A-314-XXII-NAMED",
+  "active_jobs": [],
+  "budget_est_usd": 28.6,
   "blockers": [],
-  "trials_registered": 14
+  "trials_registered": 15
 }
