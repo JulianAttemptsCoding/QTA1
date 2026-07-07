@@ -1890,3 +1890,9 @@
 - Raw QA: `requests.jsonl` 12,800 rows; `outputs.jsonl` 12,800 rows / 12,766 parsed; valid JSON rate `0.997344`; `sim.jsonl` 128 rows.
 - Collector QA: `scripts/p3_collect_calibration.py` completed on local `runs/p3`; BLNK alias appears in RQ1/RQ2 summaries (`Spearman 0.160`, sign agreement `0.535`, mean entropy `1.085`) and G3 kill condition still does not fire on available P3 artifacts.
 - Budget ledger updated with 6.31 wall hours at `$0.30/hr` (`$1.89`), bringing cumulative estimated spend to `$23.14`.
+
+## [2026-07-07T03:25:50Z] P3/A-312-PLUG-NAMED-LAUNCH
+- Launched PLUG named calibration shard on Vertex: `projects/987318647780/locations/us-central1/customJobs/6427692757766111232` (`agorasim-p3-plug-named-v1`), initial state `JOB_STATE_PENDING`.
+- Run ID `calib-2019-g1-plug-named-v1`; GCS output `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-plug-named-v1`.
+- Generated and retained Vertex job spec at `docs/vertex_job_specs/agorasim-p3-plug-named-v1.json`.
+- State now tracks PLUG named as the only active job, with budget estimate set to `$25.09` pending actual completion cost.

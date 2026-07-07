@@ -1,8 +1,19 @@
 {
   "phase": "P3",
   "last_completed_task": "A-311-BLNK-ALIAS",
-  "active_jobs": [],
-  "budget_est_usd": 23.14,
+  "active_jobs": [
+    {
+      "kind": "p3_calibration_shard",
+      "job": "projects/987318647780/locations/us-central1/customJobs/6427692757766111232",
+      "run_id": "calib-2019-g1-plug-named-v1",
+      "ticker": "PLUG",
+      "arm": "named",
+      "gpu": "T4",
+      "spot": true,
+      "region": "us-central1"
+    }
+  ],
+  "budget_est_usd": 25.09,
   "blockers": [],
   "trials_registered": 12
 }
