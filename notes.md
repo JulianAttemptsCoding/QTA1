@@ -2038,3 +2038,7 @@
 - Run ID `calib-2019-g1-plug-alias-v1`; GCS output `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-plug-alias-v1`.
 - Generated and retained Vertex job spec at `docs/vertex_job_specs/agorasim-p3-plug-alias-v1.json`; spec passes model IDs and `--gcs-model-root` to the Vertex worker and contains no environment secrets.
 - State now tracks PLUG alias as the only active job, with budget estimate set to `$26.95` pending actual completion cost.
+
+## [2026-07-07T09:46:26Z] P3/A-313-PLUG-ALIAS-STARTUP
+- Job `projects/987318647780/locations/us-central1/customJobs/876531228008775680` is `JOB_STATE_RUNNING`; worker start time `2026-07-07T09:45:24Z`.
+- `requests.jsonl` is present in GCS; `outputs.jsonl` had not been emitted yet at this startup check.
