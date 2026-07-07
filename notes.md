@@ -2032,3 +2032,9 @@
 - Worker summary: 128 days, 100 agents, models `Qwen/Qwen2.5-1.5B-Instruct` and `microsoft/Phi-3.5-mini-instruct`, temperatures `0.7` and `1.0`, elapsed worker seconds `22118.020`.
 - Collector QA: `scripts/p3_collect_calibration.py` completed on local `runs/p3`; PLUG named appears in RQ1/RQ2 summaries (`Spearman -0.020`, sign agreement `0.638`, mean entropy `0.975`) and G3 kill condition still does not fire on available P3 artifacts.
 - Budget ledger updated with 6.21 wall hours at `$0.30/hr` (`$1.86`), bringing cumulative estimated spend to `$25.00`.
+
+## [2026-07-07T09:42:13Z] P3/A-313-PLUG-ALIAS-LAUNCH
+- Launched PLUG alias calibration shard on Vertex: `projects/987318647780/locations/us-central1/customJobs/876531228008775680` (`agorasim-p3-plug-alias-v1`), initial state `JOB_STATE_PENDING`.
+- Run ID `calib-2019-g1-plug-alias-v1`; GCS output `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-plug-alias-v1`.
+- Generated and retained Vertex job spec at `docs/vertex_job_specs/agorasim-p3-plug-alias-v1.json`; spec passes model IDs and `--gcs-model-root` to the Vertex worker and contains no environment secrets.
+- State now tracks PLUG alias as the only active job, with budget estimate set to `$26.95` pending actual completion cost.
