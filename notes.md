@@ -2340,3 +2340,9 @@
 - Worker summary: 128 days, 100 agents, models `Qwen/Qwen2.5-1.5B-Instruct` and `microsoft/Phi-3.5-mini-instruct`, temperatures `0.7` and `1.0`, elapsed worker seconds `21554.301`.
 - Collector QA: `scripts/p3_collect_calibration.py` completed on local `runs/p3`; XXII named appears in RQ1/RQ2 summaries (`Spearman -0.059`, sign agreement `0.346`, mean entropy `1.048`) and G3 kill condition still does not fire on available P3 artifacts.
 - Budget ledger updated with 6.04 wall hours at `$0.30/hr` (`$1.81`), bringing cumulative estimated spend to `$28.60`.
+
+## [2026-07-07T21:52:38Z] P3/A-315-XXII-ALIAS-LAUNCH
+- Launched XXII alias calibration shard on Vertex: `projects/987318647780/locations/us-central1/customJobs/3766566755292413952` (`agorasim-p3-xxii-alias-v1`), initial state `JOB_STATE_PENDING`.
+- Run ID `calib-2019-g1-xxii-alias-v1`; GCS output `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-xxii-alias-v1`.
+- Generated and retained Vertex job spec at `docs/vertex_job_specs/agorasim-p3-xxii-alias-v1.json`; spec passes model IDs and `--gcs-model-root` to the Vertex worker and contains no environment secrets.
+- State now tracks XXII alias as the only active job, with budget estimate set to `$30.55` pending actual completion cost.
