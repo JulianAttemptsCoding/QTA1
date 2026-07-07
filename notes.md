@@ -2350,3 +2350,7 @@
 ## [2026-07-07T21:58:52Z] P3/A-315-XXII-ALIAS-STARTUP
 - Job `projects/987318647780/locations/us-central1/customJobs/3766566755292413952` is `JOB_STATE_RUNNING`; Vertex worker start time `2026-07-07T21:56:02Z`.
 - `requests.jsonl` is present in GCS with `12,800` planned requests; `outputs.jsonl` had not been emitted yet at this startup check.
+
+## [2026-07-07T22:05:01Z] P3/A-315-XXII-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/3766566755292413952` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to `256` rows / `256` parsed, with current valid JSON rate `1.000000`.
