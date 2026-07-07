@@ -2192,3 +2192,7 @@
 ## [2026-07-07T15:48:35Z] P3/A-314-XXII-NAMED-STARTUP
 - Job `projects/987318647780/locations/us-central1/customJobs/419028837737693184` is `JOB_STATE_RUNNING`; worker start time `2026-07-07T15:47:09Z`.
 - `requests.jsonl` is present in GCS; `outputs.jsonl` had not been emitted yet at this startup check.
+
+## [2026-07-07T15:54:48Z] P3/A-314-XXII-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/419028837737693184` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 256 rows / 256 parsed, with current valid JSON rate `1.000000`.
