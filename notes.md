@@ -1900,3 +1900,7 @@
 ## [2026-07-07T03:35:30Z] P3/A-312-PLUG-NAMED-STARTUP
 - Job `projects/987318647780/locations/us-central1/customJobs/6427692757766111232` is `JOB_STATE_RUNNING`; worker start time `2026-07-07T03:29:21Z`.
 - `requests.jsonl` is present in GCS and `outputs.jsonl` has started: 128 rows / 128 parsed, valid JSON rate `1.000000`.
+
+## [2026-07-07T03:57:54Z] P3/A-312-PLUG-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/6427692757766111232` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 1,024 rows / 1,021 parsed, with current valid JSON rate `0.997070`.
