@@ -2346,3 +2346,7 @@
 - Run ID `calib-2019-g1-xxii-alias-v1`; GCS output `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-xxii-alias-v1`.
 - Generated and retained Vertex job spec at `docs/vertex_job_specs/agorasim-p3-xxii-alias-v1.json`; spec passes model IDs and `--gcs-model-root` to the Vertex worker and contains no environment secrets.
 - State now tracks XXII alias as the only active job, with budget estimate set to `$30.55` pending actual completion cost.
+
+## [2026-07-07T21:58:52Z] P3/A-315-XXII-ALIAS-STARTUP
+- Job `projects/987318647780/locations/us-central1/customJobs/3766566755292413952` is `JOB_STATE_RUNNING`; Vertex worker start time `2026-07-07T21:56:02Z`.
+- `requests.jsonl` is present in GCS with `12,800` planned requests; `outputs.jsonl` had not been emitted yet at this startup check.
