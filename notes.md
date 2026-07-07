@@ -2102,3 +2102,7 @@
 ## [2026-07-07T12:24:44Z] P3/A-313-PLUG-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/876531228008775680` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 5,760 rows / 5,735 parsed, with current valid JSON rate `0.995660`.
+
+## [2026-07-07T12:35:40Z] P3/A-313-PLUG-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/876531228008775680` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to 6,144 rows / 6,117 parsed, with current valid JSON rate `0.995605`.
