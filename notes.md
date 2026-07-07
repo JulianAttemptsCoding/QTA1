@@ -2370,3 +2370,7 @@
 ## [2026-07-07T23:23:06Z] P3/A-315-XXII-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/3766566755292413952` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to `2,944` rows / `2,937` parsed, with current valid JSON rate `0.997622`.
+
+## [2026-07-07T23:54:17Z] P3/A-315-XXII-ALIAS-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/3766566755292413952` remains `JOB_STATE_RUNNING`.
+- Verified GCS run directory after one transient copy miss; `outputs.jsonl` is present and advanced to `3,968` rows / `3,958` parsed, with current valid JSON rate `0.997480`.
