@@ -2024,3 +2024,11 @@
 ## [2026-07-07T09:34:53Z] P3/A-312-PLUG-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/6427692757766111232` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 12,672 rows / 12,629 parsed, with current valid JSON rate `0.996607`.
+
+## [2026-07-07T09:39:51Z] P3/A-312-PLUG-NAMED-COMPLETE
+- Vertex job `projects/987318647780/locations/us-central1/customJobs/6427692757766111232` completed as `JOB_STATE_SUCCEEDED` at `2026-07-07T09:38:17Z`.
+- Downloaded five expected artifacts from `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-plug-named-v1/` into ignored local run storage for QA.
+- Raw QA: `requests.jsonl` 12,800 rows; `outputs.jsonl` 12,800 rows / 12,756 parsed; valid JSON rate `0.996562`; `sim.jsonl` 128 rows.
+- Worker summary: 128 days, 100 agents, models `Qwen/Qwen2.5-1.5B-Instruct` and `microsoft/Phi-3.5-mini-instruct`, temperatures `0.7` and `1.0`, elapsed worker seconds `22118.020`.
+- Collector QA: `scripts/p3_collect_calibration.py` completed on local `runs/p3`; PLUG named appears in RQ1/RQ2 summaries (`Spearman -0.020`, sign agreement `0.638`, mean entropy `0.975`) and G3 kill condition still does not fire on available P3 artifacts.
+- Budget ledger updated with 6.21 wall hours at `$0.30/hr` (`$1.86`), bringing cumulative estimated spend to `$25.00`.
