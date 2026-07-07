@@ -1883,3 +1883,10 @@
 ## [2026-07-07T03:00:58Z] P3/A-311-BLNK-ALIAS-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/2952389939796377600` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to 12,160 rows / 12,126 parsed, with current valid JSON rate `0.997204`.
+
+## [2026-07-07T03:24:18Z] P3/A-311-BLNK-ALIAS-COMPLETE
+- Vertex job `projects/987318647780/locations/us-central1/customJobs/2952389939796377600` completed as `JOB_STATE_SUCCEEDED` at `2026-07-07T03:20:00Z`.
+- Downloaded five expected artifacts from `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-blnk-alias-v1/` into ignored local run storage for QA.
+- Raw QA: `requests.jsonl` 12,800 rows; `outputs.jsonl` 12,800 rows / 12,766 parsed; valid JSON rate `0.997344`; `sim.jsonl` 128 rows.
+- Collector QA: `scripts/p3_collect_calibration.py` completed on local `runs/p3`; BLNK alias appears in RQ1/RQ2 summaries (`Spearman 0.160`, sign agreement `0.535`, mean entropy `1.085`) and G3 kill condition still does not fire on available P3 artifacts.
+- Budget ledger updated with 6.31 wall hours at `$0.30/hr` (`$1.89`), bringing cumulative estimated spend to `$23.14`.
