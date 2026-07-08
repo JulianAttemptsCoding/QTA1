@@ -2423,3 +2423,7 @@
 - Run ID `calib-2019-g1-levi-named-v1`; GCS output `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-levi-named-v1`.
 - Generated and retained Vertex job spec at `docs/vertex_job_specs/agorasim-p3-levi-named-v1.json`; spec passes model IDs and `--gcs-model-root` to the Vertex worker and contains no environment secrets.
 - State now tracks LEVI named as the only active job, with budget estimate set to `$32.46` pending actual completion cost.
+
+## [2026-07-08T04:24:00Z] P3/A-316-LEVI-NAMED-STARTUP
+- Job `projects/987318647780/locations/us-central1/customJobs/3346289430691315712` is `JOB_STATE_RUNNING`; Vertex worker start time `2026-07-08T04:23:00Z`.
+- `requests.jsonl` is present in GCS with `12,800` planned requests; `outputs.jsonl` had not been emitted yet at this startup check.
