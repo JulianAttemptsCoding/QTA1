@@ -2505,3 +2505,10 @@
 - All four active P3 jobs are now `JOB_STATE_RUNNING`; A-317 LEVI alias started at `2026-07-08T10:47:51Z`.
 - A-316 LEVI named advanced to `12,672` rows / `12,629` parsed, with current valid JSON rate `0.996607`.
 - A-317 LEVI alias, A-318 VKTX named, and A-319 VKTX alias each advanced to `256` rows / `256` parsed, with current valid JSON rate `1.000000`.
+
+## [2026-07-08T11:04:23Z] P3/A-316-LEVI-NAMED-COMPLETE
+- Vertex job `projects/987318647780/locations/us-central1/customJobs/3346289430691315712` completed successfully at `2026-07-08T10:58:34Z`; final `outputs.jsonl` has `12,800` rows / `12,757` parsed, valid JSON rate `0.996641`, and `sim.jsonl` has `128` rows.
+- Downloaded completed run artifacts from GCS to ignored local path `runs/p3/calib-2019-g1-levi-named-v1/`, including `sim.jsonl` and `worker_summary.json`.
+- Worker summary: 128 days, 100 agents, models `Qwen/Qwen2.5-1.5B-Instruct` and `microsoft/Phi-3.5-mini-instruct`, temperatures `0.7` and `1.0`, elapsed worker seconds `23699.937`.
+- Collector QA: `scripts/p3_collect_calibration.py` completed on local `runs/p3`; LEVI named appears in RQ1/RQ2 summaries (`Spearman 0.157`, sign agreement `0.354`, mean entropy `1.084`) and G3 kill condition still does not fire on available P3 artifacts.
+- Budget ledger updated with 6.65 wall hours at `$0.30/hr` (`$1.99`), bringing cumulative estimated actual spend to `$32.50`; state budget reservation is `$38.35` including the three remaining active P3 jobs.
