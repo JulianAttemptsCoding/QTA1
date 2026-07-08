@@ -19,10 +19,10 @@ studies and counterfactuals. Nothing here is investment advice.
 | G1 | Universes + point-in-time snapshots frozen and hashed | **PASS** (`docs/G1_UNIVERSES.md`, `docs/G1_SNAPSHOT_MANIFEST.json`) |
 | G2 | >=99% valid-JSON agent decisions; smoke sim | **PASS** (`docs/G2_REPORT.md`) |
 | G3 | Calibration-era fidelity (kill: sign-agreement <=52% both arms) | **PASS** (`docs/RQ1_REPORT.md`, `docs/RQ2_REPORT.md`) |
-| G4 | OOS budget checkpoint | not started |
+| G4 | OOS budget checkpoint | **RUNNING** (5-ticker/125k-decision halfway batch on Vertex) |
 | G5 | Full reproducibility from manifests | not started |
 
-Local test suite: `pytest -q` - 40/40 passing. Stub smoke:
+Local test suite: `pytest -q` - 56/56 passing. Stub smoke:
 `python scripts/p2_smoke_sim.py --config configs/sim_smoke.yaml` - PASS
 (parse-valid 0.995, auction price dynamics exercised). Real-model G2 smoke:
 Qwen2.5-1.5B and Phi-3.5-mini both reached valid-JSON `1.000` and contamination
@@ -61,6 +61,8 @@ docs/G1_SNAPSHOT_MANIFEST.json  hashed point-in-time snapshot manifest
 docs/G2_REPORT.md        real-model smoke and contamination gate evidence
 docs/RQ1_REPORT.md       P3 calibration realism / stylized-fact report
 docs/RQ2_REPORT.md       P3 crowd-fidelity, named-vs-alias, and G3 report
+scripts/p4_gate_budget.py  measured G4 cost-per-decision checkpoint
+scripts/p4_collect_oos.py  RQ3 IC/hit/DM/bootstrap/DSR statistics
 docs/TRIALS.md           registered trial count
 configs/                 smoke / calibration / OOS experiment configs
 prompts/                 agent system+user templates, contamination probes
