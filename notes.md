@@ -2417,3 +2417,9 @@
 - Worker summary: 128 days, 100 agents, models `Qwen/Qwen2.5-1.5B-Instruct` and `microsoft/Phi-3.5-mini-instruct`, temperatures `0.7` and `1.0`, elapsed worker seconds `22703.532`.
 - Collector QA: `scripts/p3_collect_calibration.py` completed on local `runs/p3`; XXII alias appears in RQ1/RQ2 summaries (`Spearman -0.103`, sign agreement `0.346`, mean entropy `1.037`) and G3 kill condition still does not fire on available P3 artifacts.
 - Budget ledger updated with 6.36 wall hours at `$0.30/hr` (`$1.91`), bringing cumulative estimated spend to `$30.51`.
+
+## [2026-07-08T04:19:53Z] P3/A-316-LEVI-NAMED-LAUNCH
+- Launched LEVI named calibration shard on Vertex: `projects/987318647780/locations/us-central1/customJobs/3346289430691315712` (`agorasim-p3-levi-named-v1`), initial state `JOB_STATE_PENDING`.
+- Run ID `calib-2019-g1-levi-named-v1`; GCS output `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-levi-named-v1`.
+- Generated and retained Vertex job spec at `docs/vertex_job_specs/agorasim-p3-levi-named-v1.json`; spec passes model IDs and `--gcs-model-root` to the Vertex worker and contains no environment secrets.
+- State now tracks LEVI named as the only active job, with budget estimate set to `$32.46` pending actual completion cost.
