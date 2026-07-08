@@ -189,9 +189,10 @@ def build_requests(
     model_ids: list[str],
     temperatures: list[float],
     run_salt: str,
+    snapshot_kind: str = "calib",
 ) -> list[dict[str, Any]]:
-    bars_all = read_jsonl_gcs(snapshot_uri(manifest, "calib", ticker, "bars_1d.jsonl"))
-    news_all = read_jsonl_gcs(snapshot_uri(manifest, "calib", ticker, "news.jsonl"))
+    bars_all = read_jsonl_gcs(snapshot_uri(manifest, snapshot_kind, ticker, "bars_1d.jsonl"))
+    news_all = read_jsonl_gcs(snapshot_uri(manifest, snapshot_kind, ticker, "news.jsonl"))
     days = select_days(bars_all, start, end)
     personas = PersonaBank(n_agents, seed=persona_seed).personas
     combos = [(model_id, temperature) for model_id in model_ids for temperature in temperatures]

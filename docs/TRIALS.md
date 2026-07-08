@@ -7,9 +7,9 @@ time. Ablations count. Prompt iterations before G2 do not (no return stats viewe
 
 | # | Date | Phase | Signal / config | Universe | Window | Status |
 |---|------|-------|-----------------|----------|--------|--------|
-| 1 | TBD  | P4    | flow_imbalance (conf-weighted), alias arm | OOS-10 | G1-frozen | registered |
-| 2 | TBD  | P4    | flow_imbalance (unweighted) | OOS-10 | G1-frozen | registered |
-| 3 | TBD  | P4    | single-strong-LLM sentiment baseline | OOS-10 | G1-frozen | registered |
-| 4 | TBD  | P4    | momentum(1/5/20), AR(1), logistic baselines | OOS-10 | G1-frozen | registered |
+| 1 | 2026-07-08 | P4 | flow_imbalance (conf-weighted), alias arm | OOS-10 | 2025-01-02 to 2025-07-03 | registered |
+| 2 | 2026-07-08 | P4 | flow_imbalance (unweighted), alias arm | OOS-10 | 2025-01-02 to 2025-07-03 | registered |
+| 3 | 2026-07-08 | P4 | single-strong-LLM sentiment baseline | OOS-10 | 2025-01-02 to 2025-07-03 | registered |
+| 4 | 2026-07-08 | P4 | momentum(1/5/20), AR(1), logistic baselines | OOS-10 | 2025-01-02 to 2025-07-03 | registered |
 
 Add rows before running; never delete rows; failed/abandoned trials stay counted.

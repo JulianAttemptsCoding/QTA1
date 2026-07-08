@@ -2,13 +2,15 @@ run_id: oos-2025-g1
 phase: P4
 universe:
   source: docs/G1_UNIVERSES.md
+  freeze_commit: d77cdad401622404c0ce75c6fc44e82376b34555
   selection_date: "2024-12-20"
   freeze_before_inference: true
   tickers: [NVNI, TLRY, EDIT, CHPT, BLNK, FRSX, TPET, OGI, CCO, ICCM]
 snapshot_manifest: docs/G1_SNAPSHOT_MANIFEST.json
 gcs_snapshot_manifest: gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/manifest.json
-window: {start: "2025-01-02", end: "2026-06-30"}
-agents: {n: 300, persona_seed: 1337, scaling_curve: [50, 100, 300, 1000]}
+window: {start: "2025-01-02", end: "2025-07-03", trading_days: 125}
+agents: {n: 200, persona_seed: 1337, scaling_curve: [50, 100, 300, 1000]}
+main_arm: alias
 decision_frequency: daily
 ablations: [single_strong_llm_baseline, news_off, personas_off, per_model_family]
 prediction_eval: {ic: true, dm_vs_baselines: true, dsr_trials_doc: docs/TRIALS.md}

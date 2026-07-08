@@ -76,6 +76,9 @@ def build_manifest(
     snapshot_manifest_path: Path,
     ticker: str,
     arm: str,
+    phase: str = "P3",
+    snapshot_kind: str = "calib",
+    notes: str | None = None,
 ) -> RunManifest:
     snapshot_manifest = json.loads(snapshot_manifest_path.read_text())
     bank = PersonaBank(n_agents, seed=persona_seed)
@@ -83,17 +86,17 @@ def build_manifest(
         "agent_system.j2": prompt_hash(load_template("agent_system.j2")),
         "decision_user.j2": prompt_hash(load_template("decision_user.j2")),
     }
-    data_hashes = snapshot_hashes_for_ticker(snapshot_manifest, "calib", ticker)
+    data_hashes = snapshot_hashes_for_ticker(snapshot_manifest, snapshot_kind, ticker)
     return RunManifest.create(
         run_id,
-        "P3",
+        phase,
         config_path,
         persona_bank_hash=bank.content_hash(),
         prompt_hashes=prompt_hashes,
         model_ids=model_ids,
         seed=persona_seed,
         data_snapshot_hashes=data_hashes,
-        notes=f"P3 calibration {ticker} {arm}; manifest written before Vertex launch.",
+        notes=notes or f"{phase} {snapshot_kind} {ticker} {arm}; manifest written before Vertex launch.",
     )
 
 
@@ -147,6 +150,56 @@ def build_calib_spec(args: argparse.Namespace, config: dict[str, Any], run_id: s
     )
 
 
+def build_oos_spec(args: argparse.Namespace, config: dict[str, Any], run_id: str, gcs_output_dir: str) -> VertexJobSpec:
+    agents = config["agents"]
+    window = config["window"]
+    container_args = [
+        "scripts/p4_oos_worker.py",
+        "--run-id",
+        run_id,
+        "--ticker",
+        args.ticker,
+        "--arm",
+        args.arm,
+        "--gcs-output-dir",
+        gcs_output_dir,
+        "--gcs-model-root",
+        args.gcs_model_root,
+        "--gcs-snapshot-manifest",
+        config["gcs_snapshot_manifest"],
+        "--n-agents",
+        str(int(args.n_agents or agents["n"])),
+        "--persona-seed",
+        str(int(agents["persona_seed"])),
+        "--start",
+        str(window["start"]),
+        "--end",
+        str(window["end"]),
+        "--run-salt",
+        args.run_salt,
+        "--chunk-size",
+        str(args.chunk_size),
+        "--max-new-tokens",
+        str(args.max_new_tokens),
+    ]
+    for model_id in args.model_ids:
+        container_args.extend(["--model-id", model_id])
+    for temperature in args.temperatures:
+        container_args.extend(["--temperature", str(temperature)])
+    if args.gpu_memory_utilization is not None:
+        container_args.extend(["--gpu-memory-utilization", str(args.gpu_memory_utilization)])
+    if args.enforce_eager:
+        container_args.append("--enforce-eager")
+    return VertexJobSpec(
+        project=args.project,
+        region=args.region,
+        display_name=args.display_name or f"agorasim-p4-main-{args.ticker.lower()}-{args.arm}-{args.attempt}",
+        image_uri=args.image_uri,
+        args=container_args,
+        spot=not args.on_demand,
+    )
+
+
 def launch_calib(args: argparse.Namespace) -> dict[str, Any]:
     config_path = Path(args.config)
     config = load_yaml(config_path)
@@ -167,6 +220,53 @@ def launch_calib(args: argparse.Namespace) -> dict[str, Any]:
     )
     manifest_path = manifest.write(local_dir)
     spec = build_calib_spec(args, config, run_id, gcs_output_dir)
+    request_log = Path("docs") / "vertex_job_specs" / f"{spec.display_name}.json"
+    if args.dry_run:
+        request_log.parent.mkdir(parents=True, exist_ok=True)
+        request_log.write_text(json.dumps(spec.request_body(redact_env=True), indent=2, sort_keys=True))
+        return {
+            "dry_run": True,
+            "run_id": run_id,
+            "gcs_output_dir": gcs_output_dir,
+            "manifest": str(manifest_path),
+            "request_log": str(request_log),
+        }
+    upload_file(manifest_path, f"{gcs_output_dir}/manifest.json")
+    result = submit(spec, request_log)
+    return {
+        "run_id": run_id,
+        "gcs_output_dir": gcs_output_dir,
+        "manifest": str(manifest_path),
+        "request_log": str(request_log),
+        "job": result["name"],
+        "state": result.get("state"),
+    }
+
+
+def launch_oos_main(args: argparse.Namespace) -> dict[str, Any]:
+    config_path = Path(args.config)
+    config = load_yaml(config_path)
+    if args.ticker not in config["universe"]["tickers"]:
+        raise ValueError(f"{args.ticker} is not in {config_path}")
+    run_id = run_id_for(config, args.ticker, args.arm, args.attempt)
+    gcs_output_dir = f"{args.gcs_run_root.rstrip('/')}/p4/main/{run_id}"
+    local_dir = Path("runs") / run_id
+    n_agents = int(args.n_agents or config["agents"]["n"])
+    manifest = build_manifest(
+        run_id=run_id,
+        config_path=config_path,
+        model_ids=args.model_ids,
+        n_agents=n_agents,
+        persona_seed=int(config["agents"]["persona_seed"]),
+        snapshot_manifest_path=Path(config["snapshot_manifest"]),
+        ticker=args.ticker,
+        arm=args.arm,
+        phase="P4",
+        snapshot_kind="oos",
+        notes=f"P4 main OOS {args.ticker} {args.arm}; manifest written before Vertex launch.",
+    )
+    manifest_path = manifest.write(local_dir)
+    spec = build_oos_spec(args, config, run_id, gcs_output_dir)
     request_log = Path("docs") / "vertex_job_specs" / f"{spec.display_name}.json"
     if args.dry_run:
         request_log.parent.mkdir(parents=True, exist_ok=True)
@@ -214,10 +314,27 @@ def main() -> int:
     calib.add_argument("--max-new-tokens", type=int, default=160)
     calib.add_argument("--gpu-memory-utilization", type=float)
     calib.add_argument("--enforce-eager", action="store_true")
+    oos = sub.add_parser("launch-oos-main")
+    oos.add_argument("--config", default="configs/sim_oos_2025.yaml")
+    oos.add_argument("--ticker", required=True)
+    oos.add_argument("--arm", choices=["named", "alias"], default="alias")
+    oos.add_argument("--attempt", default="v1")
+    oos.add_argument("--display-name")
+    oos.add_argument("--model-ids", type=parse_csv_list, default=DEFAULT_SURVIVORS)
+    oos.add_argument("--temperatures", type=parse_float_csv, default=DEFAULT_TEMPERATURES)
+    oos.add_argument("--run-salt", default="oos-2025-v1")
+    oos.add_argument("--n-agents", type=int)
+    oos.add_argument("--chunk-size", type=int, default=128)
+    oos.add_argument("--max-new-tokens", type=int, default=160)
+    oos.add_argument("--gpu-memory-utilization", type=float)
+    oos.add_argument("--enforce-eager", action="store_true")
     args = parser.parse_args()
 
     if args.kind == "launch-calib":
         print(json.dumps(launch_calib(args), sort_keys=True), flush=True)
+        return 0
+    if args.kind == "launch-oos-main":
+        print(json.dumps(launch_oos_main(args), sort_keys=True), flush=True)
         return 0
     raise ValueError(args.kind)
 

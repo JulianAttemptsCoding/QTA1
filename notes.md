@@ -2604,3 +2604,10 @@
 - Final pooled RQ2 metrics: alias Spearman `0.044`, sign agreement `0.524`, mean entropy `1.041`; named Spearman `0.036`, sign agreement `0.524`, mean entropy `1.041`.
 - Named-vs-alias gaps are small: sign agreement `-0.001`, Spearman `-0.008`.
 - G3 kill condition does not fire because sign agreement is above `0.52` in both arms and stylized-fact artifacts are not qualitatively absent. State advances to P4 with no active Vertex jobs.
+
+## [2026-07-08T17:45:00Z] P4/A-401-MAIN-FREEZE
+- Reconciled the stale OOS config with registered A-401: froze the main run to 10 OOS tickers, alias arm, 200 agents per ticker, and the first 125 common trading days (`2025-01-02` through `2025-07-03`) for exactly `250,000` planned decisions.
+- Recorded G1 universe freeze commit `d77cdad401622404c0ce75c6fc44e82376b34555` in `configs/sim_oos_2025.yaml`; OOS ticker order remains unchanged.
+- Updated `docs/TRIALS.md` before inference with the exact main-run window for weighted crowd flow, unweighted flow, single-model baseline, and mandatory momentum/AR(1)/logistic baselines.
+- Added `scripts/p4_oos_worker.py` and `launch-oos-main` orchestration. The Vertex worker reads OOS snapshots and GCS-cached model weights, emits raw decisions, daily crowd/per-model flows, past-only momentum features, and next-day real-return targets.
+- QA: dry-run Vertex spec uses `n1-standard-8` + spot T4, model IDs and `--gcs-model-root` are worker arguments, environment is empty, scripts compile, secret scan is clean, and `pytest -q` passes `44/44`.
