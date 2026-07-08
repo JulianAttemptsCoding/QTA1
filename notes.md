@@ -2541,3 +2541,8 @@
 - Remaining active jobs A-317 LEVI alias, A-318 VKTX named, and A-319 VKTX alias remain `JOB_STATE_RUNNING`.
 - A-317 LEVI alias advanced to `5,248` rows / `5,223` parsed, valid JSON rate `0.995236`; continue monitoring parse-rate trend.
 - A-318 VKTX named and A-319 VKTX alias each advanced to `5,504` rows / `5,481` parsed, valid JSON rate `0.995821`.
+
+## [2026-07-08T14:16:37Z] P3/PARALLEL-POLL
+- Remaining active jobs A-317 LEVI alias, A-318 VKTX named, and A-319 VKTX alias remain `JOB_STATE_RUNNING`.
+- A-317 LEVI alias advanced to `6,272` rows / `6,245` parsed, valid JSON rate `0.995695`; A-318 VKTX named advanced to `6,528` rows / `6,499` parsed, valid JSON rate `0.995558`.
+- Verified A-319 VKTX alias GCS run directory after one transient copy miss; `outputs.jsonl` is present and advanced to `6,656` rows / `6,626` parsed, valid JSON rate `0.995493`.
