@@ -2427,3 +2427,7 @@
 ## [2026-07-08T04:24:00Z] P3/A-316-LEVI-NAMED-STARTUP
 - Job `projects/987318647780/locations/us-central1/customJobs/3346289430691315712` is `JOB_STATE_RUNNING`; Vertex worker start time `2026-07-08T04:23:00Z`.
 - `requests.jsonl` is present in GCS with `12,800` planned requests; `outputs.jsonl` had not been emitted yet at this startup check.
+
+## [2026-07-08T04:30:04Z] P3/A-316-LEVI-NAMED-POLL
+- Job `projects/987318647780/locations/us-central1/customJobs/3346289430691315712` remains `JOB_STATE_RUNNING`.
+- `outputs.jsonl` advanced to `128` rows / `128` parsed, with current valid JSON rate `1.000000`.
