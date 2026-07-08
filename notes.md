@@ -2576,3 +2576,10 @@
 - Remaining active jobs A-317 LEVI alias, A-318 VKTX named, and A-319 VKTX alias remain `JOB_STATE_RUNNING`.
 - A-317 LEVI alias advanced to `11,264` rows / `11,213` parsed, valid JSON rate `0.995472`.
 - A-318 VKTX named advanced to `11,648` rows / `11,611` parsed, valid JSON rate `0.996823`; A-319 VKTX alias advanced to `11,776` rows / `11,736` parsed, valid JSON rate `0.996603`.
+
+## [2026-07-08T17:18:00Z] P3/A-319-VKTX-ALIAS-COMPLETE
+- Vertex job `projects/987318647780/locations/us-central1/customJobs/4859622050790113280` completed successfully at `2026-07-08T17:16:31Z`; final `outputs.jsonl` has `12,800` rows / `12,758` parsed, valid JSON rate `0.996719`, and `sim.jsonl` has `128` rows.
+- Downloaded completed run artifacts from GCS to ignored local path `runs/p3/calib-2019-g1-vktx-alias-v1/`, including `sim.jsonl` and `worker_summary.json`.
+- Worker summary: 128 days, 100 agents, models `Qwen/Qwen2.5-1.5B-Instruct` and `microsoft/Phi-3.5-mini-instruct`, temperatures `0.7` and `1.0`, elapsed worker seconds `2511.578`.
+- Collector QA: `scripts/p3_collect_calibration.py` completed on local `runs/p3`; VKTX alias appears in RQ1/RQ2 summaries (`Spearman 0.119`, sign agreement `0.827`, mean entropy `1.069`) and G3 kill condition still does not fire on available P3 artifacts.
+- Budget ledger updated with 6.51 wall hours at `$0.30/hr` (`$1.95`), bringing cumulative estimated actual spend to `$34.45`; state budget reservation remains `$38.35` including A-317 LEVI alias and A-318 VKTX named.
