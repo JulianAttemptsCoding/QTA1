@@ -2500,3 +2500,8 @@
 - Vertex concurrency confirmed: A-318 VKTX named is `JOB_STATE_RUNNING` with worker start `2026-07-08T10:47:44Z`, and A-319 VKTX alias is `JOB_STATE_RUNNING` with worker start `2026-07-08T10:47:58Z`; both have `requests.jsonl` present with `12,800` planned requests and no `outputs.jsonl` yet.
 - A-316 LEVI named remains `JOB_STATE_RUNNING`; `outputs.jsonl` advanced to `12,416` rows / `12,375` parsed, with current valid JSON rate `0.996698`.
 - A-317 LEVI alias remains `JOB_STATE_PENDING`; no request/output artifacts emitted yet.
+
+## [2026-07-08T10:56:50Z] P3/PARALLEL-POLL
+- All four active P3 jobs are now `JOB_STATE_RUNNING`; A-317 LEVI alias started at `2026-07-08T10:47:51Z`.
+- A-316 LEVI named advanced to `12,672` rows / `12,629` parsed, with current valid JSON rate `0.996607`.
+- A-317 LEVI alias, A-318 VKTX named, and A-319 VKTX alias each advanced to `256` rows / `256` parsed, with current valid JSON rate `1.000000`.
