@@ -15,6 +15,7 @@ from pathlib import Path
 import sys
 from typing import Any
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from agorasim.market import flow_imbalance
@@ -94,6 +95,8 @@ def main() -> int:
     parser.add_argument("--chunk-size", type=int, default=128)
     parser.add_argument("--gpu-memory-utilization", type=float, default=0.90)
     parser.add_argument("--enforce-eager", action="store_true")
+    parser.add_argument("--news-off", action="store_true")
+    parser.add_argument("--personas-off", action="store_true")
     args = parser.parse_args()
 
     os.environ.setdefault("VLLM_TARGET_DEVICE", "cuda")
@@ -118,6 +121,8 @@ def main() -> int:
         temperatures=args.temperature,
         run_salt=args.run_salt,
         snapshot_kind="oos",
+        news_off=args.news_off,
+        personas_off=args.personas_off,
     )
     upload_text(requests_uri, encode_jsonl(requests), "application/jsonl")
 
@@ -149,6 +154,8 @@ def main() -> int:
         "model_ids": args.model_id,
         "temperatures": args.temperature,
         "n_agents": args.n_agents,
+        "news_off": args.news_off,
+        "personas_off": args.personas_off,
         "n_requests": len(requests),
         "n_outputs": len(output_rows),
         "valid_json_rate": valid / len(requests) if requests else 0.0,

@@ -39,6 +39,25 @@ class Persona:
                 f"Current position: {self.shares} shares, ${self.cash:,.0f} cash.")
 
 
+def homogeneous_personas(n: int) -> list[Persona]:
+    persona = Persona(
+        persona_id="homogeneous",
+        style="swing trader",
+        experience="two-year hobbyist",
+        risk="moderate",
+        attention="checks once a day",
+        sizing="round-lot habit",
+        cash=5_000.0,
+        shares=0,
+    )
+    return [persona] * n
+
+
+def persona_content_hash(personas: list[Persona]) -> str:
+    blob = json.dumps([asdict(persona) for persona in personas], sort_keys=True).encode()
+    return hashlib.sha256(blob).hexdigest()
+
+
 class PersonaBank:
     def __init__(self, n: int, seed: int = 1337,
                  cash_range: tuple[float, float] = (500.0, 25_000.0)):
@@ -58,5 +77,4 @@ class PersonaBank:
             self.personas.append(Persona(persona_id=pid, **attrs))
 
     def content_hash(self) -> str:
-        blob = json.dumps([asdict(p) for p in self.personas], sort_keys=True).encode()
-        return hashlib.sha256(blob).hexdigest()
+        return persona_content_hash(self.personas)

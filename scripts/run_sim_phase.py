@@ -18,7 +18,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from agorasim.agents import PersonaBank
+from agorasim.agents import PersonaBank, homogeneous_personas, persona_content_hash
 from agorasim.agents.prompt_builder import load_template, prompt_hash
 from agorasim.infra import RunManifest
 from agorasim.infra.vertex_launch import VertexJobSpec, submit
@@ -79,9 +79,14 @@ def build_manifest(
     phase: str = "P3",
     snapshot_kind: str = "calib",
     notes: str | None = None,
+    personas_off: bool = False,
 ) -> RunManifest:
     snapshot_manifest = json.loads(snapshot_manifest_path.read_text())
-    bank = PersonaBank(n_agents, seed=persona_seed)
+    personas = (
+        homogeneous_personas(n_agents)
+        if personas_off
+        else PersonaBank(n_agents, seed=persona_seed).personas
+    )
     prompt_hashes = {
         "agent_system.j2": prompt_hash(load_template("agent_system.j2")),
         "decision_user.j2": prompt_hash(load_template("decision_user.j2")),
@@ -91,7 +96,7 @@ def build_manifest(
         run_id,
         phase,
         config_path,
-        persona_bank_hash=bank.content_hash(),
+        persona_bank_hash=persona_content_hash(personas),
         prompt_hashes=prompt_hashes,
         model_ids=model_ids,
         seed=persona_seed,
@@ -153,6 +158,7 @@ def build_calib_spec(args: argparse.Namespace, config: dict[str, Any], run_id: s
 def build_oos_spec(args: argparse.Namespace, config: dict[str, Any], run_id: str, gcs_output_dir: str) -> VertexJobSpec:
     agents = config["agents"]
     window = config["window"]
+    experiment = getattr(args, "experiment", "main")
     container_args = [
         "scripts/p4_oos_worker.py",
         "--run-id",
@@ -172,9 +178,9 @@ def build_oos_spec(args: argparse.Namespace, config: dict[str, Any], run_id: str
         "--persona-seed",
         str(int(agents["persona_seed"])),
         "--start",
-        str(window["start"]),
+        str(args.start or window["start"]),
         "--end",
-        str(window["end"]),
+        str(args.end or window["end"]),
         "--run-salt",
         args.run_salt,
         "--chunk-size",
@@ -190,10 +196,14 @@ def build_oos_spec(args: argparse.Namespace, config: dict[str, Any], run_id: str
         container_args.extend(["--gpu-memory-utilization", str(args.gpu_memory_utilization)])
     if args.enforce_eager:
         container_args.append("--enforce-eager")
+    if experiment == "news-off":
+        container_args.append("--news-off")
+    if experiment == "personas-off":
+        container_args.append("--personas-off")
     return VertexJobSpec(
         project=args.project,
         region=args.region,
-        display_name=args.display_name or f"agorasim-p4-main-{args.ticker.lower()}-{args.arm}-{args.attempt}",
+        display_name=args.display_name or f"agorasim-p4-{experiment}-{args.ticker.lower()}-{args.arm}-{args.attempt}",
         image_uri=args.image_uri,
         args=container_args,
         spot=not args.on_demand,
@@ -248,10 +258,18 @@ def launch_oos_main(args: argparse.Namespace) -> dict[str, Any]:
     config = load_yaml(config_path)
     if args.ticker not in config["universe"]["tickers"]:
         raise ValueError(f"{args.ticker} is not in {config_path}")
-    run_id = run_id_for(config, args.ticker, args.arm, args.attempt)
-    gcs_output_dir = f"{args.gcs_run_root.rstrip('/')}/p4/main/{run_id}"
-    local_dir = Path("runs") / run_id
+    experiment = args.experiment
     n_agents = int(args.n_agents or config["agents"]["n"])
+    if experiment == "main":
+        run_id = run_id_for(config, args.ticker, args.arm, args.attempt)
+    else:
+        experiment_id = experiment.replace("-", "_")
+        run_id = (
+            f"{str(config['run_id']).replace('_', '-')}-{experiment_id}-"
+            f"{args.ticker.lower()}-{args.arm}-n{n_agents}-{args.attempt}"
+        )
+    gcs_output_dir = f"{args.gcs_run_root.rstrip('/')}/p4/{experiment}/{run_id}"
+    local_dir = Path("runs") / run_id
     manifest = build_manifest(
         run_id=run_id,
         config_path=config_path,
@@ -263,7 +281,8 @@ def launch_oos_main(args: argparse.Namespace) -> dict[str, Any]:
         arm=args.arm,
         phase="P4",
         snapshot_kind="oos",
-        notes=f"P4 main OOS {args.ticker} {args.arm}; manifest written before Vertex launch.",
+        notes=f"P4 {experiment} OOS {args.ticker} {args.arm}; manifest written before Vertex launch.",
+        personas_off=experiment == "personas-off",
     )
     manifest_path = manifest.write(local_dir)
     spec = build_oos_spec(args, config, run_id, gcs_output_dir)
@@ -316,6 +335,7 @@ def main() -> int:
     calib.add_argument("--enforce-eager", action="store_true")
     oos = sub.add_parser("launch-oos-main")
     oos.add_argument("--config", default="configs/sim_oos_2025.yaml")
+    oos.add_argument("--experiment", choices=["main", "scaling", "news-off", "personas-off"], default="main")
     oos.add_argument("--ticker", required=True)
     oos.add_argument("--arm", choices=["named", "alias"], default="alias")
     oos.add_argument("--attempt", default="v1")
@@ -324,6 +344,8 @@ def main() -> int:
     oos.add_argument("--temperatures", type=parse_float_csv, default=DEFAULT_TEMPERATURES)
     oos.add_argument("--run-salt", default="oos-2025-v1")
     oos.add_argument("--n-agents", type=int)
+    oos.add_argument("--start")
+    oos.add_argument("--end")
     oos.add_argument("--chunk-size", type=int, default=128)
     oos.add_argument("--max-new-tokens", type=int, default=160)
     oos.add_argument("--gpu-memory-utilization", type=float)

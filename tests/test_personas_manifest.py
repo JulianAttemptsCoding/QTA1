@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from agorasim.agents import PersonaBank
+from agorasim.agents import PersonaBank, homogeneous_personas, persona_content_hash
 from agorasim.agents.prompt_builder import load_template, prompt_hash, render
 from agorasim.infra import RunManifest
 
@@ -9,6 +9,15 @@ def test_persona_bank_is_deterministic():
     a, b = PersonaBank(50, seed=7), PersonaBank(50, seed=7)
     assert a.content_hash() == b.content_hash()
     assert a.content_hash() != PersonaBank(50, seed=8).content_hash()
+
+
+def test_homogeneous_persona_hash_is_deterministic_and_size_sensitive():
+    two = homogeneous_personas(2)
+    three = homogeneous_personas(3)
+
+    assert two[0] == two[1]
+    assert persona_content_hash(two) == persona_content_hash(homogeneous_personas(2))
+    assert persona_content_hash(two) != persona_content_hash(three)
 
 
 def test_prompt_render_fills_all_slots():

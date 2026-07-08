@@ -2624,3 +2624,10 @@
 - Added `scripts/p4_gate_budget.py`; G4 is computed from archived worker summaries against the G0 baseline of 4,747 decisions/hour at `$0.30/hour`, with the registered 30% pause threshold.
 - Live QA confirmed four concurrent workers loaded Qwen weights from `/tmp` after GCS download and checkpointed their first 128-output batches. CHPT remains queued for available capacity.
 - Local QA: `pytest -q` passes `53/53`, scripts compile, diff check passes, and the repository secret scan remains clean.
+
+## [2026-07-08T18:10:00Z] P4/A-402-A-403-PREP
+- Froze the two-ticker follow-up surface to NVNI/TLRY and their first 60 shared sessions, `2025-01-02` through `2025-03-31`, with scaling sizes `[50, 100, 300, 1000]` and 100-agent ablations.
+- Extended the OOS launcher with collision-free experiment paths for `scaling`, `news-off`, and `personas-off`; no follow-up trial was registered or submitted before G4.
+- Implemented actual ablation semantics in the Vertex worker: news-off renders an empty headline block, while personas-off uses one deterministic homogeneous persona repeated across agents.
+- Centralized homogeneous-persona construction and hashing so the run manifest hashes the exact persona content rendered into prompts.
+- QA: isolated worker/launcher tests and the full suite pass (`56/56`), scripts compile, the 60-day config parses, diff check passes, and the secret scan is clean.

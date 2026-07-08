@@ -13,4 +13,9 @@ agents: {n: 200, persona_seed: 1337, scaling_curve: [50, 100, 300, 1000]}
 main_arm: alias
 decision_frequency: daily
 ablations: [single_strong_llm_baseline, news_off, personas_off, per_model_family]
+followups:
+  tickers: [NVNI, TLRY]
+  window: {start: "2025-01-02", end: "2025-03-31", trading_days: 60}
+  scaling_agents: [50, 100, 300, 1000]
+  ablation_agents: 100
 prediction_eval: {ic: true, dm_vs_baselines: true, dsr_trials_doc: docs/TRIALS.md}

@@ -24,7 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from google.cloud import storage
 
-from agorasim.agents import PersonaBank
+from agorasim.agents import PersonaBank, homogeneous_personas
 from agorasim.agents.prompt_builder import load_template, render
 from agorasim.market import call_auction, flow_imbalance
 from agorasim.schemas import AgentDecision, parse_decision
@@ -190,11 +190,15 @@ def build_requests(
     temperatures: list[float],
     run_salt: str,
     snapshot_kind: str = "calib",
+    news_off: bool = False,
+    personas_off: bool = False,
 ) -> list[dict[str, Any]]:
     bars_all = read_jsonl_gcs(snapshot_uri(manifest, snapshot_kind, ticker, "bars_1d.jsonl"))
     news_all = read_jsonl_gcs(snapshot_uri(manifest, snapshot_kind, ticker, "news.jsonl"))
     days = select_days(bars_all, start, end)
     personas = PersonaBank(n_agents, seed=persona_seed).personas
+    if personas_off:
+        personas = homogeneous_personas(n_agents)
     combos = [(model_id, temperature) for model_id in model_ids for temperature in temperatures]
     sys_t = load_template("agent_system.j2")
     user_t = load_template("decision_user.j2")
@@ -203,7 +207,7 @@ def build_requests(
     requests: list[dict[str, Any]] = []
     for day_idx, asof in enumerate(days):
         bars = [row for row in bars_all if date_key(row["t"]) <= asof][-30:]
-        news = [
+        news = [] if news_off else [
             row for row in news_all
             if (row.get("created_at") or row.get("updated_at"))
             and date_key(str(row.get("created_at") or row.get("updated_at"))) <= asof

@@ -74,6 +74,9 @@ def test_build_oos_spec_contains_worker_args():
     args.gcs_model_root = "gs://bucket/models"
     args.run_salt = "salt"
     args.n_agents = None
+    args.start = None
+    args.end = None
+    args.experiment = "main"
     args.chunk_size = 128
     args.max_new_tokens = 160
     args.model_ids = ["Qwen/Qwen2.5-1.5B-Instruct", "microsoft/Phi-3.5-mini-instruct"]
@@ -100,3 +103,40 @@ def test_build_oos_spec_contains_worker_args():
     assert container_args[container_args.index("--n-agents") + 1] == "200"
     assert container_args[container_args.index("--end") + 1] == "2025-07-03"
     assert "--enforce-eager" in container_args
+
+
+def test_build_oos_followup_spec_has_window_and_ablation_flag():
+    args = type("Args", (), {})()
+    args.ticker = "NVNI"
+    args.arm = "alias"
+    args.gcs_model_root = "gs://bucket/models"
+    args.run_salt = "salt"
+    args.n_agents = 100
+    args.start = "2025-01-02"
+    args.end = "2025-03-31"
+    args.experiment = "news-off"
+    args.chunk_size = 128
+    args.max_new_tokens = 160
+    args.model_ids = ["model-a"]
+    args.temperatures = [0.7]
+    args.gpu_memory_utilization = 0.85
+    args.enforce_eager = True
+    args.project = "project"
+    args.region = "us-central1"
+    args.display_name = None
+    args.image_uri = "image"
+    args.on_demand = False
+    args.attempt = "v1"
+    config = {
+        "gcs_snapshot_manifest": "gs://bucket/manifest.json",
+        "agents": {"n": 200, "persona_seed": 1337},
+        "window": {"start": "2025-01-02", "end": "2025-07-03"},
+    }
+
+    spec = run_sim_phase.build_oos_spec(args, config, "run", "gs://bucket/runs/run")
+    container_args = spec.request_body(redact_env=True)["jobSpec"]["workerPoolSpecs"][0]["containerSpec"]["args"]
+
+    assert container_args[container_args.index("--n-agents") + 1] == "100"
+    assert container_args[container_args.index("--end") + 1] == "2025-03-31"
+    assert "--news-off" in container_args
+    assert spec.display_name == "agorasim-p4-news-off-nvni-alias-v1"

@@ -64,3 +64,53 @@ def test_add_model_flows_keeps_model_baselines_separate():
 
     assert result[0]["model_flow_imbalance"]["model-a"] > 0
     assert result[0]["model_flow_imbalance"]["model-b"] < 0
+
+
+def test_build_requests_ablation_modes(monkeypatch):
+    bars = [
+        {"t": "2025-01-02T00:00:00Z", "o": 10, "h": 11, "l": 9, "c": 10, "v": 100},
+    ]
+    news = [
+        {"created_at": "2025-01-02T00:00:00Z", "headline": "Ticker jumps"},
+    ]
+
+    def fake_read(uri):
+        return news if uri.endswith("news.jsonl") else bars
+
+    monkeypatch.setattr(p4_worker, "read_jsonl_gcs", fake_read, raising=False)
+    monkeypatch.setattr(
+        sys.modules["p3_calibration_worker"],
+        "read_jsonl_gcs",
+        fake_read,
+    )
+    requests = p4_worker.build_requests(
+        manifest={
+            "files": [
+                {
+                    "path": "data/snapshots/g1/oos/TEST/bars_1d.jsonl",
+                    "gcs_uri": "gs://bucket/oos/TEST/bars_1d.jsonl",
+                },
+                {
+                    "path": "data/snapshots/g1/oos/TEST/news.jsonl",
+                    "gcs_uri": "gs://bucket/oos/TEST/news.jsonl",
+                },
+            ]
+        },
+        run_id="run",
+        ticker="TEST",
+        arm="named",
+        n_agents=2,
+        persona_seed=1,
+        start="2025-01-02",
+        end="2025-01-02",
+        model_ids=["model"],
+        temperatures=[0.7],
+        run_salt="salt",
+        snapshot_kind="oos",
+        news_off=True,
+        personas_off=True,
+    )
+
+    assert len(requests) == 2
+    assert all("Ticker jumps" not in row["prompt"] for row in requests)
+    assert all("two-year hobbyist" in row["prompt"] for row in requests)
