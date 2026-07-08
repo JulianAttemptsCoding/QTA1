@@ -2617,3 +2617,10 @@
 - Launched the first five main-run tickers concurrently for the mandatory 50% G4 checkpoint: NVNI `4599024600867667968`, TLRY `703410923192188928`, EDIT `1872657976448253952`, CHPT `4450968763117862912`, and BLNK `2500347174513016832`.
 - Each spot Vertex T4 job is frozen to the alias arm, 200 agents, 125 trading days, and exactly 25,000 requests. All model weights are read from the Vertex-populated GCS cache; job specs contain no secret environment variables.
 - Reserved budget is `$18.43` for 125,000 decisions based on the observed P3 rate, bringing the tracked estimate to `$56.88`. The remaining five tickers stay paused until G4 compares actual P4 spend per decision with the G0 baseline.
+
+## [2026-07-08T18:05:00Z] P4/A-501-ANALYSIS-PREP
+- Added `scripts/p4_collect_oos.py` for leakage-safe RQ3/P5 analysis: per-ticker and pooled IC/hit rate, date-level portfolio Sharpe, date-aggregated DM tests, moving-block bootstrap intervals, registered-trial DSR, and entropy diagnostics.
+- Mandatory baselines are explicit: per-model Qwen crowd flow, momentum 1/5/20, expanding-window AR(1), and expanding-window logistic regression over market features available by the decision date.
+- Added `scripts/p4_gate_budget.py`; G4 is computed from archived worker summaries against the G0 baseline of 4,747 decisions/hour at `$0.30/hour`, with the registered 30% pause threshold.
+- Live QA confirmed four concurrent workers loaded Qwen weights from `/tmp` after GCS download and checkpointed their first 128-output batches. CHPT remains queued for available capacity.
+- Local QA: `pytest -q` passes `53/53`, scripts compile, diff check passes, and the repository secret scan remains clean.
