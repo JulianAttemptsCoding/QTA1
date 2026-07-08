@@ -2611,3 +2611,9 @@
 - Updated `docs/TRIALS.md` before inference with the exact main-run window for weighted crowd flow, unweighted flow, single-model baseline, and mandatory momentum/AR(1)/logistic baselines.
 - Added `scripts/p4_oos_worker.py` and `launch-oos-main` orchestration. The Vertex worker reads OOS snapshots and GCS-cached model weights, emits raw decisions, daily crowd/per-model flows, past-only momentum features, and next-day real-return targets.
 - QA: dry-run Vertex spec uses `n1-standard-8` + spot T4, model IDs and `--gcs-model-root` are worker arguments, environment is empty, scripts compile, secret scan is clean, and `pytest -q` passes `44/44`.
+
+## [2026-07-08T17:54:00Z] P4/A-401-G4-HALF-LAUNCH
+- Cloud Build `10706cbb-2731-41ca-b062-996881710337` published the P4 worker image successfully with digest `sha256:6c09c1dff4454c939c43d013eccf5cd89002547307259861cd64e3030d041b72`.
+- Launched the first five main-run tickers concurrently for the mandatory 50% G4 checkpoint: NVNI `4599024600867667968`, TLRY `703410923192188928`, EDIT `1872657976448253952`, CHPT `4450968763117862912`, and BLNK `2500347174513016832`.
+- Each spot Vertex T4 job is frozen to the alias arm, 200 agents, 125 trading days, and exactly 25,000 requests. All model weights are read from the Vertex-populated GCS cache; job specs contain no secret environment variables.
+- Reserved budget is `$18.43` for 125,000 decisions based on the observed P3 rate, bringing the tracked estimate to `$56.88`. The remaining five tickers stay paused until G4 compares actual P4 spend per decision with the G0 baseline.
