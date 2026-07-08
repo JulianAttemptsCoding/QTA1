@@ -2487,3 +2487,11 @@
 ## [2026-07-08T10:43:54Z] P3/A-316-LEVI-NAMED-POLL
 - Job `projects/987318647780/locations/us-central1/customJobs/3346289430691315712` remains `JOB_STATE_RUNNING`.
 - `outputs.jsonl` advanced to `12,288` rows / `12,247` parsed, with current valid JSON rate `0.996663`.
+
+## [2026-07-08T10:45:39Z] P3/PARALLEL-SHARD-LAUNCH
+- Submitted the remaining P3 shards as separate Vertex jobs so Vertex can run them concurrently if T4 quota/capacity allows; all initial states are `JOB_STATE_PENDING`.
+- A-317 LEVI alias: `projects/987318647780/locations/us-central1/customJobs/3715707745438007296`, run ID `calib-2019-g1-levi-alias-v1`, GCS output `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-levi-alias-v1`.
+- A-318 VKTX named: `projects/987318647780/locations/us-central1/customJobs/2035865084428812288`, run ID `calib-2019-g1-vktx-named-v1`, GCS output `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-vktx-named-v1`.
+- A-319 VKTX alias: `projects/987318647780/locations/us-central1/customJobs/4859622050790113280`, run ID `calib-2019-g1-vktx-alias-v1`, GCS output `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs/p3/calib-2019-g1-vktx-alias-v1`.
+- Generated and retained Vertex job specs at `docs/vertex_job_specs/agorasim-p3-levi-alias-v1.json`, `docs/vertex_job_specs/agorasim-p3-vktx-named-v1.json`, and `docs/vertex_job_specs/agorasim-p3-vktx-alias-v1.json`; specs pass model IDs and `--gcs-model-root` to Vertex workers and contain no environment secrets.
+- State now tracks four active P3 jobs: LEVI named running plus LEVI alias, VKTX named, and VKTX alias pending; budget reservation updated to `$38.31` pending actual completion costs.
