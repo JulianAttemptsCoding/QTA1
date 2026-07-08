@@ -18,7 +18,7 @@ studies and counterfactuals. Nothing here is investment advice.
 | G0 | Data + throughput reality checks (`scripts/p0_gate_*.py`) | **PASS** (`docs/G0_REPORT.md`, `docs/G0_THROUGHPUT.md`) |
 | G1 | Universes + point-in-time snapshots frozen and hashed | **PASS** (`docs/G1_UNIVERSES.md`, `docs/G1_SNAPSHOT_MANIFEST.json`) |
 | G2 | >=99% valid-JSON agent decisions; smoke sim | **PASS** (`docs/G2_REPORT.md`) |
-| G3 | Calibration-era fidelity (kill: sign-agreement <=52% both arms) | not started |
+| G3 | Calibration-era fidelity (kill: sign-agreement <=52% both arms) | **PASS** (`docs/RQ1_REPORT.md`, `docs/RQ2_REPORT.md`) |
 | G4 | OOS budget checkpoint | not started |
 | G5 | Full reproducibility from manifests | not started |
 
@@ -59,6 +59,8 @@ docs/MODEL_SHAS.md       Vertex-cached model manifest and revisions
 docs/G1_UNIVERSES.md     frozen CALIB/OOS universes and selection dates
 docs/G1_SNAPSHOT_MANIFEST.json  hashed point-in-time snapshot manifest
 docs/G2_REPORT.md        real-model smoke and contamination gate evidence
+docs/RQ1_REPORT.md       P3 calibration realism / stylized-fact report
+docs/RQ2_REPORT.md       P3 crowd-fidelity, named-vs-alias, and G3 report
 docs/TRIALS.md           registered trial count
 configs/                 smoke / calibration / OOS experiment configs
 prompts/                 agent system+user templates, contamination probes

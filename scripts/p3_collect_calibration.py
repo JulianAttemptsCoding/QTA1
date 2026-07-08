@@ -108,16 +108,18 @@ def fmt_float(value: Any) -> str:
     return f"{float(value):.3f}"
 
 
+def markdown_cell(value: Any) -> str:
+    text = fmt_float(value) if isinstance(value, float) else str(value)
+    return text.replace("|", r"\|")
+
+
 def markdown_table(rows: list[dict[str, Any]], columns: list[tuple[str, str]]) -> list[str]:
     lines = [
-        "| " + " | ".join(title for title, _ in columns) + " |",
+        "| " + " | ".join(markdown_cell(title) for title, _ in columns) + " |",
         "| " + " | ".join("---" for _ in columns) + " |",
     ]
     for row in rows:
-        values = []
-        for _, key in columns:
-            value = row.get(key)
-            values.append(fmt_float(value) if isinstance(value, float) else str(value))
+        values = [markdown_cell(row.get(key)) for _, key in columns]
         lines.append("| " + " | ".join(values) + " |")
     return lines
 

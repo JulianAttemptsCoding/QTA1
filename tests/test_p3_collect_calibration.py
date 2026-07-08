@@ -43,3 +43,13 @@ def test_collect_reports_from_sim_rows(tmp_path):
     assert len(pooled) == 2
     assert all(row["sign_agreement"] == 1.0 for row in pooled)
     assert "does not fire" in p3_collect.g3_gate_summary(rq1, rq2)
+
+
+def test_markdown_table_escapes_pipe_characters():
+    lines = p3_collect.markdown_table(
+        [{"metric": "left|right"}],
+        [("ACF |r| lag1", "metric")],
+    )
+
+    assert lines[0] == r"| ACF \|r\| lag1 |"
+    assert lines[2] == r"| left\|right |"

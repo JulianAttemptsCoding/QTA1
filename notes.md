@@ -2583,3 +2583,24 @@
 - Worker summary: 128 days, 100 agents, models `Qwen/Qwen2.5-1.5B-Instruct` and `microsoft/Phi-3.5-mini-instruct`, temperatures `0.7` and `1.0`, elapsed worker seconds `2511.578`.
 - Collector QA: `scripts/p3_collect_calibration.py` completed on local `runs/p3`; VKTX alias appears in RQ1/RQ2 summaries (`Spearman 0.119`, sign agreement `0.827`, mean entropy `1.069`) and G3 kill condition still does not fire on available P3 artifacts.
 - Budget ledger updated with 6.51 wall hours at `$0.30/hr` (`$1.95`), bringing cumulative estimated actual spend to `$34.45`; state budget reservation remains `$38.35` including A-317 LEVI alias and A-318 VKTX named.
+
+## [2026-07-08T17:27:44Z] P3/A-318-VKTX-NAMED-COMPLETE
+- Vertex job `projects/987318647780/locations/us-central1/customJobs/2035865084428812288` completed successfully at `2026-07-08T17:21:26Z`; final `outputs.jsonl` has `12,800` rows / `12,761` parsed, valid JSON rate `0.996953`, and `sim.jsonl` has `128` rows.
+- Downloaded completed run artifacts from GCS to ignored local path `runs/p3/calib-2019-g1-vktx-named-v1/`, including `sim.jsonl` and `worker_summary.json`.
+- Worker summary: 128 days, 100 agents, models `Qwen/Qwen2.5-1.5B-Instruct` and `microsoft/Phi-3.5-mini-instruct`, temperatures `0.7` and `1.0`, elapsed worker seconds `23608.218`.
+- Collector QA: VKTX named appears in RQ1/RQ2 summaries (`Spearman 0.142`, sign agreement `0.827`, mean entropy `1.073`) and G3 kill condition still does not fire.
+- Budget ledger updated with 6.60 wall hours at `$0.30/hr` (`$1.98`).
+
+## [2026-07-08T17:29:28Z] P3/A-317-LEVI-ALIAS-COMPLETE
+- Vertex job `projects/987318647780/locations/us-central1/customJobs/3715707745438007296` completed successfully at `2026-07-08T17:29:05Z`; final `outputs.jsonl` has `12,800` rows / `12,744` parsed, valid JSON rate `0.995625`, and `sim.jsonl` has `128` rows.
+- Downloaded completed run artifacts from GCS to ignored local path `runs/p3/calib-2019-g1-levi-alias-v1/`, including `sim.jsonl` and `worker_summary.json`.
+- Worker summary: 128 days, 100 agents, models `Qwen/Qwen2.5-1.5B-Instruct` and `microsoft/Phi-3.5-mini-instruct`, temperatures `0.7` and `1.0`, elapsed worker seconds `21315.639`.
+- Collector QA: LEVI alias appears in RQ1/RQ2 summaries (`Spearman 0.111`, sign agreement `0.354`, mean entropy `1.073`) and G3 kill condition still does not fire.
+- Budget ledger updated with 6.73 wall hours at `$0.30/hr` (`$2.02`), bringing cumulative estimated actual spend for P0-P3 to `$38.45`.
+
+## [2026-07-08T17:31:00Z] P3/G3-PASS
+- P3 calibration completed across 10 tickers, two anonymization arms, 20 Vertex shards, `256,000` requests, and `256,000` outputs; weighted valid JSON rate is `0.996898`.
+- Committed final reports to `docs/RQ1_REPORT.md` and `docs/RQ2_REPORT.md`, with 20 event-window figures under `docs/figures/p3/`.
+- Final pooled RQ2 metrics: alias Spearman `0.044`, sign agreement `0.524`, mean entropy `1.041`; named Spearman `0.036`, sign agreement `0.524`, mean entropy `1.041`.
+- Named-vs-alias gaps are small: sign agreement `-0.001`, Spearman `-0.008`.
+- G3 kill condition does not fire because sign agreement is above `0.52` in both arms and stylized-fact artifacts are not qualitatively absent. State advances to P4 with no active Vertex jobs.

@@ -1,29 +1,8 @@
 {
-  "phase": "P3",
-  "last_completed_task": "A-319-VKTX-ALIAS",
-  "active_jobs": [
-    {
-      "kind": "p3_calibration_shard",
-      "job": "projects/987318647780/locations/us-central1/customJobs/3715707745438007296",
-      "run_id": "calib-2019-g1-levi-alias-v1",
-      "ticker": "LEVI",
-      "arm": "alias",
-      "gpu": "T4",
-      "spot": true,
-      "region": "us-central1"
-    },
-    {
-      "kind": "p3_calibration_shard",
-      "job": "projects/987318647780/locations/us-central1/customJobs/2035865084428812288",
-      "run_id": "calib-2019-g1-vktx-named-v1",
-      "ticker": "VKTX",
-      "arm": "named",
-      "gpu": "T4",
-      "spot": true,
-      "region": "us-central1"
-    }
-  ],
-  "budget_est_usd": 38.35,
+  "phase": "P4",
+  "last_completed_task": "P3-G3-PASS",
+  "active_jobs": [],
+  "budget_est_usd": 38.45,
   "blockers": [],
-  "trials_registered": 18
+  "trials_registered": 20
 }
