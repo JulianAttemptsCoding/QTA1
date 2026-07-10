@@ -2909,3 +2909,9 @@
 ## [2026-07-10T18:13:07Z] P4/QA
 - Parse QA over streamed current outputs remains `1.000000` valid for all five shards.
 - Current QA totals: FRSX `18,132`, TPET `19,540`, OGI `19,540`, CCO `18,772`, ICCM `19,028` rows.
+
+## [2026-07-10T18:24:00Z] P4/POLL
+- FRSX moved from `JOB_STATE_RUNNING` to `JOB_STATE_PENDING` on the same CustomJob with no error payload or `endTime`; treating as a possible spot/preemptible requeue while preserving partial outputs.
+- Other remaining P4 main shards are still `JOB_STATE_RUNNING` on the new project.
+- Output progress in the new bucket: FRSX `18,132`, TPET `19,924`, OGI `19,668`, CCO `19,156`, ICCM `19,156` rows.
+- FRSX GCS run directory contains `manifest.json`, `requests.jsonl`, and partial `outputs.jsonl`; no `worker_summary.json` yet.
