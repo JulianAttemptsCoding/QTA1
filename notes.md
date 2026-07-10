@@ -2996,3 +2996,8 @@
 - Relaunched ICCM as on-demand resume job `projects/423678956768/locations/us-central1/customJobs/4179783016219934720` with run id `oos-2025-g1-iccm-alias-v1` and the existing GCS output path.
 - Current states after correction: ICCM resume2 `JOB_STATE_PENDING`, OGI original job `JOB_STATE_PENDING`, FRSX/CCO/TPET `JOB_STATE_RUNNING`.
 - Current output progress: FRSX `22,356`, TPET `24,404`, OGI `23,764`, CCO `23,764`, ICCM `22,100` rows.
+
+## [2026-07-10T20:54:20Z] P4/POLL
+- ICCM resume2 is now `JOB_STATE_RUNNING` on-demand; original ICCM spot job remains cancelled.
+- OGI remains `JOB_STATE_PENDING` at `23,764` outputs; monitor one more short interval before a resume-safe replacement.
+- Other running shards advanced: FRSX `22,612`, TPET `24,532`, CCO `24,020` rows; ICCM is still at `22,100` while the resume worker starts.
