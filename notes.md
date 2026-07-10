@@ -2949,3 +2949,12 @@
 - Remaining P4 main shards are all still `JOB_STATE_RUNNING` on the new project.
 - Output progress in the new bucket: FRSX `19,796`, TPET `21,716`, OGI `21,460`, CCO `21,204`, ICCM `20,820` rows.
 - Counts were read while workers were writing and may include non-chunk boundary totals; no failures observed.
+
+## [2026-07-10T19:37:34Z] P4/POLL
+- Remaining P4 main shards are all still `JOB_STATE_RUNNING` on the new project.
+- Output progress in the new bucket: FRSX `20,052`, TPET `21,972`, OGI `21,844`, CCO `21,460`, ICCM `21,076` rows.
+- Counts were read while workers were writing and may include non-chunk boundary totals; no failures observed.
+
+## [2026-07-10T19:38:18Z] P4/QA
+- Parse QA over streamed current outputs remains `1.000000` valid for all five shards after the slowest shard crossed 20k.
+- Current QA totals: FRSX `20,052`, TPET `22,100`, OGI `21,844`, CCO `21,588`, ICCM `21,076` rows.
