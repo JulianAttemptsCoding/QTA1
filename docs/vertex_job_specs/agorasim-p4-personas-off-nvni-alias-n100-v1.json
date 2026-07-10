@@ -1,0 +1,64 @@
+{
+  "displayName": "agorasim-p4-personas-off-nvni-alias-n100-v1",
+  "jobSpec": {
+    "workerPoolSpecs": [
+      {
+        "containerSpec": {
+          "args": [
+            "scripts/p4_oos_worker.py",
+            "--run-id",
+            "oos-2025-g1-personas_off-nvni-alias-n100-v1",
+            "--ticker",
+            "NVNI",
+            "--arm",
+            "alias",
+            "--gcs-output-dir",
+            "gs://project-82d97cf9-5889-43a4-850-agorasim/agorasim/runs/p4/personas-off/oos-2025-g1-personas_off-nvni-alias-n100-v1",
+            "--gcs-model-root",
+            "gs://project-82d97cf9-5889-43a4-850-agorasim/agorasim/models",
+            "--gcs-snapshot-manifest",
+            "gs://project-82d97cf9-5889-43a4-850-agorasim/agorasim/snapshots/g1/manifest.json",
+            "--n-agents",
+            "100",
+            "--persona-seed",
+            "1337",
+            "--start",
+            "2025-01-02",
+            "--end",
+            "2025-03-31",
+            "--run-salt",
+            "oos-2025-v1",
+            "--chunk-size",
+            "128",
+            "--max-new-tokens",
+            "160",
+            "--model-id",
+            "Qwen/Qwen2.5-1.5B-Instruct",
+            "--model-id",
+            "microsoft/Phi-3.5-mini-instruct",
+            "--temperature",
+            "0.7",
+            "--temperature",
+            "1.0",
+            "--gpu-memory-utilization",
+            "0.85",
+            "--enforce-eager",
+            "--personas-off"
+          ],
+          "env": [],
+          "imageUri": "us-central1-docker.pkg.dev/project-82d97cf9-5889-43a4-850/agorasim/worker:latest"
+        },
+        "diskSpec": {
+          "bootDiskSizeGb": 100,
+          "bootDiskType": "pd-ssd"
+        },
+        "machineSpec": {
+          "acceleratorCount": 1,
+          "acceleratorType": "NVIDIA_TESLA_T4",
+          "machineType": "n1-standard-8"
+        },
+        "replicaCount": 1
+      }
+    ]
+  }
+}

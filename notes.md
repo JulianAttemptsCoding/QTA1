@@ -3083,3 +3083,9 @@
 - Registered follow-up trials before any scaling or ablation stats: scaling curve weighted/unweighted for N=`50,100,300,1000`, plus news-off/personas-off weighted/unweighted ablations.
 - `docs/TRIALS.md` now has 16 registered rows; `STATE.json` updated `trials_registered` to `16`.
 - A-401 RQ3 checkpoint remains the pre-registration main-run report generated with 4 trials; follow-up analyses must use the 16-row registry.
+
+## [2026-07-10T22:30:49Z] P4/A-402-A-403-LAUNCH
+- Launched all A-402/A-403 follow-up jobs on-demand in the new project only (`project-82d97cf9-5889-43a4-850`, `agorasim-new`); no old-project compute used.
+- Scaling jobs: NVNI N=`50/100/300/1000` (`2438226966566928384`, `6868361625015943168`, `1878373237889433600`, `2462996764517466112`) and TLRY N=`50/100/300/1000` (`7615959163159445504`, `5357403950033141760`, `7072149508154458112`, `9060770218615242752`).
+- Ablation jobs: NVNI news-off/personas-off (`4670605006859141120`, `4473853998138392576`) and TLRY news-off/personas-off (`2716042768580345856`, `1332593258047471616`).
+- Initial state after submission: all 12 `JOB_STATE_PENDING` while Vertex allocates on-demand T4s; manifests and redacted request specs were written before launch.

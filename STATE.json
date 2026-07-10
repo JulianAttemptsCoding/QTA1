@@ -1,7 +1,140 @@
 {
   "phase": "P4",
-  "last_completed_task": "A-401-MAIN-COMPLETE",
-  "active_jobs": [],
+  "last_completed_task": "A-402-A-403-LAUNCHED",
+  "active_jobs": [
+    {
+      "kind": "p4_oos_scaling",
+      "job": "projects/423678956768/locations/us-central1/customJobs/2438226966566928384",
+      "run_id": "oos-2025-g1-scaling-nvni-alias-n50-v1",
+      "ticker": "NVNI",
+      "arm": "alias",
+      "n_agents": 50,
+      "gpu": "T4",
+      "spot": false,
+      "region": "us-central1"
+    },
+    {
+      "kind": "p4_oos_scaling",
+      "job": "projects/423678956768/locations/us-central1/customJobs/6868361625015943168",
+      "run_id": "oos-2025-g1-scaling-nvni-alias-n100-v1",
+      "ticker": "NVNI",
+      "arm": "alias",
+      "n_agents": 100,
+      "gpu": "T4",
+      "spot": false,
+      "region": "us-central1"
+    },
+    {
+      "kind": "p4_oos_scaling",
+      "job": "projects/423678956768/locations/us-central1/customJobs/1878373237889433600",
+      "run_id": "oos-2025-g1-scaling-nvni-alias-n300-v1",
+      "ticker": "NVNI",
+      "arm": "alias",
+      "n_agents": 300,
+      "gpu": "T4",
+      "spot": false,
+      "region": "us-central1"
+    },
+    {
+      "kind": "p4_oos_scaling",
+      "job": "projects/423678956768/locations/us-central1/customJobs/2462996764517466112",
+      "run_id": "oos-2025-g1-scaling-nvni-alias-n1000-v1",
+      "ticker": "NVNI",
+      "arm": "alias",
+      "n_agents": 1000,
+      "gpu": "T4",
+      "spot": false,
+      "region": "us-central1"
+    },
+    {
+      "kind": "p4_oos_news_off",
+      "job": "projects/423678956768/locations/us-central1/customJobs/4670605006859141120",
+      "run_id": "oos-2025-g1-news_off-nvni-alias-n100-v1",
+      "ticker": "NVNI",
+      "arm": "alias",
+      "n_agents": 100,
+      "gpu": "T4",
+      "spot": false,
+      "region": "us-central1"
+    },
+    {
+      "kind": "p4_oos_personas_off",
+      "job": "projects/423678956768/locations/us-central1/customJobs/4473853998138392576",
+      "run_id": "oos-2025-g1-personas_off-nvni-alias-n100-v1",
+      "ticker": "NVNI",
+      "arm": "alias",
+      "n_agents": 100,
+      "gpu": "T4",
+      "spot": false,
+      "region": "us-central1"
+    },
+    {
+      "kind": "p4_oos_scaling",
+      "job": "projects/423678956768/locations/us-central1/customJobs/7615959163159445504",
+      "run_id": "oos-2025-g1-scaling-tlry-alias-n50-v1",
+      "ticker": "TLRY",
+      "arm": "alias",
+      "n_agents": 50,
+      "gpu": "T4",
+      "spot": false,
+      "region": "us-central1"
+    },
+    {
+      "kind": "p4_oos_scaling",
+      "job": "projects/423678956768/locations/us-central1/customJobs/5357403950033141760",
+      "run_id": "oos-2025-g1-scaling-tlry-alias-n100-v1",
+      "ticker": "TLRY",
+      "arm": "alias",
+      "n_agents": 100,
+      "gpu": "T4",
+      "spot": false,
+      "region": "us-central1"
+    },
+    {
+      "kind": "p4_oos_scaling",
+      "job": "projects/423678956768/locations/us-central1/customJobs/7072149508154458112",
+      "run_id": "oos-2025-g1-scaling-tlry-alias-n300-v1",
+      "ticker": "TLRY",
+      "arm": "alias",
+      "n_agents": 300,
+      "gpu": "T4",
+      "spot": false,
+      "region": "us-central1"
+    },
+    {
+      "kind": "p4_oos_scaling",
+      "job": "projects/423678956768/locations/us-central1/customJobs/9060770218615242752",
+      "run_id": "oos-2025-g1-scaling-tlry-alias-n1000-v1",
+      "ticker": "TLRY",
+      "arm": "alias",
+      "n_agents": 1000,
+      "gpu": "T4",
+      "spot": false,
+      "region": "us-central1"
+    },
+    {
+      "kind": "p4_oos_news_off",
+      "job": "projects/423678956768/locations/us-central1/customJobs/2716042768580345856",
+      "run_id": "oos-2025-g1-news_off-tlry-alias-n100-v1",
+      "ticker": "TLRY",
+      "arm": "alias",
+      "n_agents": 100,
+      "gpu": "T4",
+      "spot": false,
+      "region": "us-central1"
+    },
+    {
+      "kind": "p4_oos_personas_off",
+      "job": "projects/423678956768/locations/us-central1/customJobs/1332593258047471616",
+      "run_id": "oos-2025-g1-personas_off-tlry-alias-n100-v1",
+      "ticker": "TLRY",
+      "arm": "alias",
+      "n_agents": 100,
+      "gpu": "T4",
+      "spot": false,
+      "region": "us-central1"
+    }
+  ],
   "budget_est_usd": 68.04,
   "blockers": [],
   "trials_registered": 16
