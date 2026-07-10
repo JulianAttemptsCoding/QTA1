@@ -3017,3 +3017,8 @@
 - Relaunched TPET on-demand resume job `projects/423678956768/locations/us-central1/customJobs/6981584934397804544` against run id `oos-2025-g1-tpet-alias-v1`.
 - Relaunched OGI on-demand resume job `projects/423678956768/locations/us-central1/customJobs/8638909597270147072` against run id `oos-2025-g1-ogi-alias-v1`.
 - Both resume specs point to the existing GCS output paths and contain no Spot scheduling block.
+
+## [2026-07-10T21:19:21Z] P4/POLL
+- TPET and OGI on-demand resume jobs are now `JOB_STATE_RUNNING`.
+- FRSX/CCO original spot jobs remain `JOB_STATE_RUNNING`; ICCM resume2 remains `JOB_STATE_RUNNING`.
+- Output progress in the new bucket: FRSX `23,380`, TPET `24,532`, OGI `23,764`, CCO `24,660`, ICCM `22,996` rows.
