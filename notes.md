@@ -2661,3 +2661,13 @@
 - Remaining P4 main shards are all still `JOB_STATE_RUNNING` on the new project.
 - Output progress in the new bucket: FRSX `640`, TPET `640`, OGI `640`, CCO `640`, ICCM `640` rows.
 - Lightweight parse QA on the previous checkpoint was `1.000000` valid for all five shards; continue polling.
+
+## [2026-07-10T09:14:19Z] P4/POLL
+- Remaining P4 main shards are all still `JOB_STATE_RUNNING` on `project-82d97cf9-5889-43a4-850`.
+- Output progress in the new bucket: FRSX `1,408`, TPET `1,408`, OGI `1,408`, CCO `1,408`, ICCM `1,536` rows.
+- Switched polling counts from full GCS downloads to streamed line counts after a local copy command timed out; no Vertex job failure was observed.
+
+## [2026-07-10T09:26:27Z] P4/POLL
+- Remaining P4 main shards are all still `JOB_STATE_RUNNING` on the new project.
+- Output progress in the new bucket: FRSX `1,792`, TPET `1,792`, OGI `1,920`, CCO `1,792`, ICCM `1,920` rows.
+- One streamed count briefly returned `0` for OGI while the job was running; direct GCS recheck found `outputs.jsonl` present and at `1,920` rows, so this was a transient read/count miss.
