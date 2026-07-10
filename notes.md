@@ -2984,3 +2984,8 @@
 - ICCM remains `JOB_STATE_PENDING` at `22,100` outputs; no terminal state yet.
 - Other remaining P4 main shards are still `JOB_STATE_RUNNING` and advancing: FRSX `21,716`, TPET `23,636`, OGI `23,508`, CCO `23,124` rows.
 - Continue waiting briefly for Vertex spot recovery before considering a resume-safe replacement job.
+
+## [2026-07-10T20:38:54Z] P4/POLL
+- ICCM remains `JOB_STATE_PENDING` at `22,100` outputs after another interval.
+- Other remaining P4 main shards are still `JOB_STATE_RUNNING` and advancing: FRSX `22,100`, TPET `24,020`, OGI `23,764`, CCO `23,508` rows.
+- If ICCM is still pending on the next check, prepare a cancel-and-resume path against the same GCS run directory to avoid concurrent writers.
