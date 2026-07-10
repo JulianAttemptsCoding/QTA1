@@ -3102,3 +3102,7 @@
 ## [2026-07-10T23:00:53Z] P4/A-402-A-403-POLL
 - Same five NVNI follow-up jobs remain `JOB_STATE_RUNNING`; the other seven jobs remain `JOB_STATE_PENDING` for on-demand T4 allocation.
 - Output progress: NVNI scaling N50 `896`, N100 `1,024`, N300 `1,152`, N1000 `1,280`, news-off `1,152`; all pending jobs `0`.
+
+## [2026-07-10T23:12:10Z] P4/A-402-A-403-POLL
+- Same five NVNI follow-up jobs remain `JOB_STATE_RUNNING`; the other seven jobs remain `JOB_STATE_PENDING` for on-demand T4 allocation.
+- Output progress: NVNI scaling N50 `1,280`, N100 `1,408`, N300 `1,664`, N1000 `1,792`, news-off `1,536`; pending jobs still have no outputs.
