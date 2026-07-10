@@ -2979,3 +2979,8 @@
 - Other remaining P4 main shards are still `JOB_STATE_RUNNING` on the new project.
 - Output progress in the new bucket: FRSX `21,460`, TPET `23,508`, OGI `23,380`, CCO `22,996`, ICCM `22,100` rows.
 - ICCM partial outputs remain in GCS alongside `manifest.json` and `requests.jsonl`; no `worker_summary.json` yet.
+
+## [2026-07-10T20:27:58Z] P4/POLL
+- ICCM remains `JOB_STATE_PENDING` at `22,100` outputs; no terminal state yet.
+- Other remaining P4 main shards are still `JOB_STATE_RUNNING` and advancing: FRSX `21,716`, TPET `23,636`, OGI `23,508`, CCO `23,124` rows.
+- Continue waiting briefly for Vertex spot recovery before considering a resume-safe replacement job.
