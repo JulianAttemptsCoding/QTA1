@@ -11,5 +11,17 @@ time. Ablations count. Prompt iterations before G2 do not (no return stats viewe
 | 2 | 2026-07-08 | P4 | flow_imbalance (unweighted), alias arm | OOS-10 | 2025-01-02 to 2025-07-03 | registered |
 | 3 | 2026-07-08 | P4 | single-strong-LLM sentiment baseline | OOS-10 | 2025-01-02 to 2025-07-03 | registered |
 | 4 | 2026-07-08 | P4 | momentum(1/5/20), AR(1), logistic baselines | OOS-10 | 2025-01-02 to 2025-07-03 | registered |
+| 5 | 2026-07-10 | P4 | scaling curve flow_imbalance (conf-weighted), alias arm, N=50 | OOS-followup-2 | 2025-01-02 to 2025-03-31 | registered |
+| 6 | 2026-07-10 | P4 | scaling curve flow_imbalance (conf-weighted), alias arm, N=100 | OOS-followup-2 | 2025-01-02 to 2025-03-31 | registered |
+| 7 | 2026-07-10 | P4 | scaling curve flow_imbalance (conf-weighted), alias arm, N=300 | OOS-followup-2 | 2025-01-02 to 2025-03-31 | registered |
+| 8 | 2026-07-10 | P4 | scaling curve flow_imbalance (conf-weighted), alias arm, N=1000 | OOS-followup-2 | 2025-01-02 to 2025-03-31 | registered |
+| 9 | 2026-07-10 | P4 | scaling curve flow_imbalance (unweighted), alias arm, N=50 | OOS-followup-2 | 2025-01-02 to 2025-03-31 | registered |
+| 10 | 2026-07-10 | P4 | scaling curve flow_imbalance (unweighted), alias arm, N=100 | OOS-followup-2 | 2025-01-02 to 2025-03-31 | registered |
+| 11 | 2026-07-10 | P4 | scaling curve flow_imbalance (unweighted), alias arm, N=300 | OOS-followup-2 | 2025-01-02 to 2025-03-31 | registered |
+| 12 | 2026-07-10 | P4 | scaling curve flow_imbalance (unweighted), alias arm, N=1000 | OOS-followup-2 | 2025-01-02 to 2025-03-31 | registered |
+| 13 | 2026-07-10 | P4 | news-off ablation flow_imbalance (conf-weighted), alias arm, N=100 | OOS-followup-2 | 2025-01-02 to 2025-03-31 | registered |
+| 14 | 2026-07-10 | P4 | news-off ablation flow_imbalance (unweighted), alias arm, N=100 | OOS-followup-2 | 2025-01-02 to 2025-03-31 | registered |
+| 15 | 2026-07-10 | P4 | personas-off ablation flow_imbalance (conf-weighted), alias arm, N=100 | OOS-followup-2 | 2025-01-02 to 2025-03-31 | registered |
+| 16 | 2026-07-10 | P4 | personas-off ablation flow_imbalance (unweighted), alias arm, N=100 | OOS-followup-2 | 2025-01-02 to 2025-03-31 | registered |
 
 Add rows before running; never delete rows; failed/abandoned trials stay counted.

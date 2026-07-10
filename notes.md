@@ -3078,3 +3078,8 @@
 - Regenerated `docs/RQ3_REPORT.md` over 10 tickers / 1,250 rows / 4 registered trials.
 - Updated `BUDGET.md` with conservative wall-time rows for completed and cancelled resume jobs; cumulative estimate is `$68.04`, below the `$85` working ceiling.
 - Updated `STATE.json`: `last_completed_task` is `A-401-MAIN-COMPLETE`, `active_jobs` is empty.
+
+## [2026-07-10T22:31:00Z] P4/A-402-A-403-REGISTER
+- Registered follow-up trials before any scaling or ablation stats: scaling curve weighted/unweighted for N=`50,100,300,1000`, plus news-off/personas-off weighted/unweighted ablations.
+- `docs/TRIALS.md` now has 16 registered rows; `STATE.json` updated `trials_registered` to `16`.
+- A-401 RQ3 checkpoint remains the pre-registration main-run report generated with 4 trials; follow-up analyses must use the 16-row registry.
