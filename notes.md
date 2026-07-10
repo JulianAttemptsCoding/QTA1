@@ -3065,3 +3065,8 @@
 ## [2026-07-10T22:12:51Z] P4/POLL
 - FRSX/TPET/OGI/CCO remain complete.
 - ICCM on-demand resume remains `JOB_STATE_RUNNING` at `24,788` outputs.
+
+## [2026-07-10T22:18:45Z] P4/POLL
+- ICCM on-demand resume reached `25,000` outputs; final `sim.jsonl` and `worker_summary.json` appeared in GCS.
+- ICCM resume job then reached `JOB_STATE_SUCCEEDED` with `endTime` `2026-07-10T22:18:14Z`.
+- ICCM `worker_summary.json` reports `valid_json_rate` `0.99756`; final cross-shard QA must use actual `raw_text`/`decision` fields before accepting completion.
