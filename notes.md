@@ -2958,3 +2958,8 @@
 ## [2026-07-10T19:38:18Z] P4/QA
 - Parse QA over streamed current outputs remains `1.000000` valid for all five shards after the slowest shard crossed 20k.
 - Current QA totals: FRSX `20,052`, TPET `22,100`, OGI `21,844`, CCO `21,588`, ICCM `21,076` rows.
+
+## [2026-07-10T19:49:11Z] P4/POLL
+- Remaining P4 main shards are all still `JOB_STATE_RUNNING` on the new project.
+- Output progress in the new bucket: FRSX `20,436`, TPET `22,356`, OGI `22,228`, CCO `21,844`, ICCM `21,460` rows.
+- Counts were read while workers were writing and may include non-chunk boundary totals; no failures observed.
