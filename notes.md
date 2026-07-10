@@ -3112,3 +3112,7 @@
 - Output progress just before QA: NVNI scaling N50 `1,816`, N100 `1,792`, N300 `2,048`, N1000 `2,304`, news-off `1,920`.
 - Raw-text parse QA: N50 `0.987654` (`1,920/1,944` parsed, watch item), N100 `0.998326`, N300 `0.999540`, N1000 `0.999132`, news-off `0.998958`.
 - N50 can still finish above the `0.99` gate if invalids stay low; no mid-run intervention yet.
+
+## [2026-07-10T23:35:22Z] P4/A-402-A-403-POLL
+- Same five NVNI follow-up jobs remain `JOB_STATE_RUNNING`; the other seven jobs remain `JOB_STATE_PENDING`.
+- Output progress: NVNI scaling N50 `2,328`, N100 `2,048`, N300 `2,560`, N1000 `2,816`, news-off `2,304`; pending jobs still have no outputs.
