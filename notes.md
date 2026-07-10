@@ -3089,3 +3089,8 @@
 - Scaling jobs: NVNI N=`50/100/300/1000` (`2438226966566928384`, `6868361625015943168`, `1878373237889433600`, `2462996764517466112`) and TLRY N=`50/100/300/1000` (`7615959163159445504`, `5357403950033141760`, `7072149508154458112`, `9060770218615242752`).
 - Ablation jobs: NVNI news-off/personas-off (`4670605006859141120`, `4473853998138392576`) and TLRY news-off/personas-off (`2716042768580345856`, `1332593258047471616`).
 - Initial state after submission: all 12 `JOB_STATE_PENDING` while Vertex allocates on-demand T4s; manifests and redacted request specs were written before launch.
+
+## [2026-07-10T22:38:19Z] P4/A-402-A-403-POLL
+- Five NVNI follow-up jobs are `JOB_STATE_RUNNING` and have written first 128-output checkpoints: scaling N=`50/100/300/1000` and news-off N=`100`.
+- Seven jobs remain `JOB_STATE_PENDING`: NVNI personas-off plus all six TLRY follow-ups.
+- First-batch parse QA using `raw_text` passed the 0.99 gate: NVNI N50 `1.000000`; NVNI N100/N300/N1000/news-off `0.992188`.
