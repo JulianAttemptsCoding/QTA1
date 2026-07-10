@@ -2915,3 +2915,8 @@
 - Other remaining P4 main shards are still `JOB_STATE_RUNNING` on the new project.
 - Output progress in the new bucket: FRSX `18,132`, TPET `19,924`, OGI `19,668`, CCO `19,156`, ICCM `19,156` rows.
 - FRSX GCS run directory contains `manifest.json`, `requests.jsonl`, and partial `outputs.jsonl`; no `worker_summary.json` yet.
+
+## [2026-07-10T18:30:52Z] P4/POLL
+- FRSX recovered to `JOB_STATE_RUNNING`; OGI and ICCM also show fresh worker start times around `2026-07-10T18:30Z`, consistent with spot worker recycling.
+- Current output progress: FRSX `18,132`, TPET `19,924`, OGI `19,668`, CCO `19,412`, ICCM `19,156` rows.
+- Existing partial outputs remained available in GCS; resume behavior was checked in `scripts/p4_oos_worker.py`/`scripts/p3_calibration_worker.py` and skips already answered `request_id`s.
