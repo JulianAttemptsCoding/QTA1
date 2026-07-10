@@ -218,6 +218,15 @@ def block_bootstrap_ci(
     repetitions: int = 500,
     seed: int = 401,
 ) -> tuple[float, float]:
+    if metric in {ic_stat, hit_stat}:
+        return fast_block_bootstrap_ci(
+            group,
+            column,
+            statistic="ic" if metric is ic_stat else "hit",
+            block_size=block_size,
+            repetitions=repetitions,
+            seed=seed,
+        )
     rng = np.random.default_rng(seed)
     ticker_groups = [part.reset_index(drop=True) for _, part in group.groupby("ticker")]
     estimates: list[float] = []
@@ -232,6 +241,56 @@ def block_bootstrap_ci(
         estimate = metric(pd.concat(sampled, ignore_index=True), column)
         if math.isfinite(estimate):
             estimates.append(estimate)
+    if not estimates:
+        return float("nan"), float("nan")
+    return tuple(float(value) for value in np.quantile(estimates, [0.025, 0.975]))
+
+
+def fast_block_bootstrap_ci(
+    group: pd.DataFrame,
+    column: str,
+    *,
+    statistic: str,
+    block_size: int = 5,
+    repetitions: int = 500,
+    seed: int = 401,
+) -> tuple[float, float]:
+    rng = np.random.default_rng(seed)
+    ticker_arrays: list[tuple[np.ndarray, np.ndarray]] = []
+    for _, part in group.groupby("ticker", sort=False):
+        subset = part[[column, "next_day_return"]].replace([np.inf, -np.inf], np.nan).dropna()
+        if len(subset):
+            ticker_arrays.append((
+                subset[column].to_numpy(float),
+                subset["next_day_return"].to_numpy(float),
+            ))
+    estimates: list[float] = []
+    for _ in range(repetitions):
+        sampled_signals: list[np.ndarray] = []
+        sampled_returns: list[np.ndarray] = []
+        for signals, returns in ticker_arrays:
+            n = len(signals)
+            if n == 0:
+                continue
+            picks: list[np.ndarray] = []
+            while sum(len(pick) for pick in picks) < n:
+                start = int(rng.integers(0, max(n - block_size + 1, 1)))
+                picks.append(np.arange(start, min(start + block_size, n)))
+            indices = np.concatenate(picks)[:n]
+            sampled_signals.append(signals[indices])
+            sampled_returns.append(returns[indices])
+        if not sampled_signals:
+            continue
+        signal = np.concatenate(sampled_signals)
+        target = np.concatenate(sampled_returns)
+        if statistic == "ic":
+            estimate = information_coefficient(signal, target) if len(signal) >= 3 else float("nan")
+        elif statistic == "hit":
+            estimate = hit_rate(signal, target) if len(signal) else float("nan")
+        else:
+            raise ValueError(statistic)
+        if math.isfinite(estimate):
+            estimates.append(float(estimate))
     if not estimates:
         return float("nan"), float("nan")
     return tuple(float(value) for value in np.quantile(estimates, [0.025, 0.975]))

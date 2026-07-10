@@ -77,6 +77,21 @@ def test_metrics_and_dm_reward_perfect_crowd_signal():
     assert single["dm"] < 0
 
 
+def test_fast_bootstrap_returns_finite_intervals():
+    frame = synthetic_frame()
+    low, high = collector.fast_block_bootstrap_ci(
+        frame,
+        "flow_imbalance",
+        statistic="ic",
+        repetitions=25,
+        seed=22,
+    )
+
+    assert np.isfinite(low)
+    assert np.isfinite(high)
+    assert low <= high
+
+
 def test_pooled_strategy_returns_average_tickers_by_day():
     frame = synthetic_frame(30)
     second = frame.copy()

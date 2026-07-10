@@ -2631,3 +2631,11 @@
 - Implemented actual ablation semantics in the Vertex worker: news-off renders an empty headline block, while personas-off uses one deterministic homogeneous persona repeated across agents.
 - Centralized homogeneous-persona construction and hashing so the run manifest hashes the exact persona content rendered into prompts.
 - QA: isolated worker/launcher tests and the full suite pass (`56/56`), scripts compile, the 60-day config parses, diff check passes, and the secret scan is clean.
+
+## [2026-07-10T08:17:28Z] P4/RESUME-G4-QUOTA
+- Resumed after Vertex migration; non-negotiable project rule is now enforced as `jjjsresearch@gmail.com` / `project-82d97cf9-5889-43a4-850` for all future heavy computation and LLM inference. The old project is not polled or used for new compute; only transferred GCS artifacts are read from the new bucket.
+- Reconciled stale `STATE.json` active jobs from the old project by syncing transferred P4 main artifacts from `gs://project-82d97cf9-5889-43a4-850-agorasim/agorasim/runs/p4/main/`.
+- G4 checkpoint artifacts validated for `BLNK`, `CHPT`, `EDIT`, `NVNI`, and `TLRY`: each run has `25,000` requests, `25,000` outputs, and `125` sim rows. `docs/G4_REPORT.md` decision is `PASS`: 125,000/125,000 outputs, 32.200 worker hours, `$9.66` estimated checkpoint spend, and cost/decision 22.3% over G0 versus the 30% pause threshold.
+- Submitted T4 quota preferences on the new project for `us-central1`, preferred value `6`: Vertex custom training preemptible T4 (`granted=1`), Vertex custom training regular T4 (`granted=0`), Compute preemptible T4 (`granted=1`), and Compute regular T4 (`granted=1`). All four quota preferences are reconciling.
+- Optimized `scripts/p4_collect_oos.py` block bootstrap so the 1,000-repetition RQ3 checkpoint report finishes locally in about 21 seconds instead of timing out; local stats remain CPU-only and no LLM inference is local.
+- QA: `python -m pytest -q` passes `57/57`; `docs/RQ3_REPORT.md` generated from the five completed checkpoint runs; `BUDGET.md` cumulative estimate updated to `$48.11`; `STATE.json` cleared stale active jobs and records `A-401-G4-PASS`.

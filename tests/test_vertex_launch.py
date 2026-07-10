@@ -24,3 +24,9 @@ def test_vertex_job_spec_uses_t4_worker_defaults():
     assert pool["machineSpec"]["acceleratorType"] == "NVIDIA_TESLA_T4"
     assert pool["machineSpec"]["acceleratorCount"] == 1
     assert pool["diskSpec"]["bootDiskSizeGb"] >= 100
+
+
+def test_vertex_job_spec_defaults_to_new_gcloud_configuration():
+    spec = VertexJobSpec(project="p", region="r", display_name="d", image_uri="i", args=[])
+
+    assert spec.gcloud_configuration == "agorasim-new"

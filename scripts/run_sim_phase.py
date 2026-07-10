@@ -59,11 +59,14 @@ def snapshot_hashes_for_ticker(snapshot_manifest: dict[str, Any], kind: str, tic
     return hashes
 
 
-def upload_file(local_path: Path, gcs_uri: str) -> None:
+def upload_file(local_path: Path, gcs_uri: str, configuration: str | None = None) -> None:
     gcloud = shutil.which("gcloud") or shutil.which("gcloud.cmd")
     if not gcloud:
         raise FileNotFoundError("Could not find gcloud/gcloud.cmd on PATH.")
-    subprocess.run([gcloud, "storage", "cp", str(local_path), gcs_uri], check=True)
+    command = [gcloud, "storage", "cp", str(local_path), gcs_uri]
+    if configuration:
+        command.append(f"--configuration={configuration}")
+    subprocess.run(command, check=True)
 
 
 def build_manifest(
@@ -152,6 +155,7 @@ def build_calib_spec(args: argparse.Namespace, config: dict[str, Any], run_id: s
         image_uri=args.image_uri,
         args=container_args,
         spot=not args.on_demand,
+        gcloud_configuration=getattr(args, "gcloud_configuration", "agorasim-new"),
     )
 
 
@@ -207,6 +211,7 @@ def build_oos_spec(args: argparse.Namespace, config: dict[str, Any], run_id: str
         image_uri=args.image_uri,
         args=container_args,
         spot=not args.on_demand,
+        gcloud_configuration=getattr(args, "gcloud_configuration", "agorasim-new"),
     )
 
 
@@ -241,7 +246,7 @@ def launch_calib(args: argparse.Namespace) -> dict[str, Any]:
             "manifest": str(manifest_path),
             "request_log": str(request_log),
         }
-    upload_file(manifest_path, f"{gcs_output_dir}/manifest.json")
+    upload_file(manifest_path, f"{gcs_output_dir}/manifest.json", args.gcloud_configuration)
     result = submit(spec, request_log)
     return {
         "run_id": run_id,
@@ -297,7 +302,7 @@ def launch_oos_main(args: argparse.Namespace) -> dict[str, Any]:
             "manifest": str(manifest_path),
             "request_log": str(request_log),
         }
-    upload_file(manifest_path, f"{gcs_output_dir}/manifest.json")
+    upload_file(manifest_path, f"{gcs_output_dir}/manifest.json", args.gcloud_configuration)
     result = submit(spec, request_log)
     return {
         "run_id": run_id,
@@ -318,6 +323,7 @@ def main() -> int:
     parser.add_argument("--gcs-model-root", default=DEFAULT_GCS_MODEL_ROOT)
     parser.add_argument("--on-demand", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--gcloud-configuration", default="agorasim-new")
 
     sub = parser.add_subparsers(dest="kind", required=True)
     calib = sub.add_parser("launch-calib")

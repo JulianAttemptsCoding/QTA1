@@ -40,6 +40,7 @@ class VertexJobSpec:
     boot_disk_type: str = "pd-ssd"
     spot: bool = True
     env: dict[str, str] = field(default_factory=dict)
+    gcloud_configuration: str | None = "agorasim-new"
 
     def request_body(self, redact_env: bool = False) -> dict[str, Any]:
         env = [
@@ -72,12 +73,15 @@ class VertexJobSpec:
         return {"displayName": self.display_name, "jobSpec": job_spec}
 
 
-def access_token() -> str:
+def access_token(configuration: str | None = None) -> str:
     gcloud = shutil.which("gcloud") or shutil.which("gcloud.cmd")
     if not gcloud:
         raise FileNotFoundError("Could not find gcloud/gcloud.cmd on PATH.")
+    command = [gcloud, "auth", "print-access-token"]
+    if configuration:
+        command.append(f"--configuration={configuration}")
     return subprocess.check_output(
-        [gcloud, "auth", "print-access-token"],
+        command,
         text=True,
         stderr=subprocess.DEVNULL,
     ).strip()
@@ -93,7 +97,10 @@ def submit(spec: VertexJobSpec, request_log_path: Path | None = None) -> dict[st
         request_log_path.write_text(json.dumps(spec.request_body(redact_env=True), indent=2, sort_keys=True))
     response = requests.post(
         api_url(spec.project, spec.region),
-        headers={"Authorization": f"Bearer {access_token()}", "Content-Type": "application/json; charset=utf-8"},
+        headers={
+            "Authorization": f"Bearer {access_token(spec.gcloud_configuration)}",
+            "Content-Type": "application/json; charset=utf-8",
+        },
         data=json.dumps(spec.request_body()),
         timeout=60,
     )
@@ -101,19 +108,25 @@ def submit(spec: VertexJobSpec, request_log_path: Path | None = None) -> dict[st
     return response.json()
 
 
-def describe(project: str, region: str, job_name: str) -> dict[str, Any]:
+def describe(project: str, region: str, job_name: str, configuration: str | None = "agorasim-new") -> dict[str, Any]:
     response = requests.get(
         api_url(project, region, f"customJobs/{job_name.split('/')[-1]}"),
-        headers={"Authorization": f"Bearer {access_token()}"},
+        headers={"Authorization": f"Bearer {access_token(configuration)}"},
         timeout=60,
     )
     response.raise_for_status()
     return response.json()
 
 
-def poll(project: str, region: str, job_name: str, interval_s: int = 120) -> dict[str, Any]:
+def poll(
+    project: str,
+    region: str,
+    job_name: str,
+    interval_s: int = 120,
+    configuration: str | None = "agorasim-new",
+) -> dict[str, Any]:
     while True:
-        payload = describe(project, region, job_name)
+        payload = describe(project, region, job_name, configuration=configuration)
         state = payload.get("state")
         print(f"{time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())} {job_name} {state}", flush=True)
         if state in TERMINAL_STATES:
