@@ -2646,3 +2646,18 @@
 - Launched remaining P4 main alias shards on the new project only: FRSX `projects/423678956768/locations/us-central1/customJobs/8106482086635896832`, TPET `6057344256182321152`, OGI `2974630311247216640`, CCO `6174437846493954048`, ICCM `1112385268259749888`.
 - All five jobs were accepted as `JOB_STATE_PENDING` in `us-central1`. Quota preferences now show Vertex custom training preemptible T4 `granted=6/preferred=6`, Vertex custom training regular T4 `granted=6/preferred=6`, Compute regular T4 `granted=1/preferred=6`, and Compute preemptible T4 `granted=4/preferred=6`.
 - Reserved an additional `$9.66` based on the completed G4 half-run cost, bringing `STATE.json` budget estimate to `$57.77`, still below the `$85` launch stop threshold.
+
+## [2026-07-10T08:28:41Z] P4/POLL
+- New-project jobs FRSX, TPET, OGI, CCO, and ICCM remain `JOB_STATE_PENDING` in `project-82d97cf9-5889-43a4-850`; no worker error logs are present for inspected job FRSX.
+- GCS run directories contain manifests only; `outputs.jsonl` is not present yet for any of the five remaining shards.
+- Quota preferences are granted for Vertex custom training T4 at preferred value `6`; pending state is treated as Vertex spot capacity/provisioning wait, not a configuration failure.
+
+## [2026-07-10T08:39:58Z] P4/POLL
+- All five remaining P4 main shards are `JOB_STATE_RUNNING` on `project-82d97cf9-5889-43a4-850`; no job is using the old Vertex account.
+- GCS output checkpoints are present in the new bucket: FRSX `128`, TPET `128`, OGI `128`, CCO `128`, and ICCM `256` rows in `outputs.jsonl`.
+- This confirms the workers pulled the new Artifact Registry image, loaded model weights from the migrated GCS cache, and began Vertex-only inference.
+
+## [2026-07-10T08:52:20Z] P4/POLL
+- Remaining P4 main shards are all still `JOB_STATE_RUNNING` on the new project.
+- Output progress in the new bucket: FRSX `640`, TPET `640`, OGI `640`, CCO `640`, ICCM `640` rows.
+- Lightweight parse QA on the previous checkpoint was `1.000000` valid for all five shards; continue polling.
