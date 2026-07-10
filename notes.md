@@ -3070,3 +3070,11 @@
 - ICCM on-demand resume reached `25,000` outputs; final `sim.jsonl` and `worker_summary.json` appeared in GCS.
 - ICCM resume job then reached `JOB_STATE_SUCCEEDED` with `endTime` `2026-07-10T22:18:14Z`.
 - ICCM `worker_summary.json` reports `valid_json_rate` `0.99756`; final cross-shard QA must use actual `raw_text`/`decision` fields before accepting completion.
+
+## [2026-07-10T22:25:00Z] P4/A-401-MAIN-COMPLETE
+- Synced all remaining P4 main artifacts from the new-project bucket to local `runs/p4/main`.
+- Structural QA passed for all 10 main tickers: each run has `25,000` requests, `25,000` outputs, `125` sim rows, and `worker_summary.json`.
+- Final valid JSON rates using actual `raw_text`/`decision` fields are all above the `0.99` gate: min `0.99036` (NVNI), max `0.99796` (TPET).
+- Regenerated `docs/RQ3_REPORT.md` over 10 tickers / 1,250 rows / 4 registered trials.
+- Updated `BUDGET.md` with conservative wall-time rows for completed and cancelled resume jobs; cumulative estimate is `$68.04`, below the `$85` working ceiling.
+- Updated `STATE.json`: `last_completed_task` is `A-401-MAIN-COMPLETE`, `active_jobs` is empty.
