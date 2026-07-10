@@ -3056,3 +3056,8 @@
 - OGI on-demand resume job reached `JOB_STATE_SUCCEEDED` with `25,000` outputs.
 - TPET and CCO remain complete; remaining active jobs are FRSX original spot and ICCM on-demand resume.
 - Output progress in the new bucket: FRSX `24,788`, ICCM `24,404` rows.
+
+## [2026-07-10T22:06:46Z] P4/POLL
+- FRSX original spot job reached `JOB_STATE_SUCCEEDED` with `25,000` outputs.
+- FRSX/TPET/OGI/CCO are complete; remaining active job is ICCM on-demand resume.
+- Output progress in the new bucket: ICCM `24,532` rows.
