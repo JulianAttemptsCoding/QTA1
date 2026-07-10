@@ -3006,3 +3006,8 @@
 - OGI recovered to `JOB_STATE_RUNNING` on its original spot job; no OGI replacement was launched.
 - ICCM resume2 remains `JOB_STATE_RUNNING` and has resumed output production.
 - Output progress in the new bucket: FRSX `22,740`, TPET `24,532`, OGI `23,764`, CCO `24,148`, ICCM `22,356` rows.
+
+## [2026-07-10T21:06:18Z] P4/POLL
+- TPET moved to `JOB_STATE_PENDING` at `24,532` outputs near completion; treating as another spot interruption and waiting briefly for recovery.
+- OGI/FRSX/CCO remain `JOB_STATE_RUNNING`; ICCM resume2 remains `JOB_STATE_RUNNING`.
+- Output progress in the new bucket: FRSX `22,996`, TPET `24,532`, OGI `23,764`, CCO `24,404`, ICCM `22,484` rows.
