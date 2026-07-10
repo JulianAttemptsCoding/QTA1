@@ -2973,3 +2973,9 @@
 - Remaining P4 main shards are all still `JOB_STATE_RUNNING` on the new project.
 - Output progress in the new bucket: FRSX `21,204`, TPET `23,124`, OGI `22,996`, CCO `22,612`, ICCM `22,100` rows.
 - Counts were read while workers were writing and may include non-chunk boundary totals; no failures observed.
+
+## [2026-07-10T20:21:54Z] P4/POLL
+- ICCM moved to `JOB_STATE_PENDING` at `22,100` outputs with no error payload or `endTime`; treating as another likely spot worker recycle.
+- Other remaining P4 main shards are still `JOB_STATE_RUNNING` on the new project.
+- Output progress in the new bucket: FRSX `21,460`, TPET `23,508`, OGI `23,380`, CCO `22,996`, ICCM `22,100` rows.
+- ICCM partial outputs remain in GCS alongside `manifest.json` and `requests.jsonl`; no `worker_summary.json` yet.
