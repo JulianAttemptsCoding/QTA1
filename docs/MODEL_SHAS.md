@@ -3,7 +3,7 @@
 Resolved HF commit SHAs for the cached agent models (P-17 model_cache job
 `2444747620275453952`, 2026-07-03). SHAs pin the exact weights used; `revision`
 in `configs/models.yaml` is set from this table. Cache lives at
-`gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/models/<org>__<name>/`.
+`gs://project-82d97cf9-5889-43a4-850-agorasim/agorasim/models/<org>__<name>/`.
 
 | Model | Status | Revision SHA | GCS cache dir |
 |---|---|---|---|

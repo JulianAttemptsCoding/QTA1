@@ -26,8 +26,8 @@ from agorasim.infra.vertex_launch import VertexJobSpec, submit
 
 DEFAULT_SURVIVORS = ["Qwen/Qwen2.5-1.5B-Instruct", "microsoft/Phi-3.5-mini-instruct"]
 DEFAULT_TEMPERATURES = [0.7, 1.0]
-DEFAULT_GCS_RUN_ROOT = "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/runs"
-DEFAULT_GCS_MODEL_ROOT = "gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/models"
+DEFAULT_GCS_RUN_ROOT = "gs://project-82d97cf9-5889-43a4-850-agorasim/agorasim/runs"
+DEFAULT_GCS_MODEL_ROOT = "gs://project-82d97cf9-5889-43a4-850-agorasim/agorasim/models"
 
 
 def load_yaml(path: Path) -> dict[str, Any]:
@@ -311,7 +311,7 @@ def launch_oos_main(args: argparse.Namespace) -> dict[str, Any]:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--project", default="project-c779f701-1a49-4a58-b54")
+    parser.add_argument("--project", default="project-82d97cf9-5889-43a4-850")
     parser.add_argument("--region", default="us-central1")
     parser.add_argument("--image-uri", required=True)
     parser.add_argument("--gcs-run-root", default=DEFAULT_GCS_RUN_ROOT)

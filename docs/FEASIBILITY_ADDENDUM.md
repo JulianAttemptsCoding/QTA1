@@ -6,7 +6,7 @@
 - Compute location: Vertex AI custom jobs in `us-central1`
 - Worker: `n1-standard-8` + 1x NVIDIA_TESLA_T4, spot scheduling
 - Model weights: downloaded and cached by Vertex jobs under
-  `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/models`
+  `gs://project-82d97cf9-5889-43a4-850-agorasim/agorasim/models`
 
 ## Kill Criteria Check
 

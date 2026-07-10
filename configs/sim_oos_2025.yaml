@@ -7,7 +7,7 @@ universe:
   freeze_before_inference: true
   tickers: [NVNI, TLRY, EDIT, CHPT, BLNK, FRSX, TPET, OGI, CCO, ICCM]
 snapshot_manifest: docs/G1_SNAPSHOT_MANIFEST.json
-gcs_snapshot_manifest: gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/manifest.json
+gcs_snapshot_manifest: gs://project-82d97cf9-5889-43a4-850-agorasim/agorasim/snapshots/g1/manifest.json
 window: {start: "2025-01-02", end: "2025-07-03", trading_days: 125}
 agents: {n: 200, persona_seed: 1337, scaling_curve: [50, 100, 300, 1000]}
 main_arm: alias

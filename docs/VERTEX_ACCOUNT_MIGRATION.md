@@ -9,18 +9,22 @@ Region: `us-central1`
 - The old CLI account is `juliansjuan08@gmail.com`.
 - The old project is `project-c779f701-1a49-4a58-b54`.
 - The old bucket is `gs://project-c779f701-1a49-4a58-b54-agorasim`.
-- The new gcloud configuration has been created locally as `agorasim-new`.
-- The new account is not authenticated locally yet, so the transfer cannot complete until the user signs in.
+- The new CLI account is `jjjsresearch@gmail.com`.
+- The new project is `project-82d97cf9-5889-43a4-850`.
+- The new bucket is `gs://project-82d97cf9-5889-43a4-850-agorasim`.
+- The new gcloud configuration is `agorasim-new`.
+- The default gcloud configuration still points at the old account/project, so both accounts remain available locally.
+- Migration completed on 2026-07-10: artifacts copied, manifests rewritten, IAM granted, and the worker image pushed.
 
-## One User Step Required
+## Re-Authentication If Needed
 
-Run this exact command in PowerShell and complete the browser login as `jjjsresearch@gmail.com`:
+If the new account session expires, run this exact command in PowerShell and complete the browser login as `jjjsresearch@gmail.com`:
 
 ```powershell
 gcloud auth login jjjsresearch@gmail.com --configuration=agorasim-new --update-adc
 ```
 
-Then rerun:
+Then rerun the idempotent migration script:
 
 ```powershell
 .\scripts\migrate_vertex_project.ps1

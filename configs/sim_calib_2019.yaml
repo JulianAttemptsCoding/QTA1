@@ -5,7 +5,7 @@ universe:
   selection_date: "2019-06-28"
   tickers: [IIPR, IGC, GOLD, RIOT, CRBP, BLNK, PLUG, XXII, LEVI, VKTX]
 snapshot_manifest: docs/G1_SNAPSHOT_MANIFEST.json
-gcs_snapshot_manifest: gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/manifest.json
+gcs_snapshot_manifest: gs://project-82d97cf9-5889-43a4-850-agorasim/agorasim/snapshots/g1/manifest.json
 window: {start: "2019-07-01", end: "2019-12-31"}
 agents: {n: 100, persona_seed: 1337}
 anonymization_ab: true          # named vs aliased arms (memorization quantification)

@@ -19,6 +19,7 @@ if (-not $NewBucket) {
 
 $oldPrefix = "gs://$OldBucket"
 $newPrefix = "gs://$NewBucket"
+$cloudBuildPrefix = "gs://$NewProjectId`_cloudbuild"
 $newImageUri = "$Region-docker.pkg.dev/$NewProjectId/$Repo/worker:latest"
 $requiredServices = @(
     "aiplatform.googleapis.com",
@@ -41,8 +42,21 @@ function Invoke-Gcloud {
 
 function Test-GcloudSuccess {
     param([Parameter(ValueFromRemainingArguments = $true)][string[]]$GcloudArgs)
-    & gcloud @GcloudArgs *> $null
-    return $LASTEXITCODE -eq 0
+    $oldErrorActionPreference = $ErrorActionPreference
+    $oldNativeErrorPreference = $PSNativeCommandUseErrorActionPreference
+    try {
+        $ErrorActionPreference = "Continue"
+        $PSNativeCommandUseErrorActionPreference = $false
+        & gcloud @GcloudArgs *> $null
+        return $LASTEXITCODE -eq 0
+    }
+    catch {
+        return $false
+    }
+    finally {
+        $ErrorActionPreference = $oldErrorActionPreference
+        $PSNativeCommandUseErrorActionPreference = $oldNativeErrorPreference
+    }
 }
 
 function Replace-TextFile {
@@ -55,6 +69,21 @@ function Replace-TextFile {
     $updated = $content.Replace($OldText, $NewText)
     if ($updated -ne $content) {
         Set-Content -LiteralPath $Path -Value $updated -NoNewline
+    }
+}
+
+function Ensure-ServiceIdentity {
+    param([string]$ServiceName)
+    if (Test-GcloudSuccess -GcloudArgs @(
+        "beta", "services", "identity", "create",
+        "--service=$ServiceName",
+        "--project=$NewProjectId",
+        "--configuration=$NewConfig"
+    )) {
+        Write-Host "Service identity ready for $ServiceName"
+    }
+    else {
+        Write-Host "Service identity create/check for $ServiceName returned non-zero; continuing to direct IAM verification."
     }
 }
 
@@ -160,6 +189,9 @@ $computeSa = "$projectNumber-compute@developer.gserviceaccount.com"
 $vertexSa = "service-$projectNumber@gcp-sa-aiplatform.iam.gserviceaccount.com"
 $cloudBuildSa = "$projectNumber@cloudbuild.gserviceaccount.com"
 
+Ensure-ServiceIdentity "aiplatform.googleapis.com"
+Ensure-ServiceIdentity "cloudbuild.googleapis.com"
+
 foreach ($sa in @($computeSa, $vertexSa)) {
     Invoke-Gcloud -GcloudArgs @(
         "storage", "buckets", "add-iam-policy-binding", $newPrefix,
@@ -179,15 +211,37 @@ foreach ($sa in @($computeSa, $vertexSa)) {
     )
 }
 
+foreach ($sa in @($cloudBuildSa, $computeSa)) {
+    Invoke-Gcloud -GcloudArgs @(
+        "artifacts", "repositories", "add-iam-policy-binding", $Repo,
+        "--location=$Region",
+        "--member=serviceAccount:$sa",
+        "--role=roles/artifactregistry.writer",
+        "--project=$NewProjectId",
+        "--configuration=$NewConfig",
+        "--quiet"
+    )
+}
+
 Invoke-Gcloud -GcloudArgs @(
-    "artifacts", "repositories", "add-iam-policy-binding", $Repo,
-    "--location=$Region",
-    "--member=serviceAccount:$cloudBuildSa",
-    "--role=roles/artifactregistry.writer",
-    "--project=$NewProjectId",
+    "projects", "add-iam-policy-binding", $NewProjectId,
+    "--member=serviceAccount:$computeSa",
+    "--role=roles/cloudbuild.builds.builder",
     "--configuration=$NewConfig",
     "--quiet"
 )
+
+if (Test-GcloudSuccess -GcloudArgs @("storage", "buckets", "describe", $cloudBuildPrefix, "--configuration=$NewConfig")) {
+    foreach ($sa in @($computeSa, $cloudBuildSa)) {
+        Invoke-Gcloud -GcloudArgs @(
+            "storage", "buckets", "add-iam-policy-binding", $cloudBuildPrefix,
+            "--member=serviceAccount:$sa",
+            "--role=roles/storage.objectAdmin",
+            "--configuration=$NewConfig",
+            "--quiet"
+        )
+    }
+}
 
 if (-not $SkipBuild) {
     Write-Host "== Building and pushing worker image to new project =="
@@ -212,6 +266,24 @@ Replace-TextFile -Path "scripts\run_sim_phase.py" `
     -OldText "$oldPrefix/agorasim/runs" `
     -NewText "$newPrefix/agorasim/runs"
 Replace-TextFile -Path "scripts\run_sim_phase.py" `
+    -OldText "$oldPrefix/agorasim/models" `
+    -NewText "$newPrefix/agorasim/models"
+Replace-TextFile -Path "scripts\run_sim_phase.py" `
+    -OldText $OldProjectId `
+    -NewText $NewProjectId
+Replace-TextFile -Path "scripts\p1_freeze_universes.py" `
+    -OldText "$oldPrefix/agorasim/snapshots/g1" `
+    -NewText "$newPrefix/agorasim/snapshots/g1"
+Replace-TextFile -Path "scripts\p2_collect_gate.py" `
+    -OldText "$oldPrefix/agorasim/snapshots/g1/manifest.json" `
+    -NewText "$newPrefix/agorasim/snapshots/g1/manifest.json"
+Replace-TextFile -Path "docs\G1_SNAPSHOT_MANIFEST.json" `
+    -OldText $oldPrefix `
+    -NewText $newPrefix
+Replace-TextFile -Path "docs\MODEL_SHAS.md" `
+    -OldText "$oldPrefix/agorasim/models" `
+    -NewText "$newPrefix/agorasim/models"
+Replace-TextFile -Path "docs\FEASIBILITY_ADDENDUM.md" `
     -OldText "$oldPrefix/agorasim/models" `
     -NewText "$newPrefix/agorasim/models"
 Replace-TextFile -Path "cloudbuild.worker.yaml" `

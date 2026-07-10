@@ -44,7 +44,7 @@ def render_report(rows: list[dict[str, Any]]) -> str:
         f"- Gate detail: {detail}",
         "- Measurement location: Vertex AI custom jobs on n1-standard-8 + 1x NVIDIA_TESLA_T4.",
         "- Model weights source: GCS cache populated by Vertex model-cache jobs; no local weight downloads or inference.",
-        "- Snapshot source: `gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1/manifest.json`.",
+        "- Snapshot source: `gs://project-82d97cf9-5889-43a4-850-agorasim/agorasim/snapshots/g1/manifest.json`.",
         "",
         "| Model | Family | Smoke prompts | Valid JSON | Max probe non-UNKNOWN | Survives |",
         "|---|---|---:|---:|---:|---|",

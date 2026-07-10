@@ -650,7 +650,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--calib-candidate-limit", type=int, default=1000)
     parser.add_argument("--oos-prelim-limit", type=int, default=500)
-    parser.add_argument("--gcs-root", default="gs://project-c779f701-1a49-4a58-b54-agorasim/agorasim/snapshots/g1")
+    parser.add_argument("--gcs-root", default="gs://project-82d97cf9-5889-43a4-850-agorasim/agorasim/snapshots/g1")
     args = parser.parse_args()
 
     load_dotenv(ROOT / ".env")
