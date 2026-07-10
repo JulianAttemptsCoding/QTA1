@@ -3026,3 +3026,8 @@
 ## [2026-07-10T21:25:15Z] P4/POLL
 - All active jobs are `JOB_STATE_RUNNING`; TPET/OGI/ICCM on-demand resumes are producing from preserved ledgers.
 - Output progress in the new bucket: FRSX `23,636`, TPET `24,660`, OGI `23,892`, CCO `24,788`, ICCM `23,124` rows.
+
+## [2026-07-10T21:31:12Z] P4/POLL
+- CCO original spot job reached `JOB_STATE_SUCCEEDED` with `25,000` outputs.
+- Remaining active jobs: FRSX original spot `JOB_STATE_RUNNING`, TPET/OGI/ICCM on-demand resumes `JOB_STATE_RUNNING`.
+- Output progress in the new bucket: FRSX `23,764`, TPET `24,788`, OGI `24,148`, ICCM `23,380` rows.
