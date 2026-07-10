@@ -2639,3 +2639,10 @@
 - Submitted T4 quota preferences on the new project for `us-central1`, preferred value `6`: Vertex custom training preemptible T4 (`granted=1`), Vertex custom training regular T4 (`granted=0`), Compute preemptible T4 (`granted=1`), and Compute regular T4 (`granted=1`). All four quota preferences are reconciling.
 - Optimized `scripts/p4_collect_oos.py` block bootstrap so the 1,000-repetition RQ3 checkpoint report finishes locally in about 21 seconds instead of timing out; local stats remain CPU-only and no LLM inference is local.
 - QA: `python -m pytest -q` passes `57/57`; `docs/RQ3_REPORT.md` generated from the five completed checkpoint runs; `BUDGET.md` cumulative estimate updated to `$48.11`; `STATE.json` cleared stale active jobs and records `A-401-G4-PASS`.
+
+## [2026-07-10T08:23:00Z] P4/A-401-REMAINING-LAUNCH
+- Patched Vertex launcher safety before launch: REST access tokens and manifest uploads now use explicit `agorasim-new` gcloud configuration by default, preventing accidental use of the old active CLI account.
+- QA before launch: dry-run specs for `FRSX`, `TPET`, `OGI`, `CCO`, and `ICCM` point only to `project-82d97cf9-5889-43a4-850`, `gs://project-82d97cf9-5889-43a4-850-agorasim`, and the new Artifact Registry image; env arrays are empty; `python -m pytest -q` passes `58/58`; secret scan clean.
+- Launched remaining P4 main alias shards on the new project only: FRSX `projects/423678956768/locations/us-central1/customJobs/8106482086635896832`, TPET `6057344256182321152`, OGI `2974630311247216640`, CCO `6174437846493954048`, ICCM `1112385268259749888`.
+- All five jobs were accepted as `JOB_STATE_PENDING` in `us-central1`. Quota preferences now show Vertex custom training preemptible T4 `granted=6/preferred=6`, Vertex custom training regular T4 `granted=6/preferred=6`, Compute regular T4 `granted=1/preferred=6`, and Compute preemptible T4 `granted=4/preferred=6`.
+- Reserved an additional `$9.66` based on the completed G4 half-run cost, bringing `STATE.json` budget estimate to `$57.77`, still below the `$85` launch stop threshold.
