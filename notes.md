@@ -2885,3 +2885,8 @@
 - Remaining P4 main shards are all still `JOB_STATE_RUNNING` on the new project.
 - Output progress in the new bucket: FRSX `16,596`, TPET `18,004`, OGI `18,004`, CCO `17,364`, ICCM `17,620` rows.
 - Counts were read while workers were writing and may include non-chunk boundary totals; no failures or preemptions observed.
+
+## [2026-07-10T17:39:17Z] P4/POLL
+- Remaining P4 main shards are all still `JOB_STATE_RUNNING` on the new project.
+- Output progress in the new bucket: FRSX `16,980`, TPET `18,388`, OGI `18,388`, CCO `17,748`, ICCM `18,004` rows.
+- Counts were read while workers were writing and may include non-chunk boundary totals; no failures or preemptions observed.
