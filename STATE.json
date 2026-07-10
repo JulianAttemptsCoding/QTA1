@@ -14,22 +14,22 @@
     },
     {
       "kind": "p4_oos_main",
-      "job": "projects/423678956768/locations/us-central1/customJobs/6057344256182321152",
+      "job": "projects/423678956768/locations/us-central1/customJobs/6981584934397804544",
       "run_id": "oos-2025-g1-tpet-alias-v1",
       "ticker": "TPET",
       "arm": "alias",
       "gpu": "T4",
-      "spot": true,
+      "spot": false,
       "region": "us-central1"
     },
     {
       "kind": "p4_oos_main",
-      "job": "projects/423678956768/locations/us-central1/customJobs/2974630311247216640",
+      "job": "projects/423678956768/locations/us-central1/customJobs/8638909597270147072",
       "run_id": "oos-2025-g1-ogi-alias-v1",
       "ticker": "OGI",
       "arm": "alias",
       "gpu": "T4",
-      "spot": true,
+      "spot": false,
       "region": "us-central1"
     },
     {

@@ -3011,3 +3011,9 @@
 - TPET moved to `JOB_STATE_PENDING` at `24,532` outputs near completion; treating as another spot interruption and waiting briefly for recovery.
 - OGI/FRSX/CCO remain `JOB_STATE_RUNNING`; ICCM resume2 remains `JOB_STATE_RUNNING`.
 - Output progress in the new bucket: FRSX `22,996`, TPET `24,532`, OGI `23,764`, CCO `24,404`, ICCM `22,484` rows.
+
+## [2026-07-10T21:13:14Z] P4/RECOVERY
+- TPET remained pending at `24,532` and OGI returned to pending at `23,764`; cancelled their original spot jobs to avoid stale or concurrent writers.
+- Relaunched TPET on-demand resume job `projects/423678956768/locations/us-central1/customJobs/6981584934397804544` against run id `oos-2025-g1-tpet-alias-v1`.
+- Relaunched OGI on-demand resume job `projects/423678956768/locations/us-central1/customJobs/8638909597270147072` against run id `oos-2025-g1-ogi-alias-v1`.
+- Both resume specs point to the existing GCS output paths and contain no Spot scheduling block.
