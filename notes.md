@@ -3124,3 +3124,9 @@
 ## [2026-07-10T23:53:01Z] P4/A-402-A-403-POLL
 - Same five NVNI follow-up jobs remain `JOB_STATE_RUNNING`; the other seven jobs remain `JOB_STATE_PENDING`.
 - Output progress: NVNI scaling N50 `2,840`, N100 `2,560`, N300 `3,200`, N1000 `3,584`, news-off `3,000`; pending jobs still have no outputs.
+
+## [2026-07-10T23:57:01Z] P4/A-402-QA-RETRY
+- NVNI scaling N50 v1 reached `JOB_STATE_SUCCEEDED` with `3,000` outputs, but final raw-text parse QA was `0.989333` (`2,968/3,000`), below the `0.99` gate.
+- Marked N50 v1 as a QA-failed attempt for analysis purposes; no return stats computed from it.
+- Launched N50 v2 retry on-demand as `projects/423678956768/locations/us-central1/customJobs/8139924832306331648` with run id `oos-2025-g1-scaling-nvni-alias-n50-v2`.
+- Updated `STATE.json` active N50 entry to the v2 retry.
