@@ -3001,3 +3001,8 @@
 - ICCM resume2 is now `JOB_STATE_RUNNING` on-demand; original ICCM spot job remains cancelled.
 - OGI remains `JOB_STATE_PENDING` at `23,764` outputs; monitor one more short interval before a resume-safe replacement.
 - Other running shards advanced: FRSX `22,612`, TPET `24,532`, CCO `24,020` rows; ICCM is still at `22,100` while the resume worker starts.
+
+## [2026-07-10T21:00:21Z] P4/POLL
+- OGI recovered to `JOB_STATE_RUNNING` on its original spot job; no OGI replacement was launched.
+- ICCM resume2 remains `JOB_STATE_RUNNING` and has resumed output production.
+- Output progress in the new bucket: FRSX `22,740`, TPET `24,532`, OGI `23,764`, CCO `24,148`, ICCM `22,356` rows.
