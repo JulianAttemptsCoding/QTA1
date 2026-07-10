@@ -3094,3 +3094,7 @@
 - Five NVNI follow-up jobs are `JOB_STATE_RUNNING` and have written first 128-output checkpoints: scaling N=`50/100/300/1000` and news-off N=`100`.
 - Seven jobs remain `JOB_STATE_PENDING`: NVNI personas-off plus all six TLRY follow-ups.
 - First-batch parse QA using `raw_text` passed the 0.99 gate: NVNI N50 `1.000000`; NVNI N100/N300/N1000/news-off `0.992188`.
+
+## [2026-07-10T22:49:36Z] P4/A-402-A-403-POLL
+- Same five NVNI follow-up jobs remain `JOB_STATE_RUNNING`; the other seven jobs remain `JOB_STATE_PENDING` for on-demand T4 allocation.
+- Output progress: NVNI scaling N50 `640`, N100 `640`, N300 `768`, N1000 `768`, news-off `640`; all pending jobs `0`.
