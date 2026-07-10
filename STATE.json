@@ -44,12 +44,12 @@
     },
     {
       "kind": "p4_oos_main",
-      "job": "projects/423678956768/locations/us-central1/customJobs/1112385268259749888",
+      "job": "projects/423678956768/locations/us-central1/customJobs/4179783016219934720",
       "run_id": "oos-2025-g1-iccm-alias-v1",
       "ticker": "ICCM",
       "arm": "alias",
       "gpu": "T4",
-      "spot": true,
+      "spot": false,
       "region": "us-central1"
     }
   ],

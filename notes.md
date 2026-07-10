@@ -2989,3 +2989,10 @@
 - ICCM remains `JOB_STATE_PENDING` at `22,100` outputs after another interval.
 - Other remaining P4 main shards are still `JOB_STATE_RUNNING` and advancing: FRSX `22,100`, TPET `24,020`, OGI `23,764`, CCO `23,508` rows.
 - If ICCM is still pending on the next check, prepare a cancel-and-resume path against the same GCS run directory to avoid concurrent writers.
+
+## [2026-07-10T20:48:02Z] P4/RECOVERY
+- Cancelled stalled ICCM spot CustomJob `projects/423678956768/locations/us-central1/customJobs/1112385268259749888` after it remained pending with no row growth.
+- A first resume attempt accidentally used `--attempt alias-v1`, producing run id `oos-2025-g1-iccm-alias-alias-v1`; it was cancelled while pending (`projects/423678956768/locations/us-central1/customJobs/5849774053044256768`) and its wrong-path manifest/spec artifacts were removed.
+- Relaunched ICCM as on-demand resume job `projects/423678956768/locations/us-central1/customJobs/4179783016219934720` with run id `oos-2025-g1-iccm-alias-v1` and the existing GCS output path.
+- Current states after correction: ICCM resume2 `JOB_STATE_PENDING`, OGI original job `JOB_STATE_PENDING`, FRSX/CCO/TPET `JOB_STATE_RUNNING`.
+- Current output progress: FRSX `22,356`, TPET `24,404`, OGI `23,764`, CCO `23,764`, ICCM `22,100` rows.
