@@ -1,6 +1,6 @@
 {
   "phase": "P4",
-  "last_completed_task": "BUDGET-GUARDRAIL-N1000-CANCELLED",
+  "last_completed_task": "A-402-TLRY-N100-COMPLETE",
   "active_jobs": [
     {
       "kind": "p4_oos_scaling",
@@ -9,17 +9,6 @@
       "ticker": "NVNI",
       "arm": "alias",
       "n_agents": 300,
-      "gpu": "T4",
-      "spot": false,
-      "region": "us-central1"
-    },
-    {
-      "kind": "p4_oos_scaling",
-      "job": "projects/423678956768/locations/us-central1/customJobs/5357403950033141760",
-      "run_id": "oos-2025-g1-scaling-tlry-alias-n100-v1",
-      "ticker": "TLRY",
-      "arm": "alias",
-      "n_agents": 100,
       "gpu": "T4",
       "spot": false,
       "region": "us-central1"
@@ -58,7 +47,7 @@
       "region": "us-central1"
     }
   ],
-  "budget_est_usd": 72.83,
+  "budget_est_usd": 73.69,
   "blockers": [
     "N1000 scaling follow-ups were cancelled at partial outputs to respect the original $85 budget hard stop; preserved partial outputs: NVNI 10752/60000, TLRY 1408/60000."
   ],

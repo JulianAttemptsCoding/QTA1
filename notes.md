@@ -3269,3 +3269,8 @@
 ## [2026-07-11T03:17:27Z] P4/A-402-A-403-POLL
 - Five budget-allowed jobs remain `JOB_STATE_RUNNING`.
 - Output progress: NVNI N300 `10,920`, TLRY N100 `4,024`, TLRY N300 `2,304`, TLRY news-off `2,304`, TLRY personas-off `1,920`.
+
+## [2026-07-11T04:12:43Z] P4/A-402-TLRY-N100-COMPLETE
+- TLRY scaling N100 reached `JOB_STATE_SUCCEEDED` at `2026-07-11T04:12:07Z` with `6,000` outputs.
+- Synced artifacts locally and accepted the shard: `6,000/6,000` requests/outputs, `60` sim rows, fixed-parser rate `0.999000` (`5,994/6,000`), worker summary `valid_json_rate=0.992667`.
+- Removed TLRY N100 from `STATE.json` active jobs and actualized its budget row; conservative cumulative budget is now `$73.69`.
