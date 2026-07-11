@@ -3191,3 +3191,13 @@
 - Quota preferences remain reconciling at preferred value `12`; currently granted values are unchanged at Vertex regular `6`, Vertex preemptible `6`, Compute regular `1`, Compute preemptible `4`.
 - Active job state unchanged: five running, four pending, two cancelled retries, and three already accepted completions (NVNI N50/N100/news-off) under the fixed parser.
 - Output progress: NVNI N300 `6,528`, NVNI N1000 `7,680`, NVNI personas-off `3,768`, TLRY N50 `896`, TLRY N100 `512`; all remaining pending TLRY jobs `0`.
+
+## [2026-07-11T01:37:34Z] P4/T4-QUOTA-RESULT
+- Vertex AI custom training T4 quota request completed successfully: regular T4 `granted=12/preferred=12`, preemptible T4 `granted=12/preferred=12`.
+- Compute Engine T4 increases were denied: regular remains `granted=1/preferred=12`, preemptible remains `granted=4/preferred=12`; this is recorded as non-blocking for current Vertex custom jobs.
+- Active job state still has five running and four pending, so the remaining delay is treated as Vertex allocator/capacity rather than the quota preference ceiling.
+- Output progress: NVNI N300 `6,656`, NVNI N1000 `7,808`, NVNI personas-off `3,896`, TLRY N50 `1,024`, TLRY N100 `512`; all remaining pending TLRY jobs `0`.
+
+## [2026-07-11T01:38:23Z] P4/A-402-A-403-MIDRUN-QA
+- Fixed-parser raw text QA is healthy on all active follow-up shards: NVNI N300 `0.999700` (`6,654/6,656`), NVNI N1000 `0.999488` (`7,804/7,808`), NVNI personas-off `0.998460` (`3,890/3,896`), TLRY N50 `0.999023` (`1,023/1,024`), TLRY N100 `0.998047` (`511/512`).
+- No retry or intervention is warranted; continue monitoring active Vertex jobs on the new project only.
