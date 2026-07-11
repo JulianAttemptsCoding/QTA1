@@ -3215,3 +3215,12 @@
 - Synced accepted completed follow-up artifacts from the new bucket into ignored local `runs/p4`: NVNI scaling N50, NVNI scaling N100, and NVNI news-off N100.
 - Structural QA passed: N50 has `3,000/3,000` requests/outputs, `60` sim rows, fixed-parser rate `0.998000`; N100 has `6,000/6,000`, `60` sim rows, fixed-parser rate `0.998500`; news-off has `6,000/6,000`, `60` sim rows, fixed-parser rate `0.996833`.
 - N50/N100 worker summaries retain old-image `valid_json_rate` below `0.99`, but those rows are accepted under the corrected schema normalization for market-order `limit_price: 0`.
+
+## [2026-07-11T01:59:05Z] P4/A-402-A-403-POLL
+- Active workers continue to progress: NVNI N300 `7,296`, NVNI N1000 `8,576`, NVNI personas-off `4,664`, TLRY N50 `1,688`, TLRY N100 `1,280`.
+- Mid-run fixed-parser QA remained healthy for near-term shards: TLRY N50 `0.998077`, TLRY N100 `0.999132`, NVNI personas-off `0.998677`.
+
+## [2026-07-11T02:01:42Z] P4/VERTEX-CPU-QUOTA-REQUEST
+- Root-cause for the apparent five-job ceiling: Vertex custom training N1/E2 CPU quota is `42` in `us-central1`, and five active `n1-standard-8` jobs consume `40` CPUs.
+- Requested Vertex custom training CPU quota `96` and Vertex custom training preemptible CPU quota `96` on the new project only, matching the approved `12` T4 quota for up to 12 concurrent `n1-standard-8` workers.
+- Both CPU quota preferences were accepted and are reconciling; current grant at request time was `42`.
