@@ -3206,3 +3206,12 @@
 - Active jobs stayed `JOB_STATE_RUNNING` after the Vertex quota increase; queued TLRY N300/N1000/news-off/personas-off remained pending.
 - Short-interval counts were lumpy: by `2026-07-11T01:45:08Z`, NVNI N300 `6,784`, NVNI N1000 `8,064`, NVNI personas-off `4,152`, TLRY N50 `1,280`, TLRY N100 `768`.
 - Inspected NVNI N300 logs after a flat count interval; worker logs show a fresh 128-prompt batch completed at `2026-07-11T01:45:10Z`, so the job is healthy and the flat count was an output flush lag rather than a stall.
+
+## [2026-07-11T01:49:04Z] P4/A-402-A-403-POLL
+- Active workers continue to progress: NVNI N300 `6,912`, NVNI N1000 `8,192`, NVNI personas-off `4,280`, TLRY N50 `1,408`, TLRY N100 `896`.
+- Queued TLRY N300/N1000/news-off/personas-off remain `JOB_STATE_PENDING` despite Vertex training T4 grant `12`; continue waiting rather than relaunching duplicate jobs.
+
+## [2026-07-11T01:50:00Z] P4/A-402-SYNC-QA
+- Synced accepted completed follow-up artifacts from the new bucket into ignored local `runs/p4`: NVNI scaling N50, NVNI scaling N100, and NVNI news-off N100.
+- Structural QA passed: N50 has `3,000/3,000` requests/outputs, `60` sim rows, fixed-parser rate `0.998000`; N100 has `6,000/6,000`, `60` sim rows, fixed-parser rate `0.998500`; news-off has `6,000/6,000`, `60` sim rows, fixed-parser rate `0.996833`.
+- N50/N100 worker summaries retain old-image `valid_json_rate` below `0.99`, but those rows are accepted under the corrected schema normalization for market-order `limit_price: 0`.
