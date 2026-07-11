@@ -15,8 +15,8 @@
     },
     {
       "kind": "p4_oos_scaling",
-      "job": "projects/423678956768/locations/us-central1/customJobs/6868361625015943168",
-      "run_id": "oos-2025-g1-scaling-nvni-alias-n100-v1",
+      "job": "projects/423678956768/locations/us-central1/customJobs/4823692209817649152",
+      "run_id": "oos-2025-g1-scaling-nvni-alias-n100-v2",
       "ticker": "NVNI",
       "arm": "alias",
       "n_agents": 100,

@@ -3164,3 +3164,9 @@
 ## [2026-07-11T01:17:08Z] P4/A-402-A-403-POLL
 - NVNI N100/N300/N1000/personas-off and TLRY N50 remain `JOB_STATE_RUNNING`; NVNI N50 v2 and remaining TLRY follow-ups remain `JOB_STATE_PENDING`.
 - Output progress: NVNI N50 v2 `0`, N100 `5,816`, N300 `6,016`, N1000 `6,912`, personas-off `2,816`; TLRY N50 `384`.
+
+## [2026-07-11T01:23:34Z] P4/A-402-QA-RETRY
+- NVNI scaling N100 v1 reached `JOB_STATE_SUCCEEDED` with `6,000` outputs, but final raw-text parse QA was `0.989667` (`5,938/6,000`), below the `0.99` gate.
+- Marked N100 v1 as a QA-failed attempt for analysis purposes; no return stats computed from it.
+- Launched N100 v2 retry on-demand as `projects/423678956768/locations/us-central1/customJobs/4823692209817649152` with run id `oos-2025-g1-scaling-nvni-alias-n100-v2`.
+- Updated `STATE.json` active N100 entry to the v2 retry.
