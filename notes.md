@@ -3229,3 +3229,10 @@
 - Vertex custom training CPU quota was approved to `96`, matching the `12` approved T4s for on-demand `n1-standard-8` workers; preemptible training CPU quota remains reconciling at `42/96`.
 - Active job state had not yet reallocated: five running and four pending. Continue waiting for Vertex queue refresh rather than duplicating pending jobs.
 - Output progress: NVNI N300 `7,424`, NVNI N1000 `8,832`, NVNI personas-off `4,920`, TLRY N50 `2,072`, TLRY N100 `1,536`.
+
+## [2026-07-11T02:15:44Z] P4/A-402-A-403-RELAUNCH
+- After CPU quota approval, the original four TLRY follow-up jobs remained pending with zero outputs and unchanged original update timestamps. Cancelled only those zero-output pending jobs: TLRY scaling N300 `7072149508154458112`, TLRY scaling N1000 `9060770218615242752`, TLRY news-off `2716042768580345856`, TLRY personas-off `1332593258047471616`.
+- A first relaunch attempt used correct run IDs but ambiguous default display names; those four jobs were immediately cancelled before any outputs were written, and the accidental untracked ambiguous spec files were removed.
+- Relaunched the four zero-output TLRY follow-ups with explicit unique display names/spec files. New active jobs: TLRY N300 `4544891245385744384`, TLRY N1000 `1092882131006259200`, TLRY news-off `7974382361628377088`, TLRY personas-off `5961836278147186688`.
+- `STATE.json` was updated to point at the corrected relaunch job IDs; running NVNI/TLRY N50/N100 jobs were not touched.
+- Immediate post-relaunch state: TLRY news-off and personas-off are `JOB_STATE_RUNNING`; TLRY N300/N1000 are fresh `JOB_STATE_PENDING` with updated scheduler timestamps.
