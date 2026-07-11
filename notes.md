@@ -3154,3 +3154,9 @@
 ## [2026-07-11T01:00:25Z] P4/A-402-A-403-POLL
 - NVNI N100/N300/N1000/news-off/personas-off remain `JOB_STATE_RUNNING`; N50 v2 and all TLRY follow-ups remain `JOB_STATE_PENDING`.
 - Output progress: NVNI scaling N50 v2 `0`, N100 `5,304`, N300 `5,504`, N1000 `6,272`, news-off `5,816`, personas-off `2,304`.
+
+## [2026-07-11T01:05:52Z] P4/A-403-QA
+- NVNI news-off N100 reached `JOB_STATE_SUCCEEDED` with `6,000` outputs and final artifacts.
+- Final raw-text parse QA passed: `0.992833` (`5,957/6,000` parsed).
+- TLRY scaling N50 started (`JOB_STATE_RUNNING`); NVNI N50 v2 remains pending.
+- Other progress: NVNI N100 `5,432`, N300 `5,632`, N1000 `6,528`, personas-off `2,432`.
