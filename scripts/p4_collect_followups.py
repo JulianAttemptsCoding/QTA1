@@ -25,6 +25,10 @@ RUN_RE = re.compile(
 EXPECTED_DAYS = 60
 EXPECTED_SCALING = (50, 100, 300, 1000)
 EXPECTED_TICKERS = ("NVNI", "TLRY")
+CANCELLED_PARTIAL_OUTPUTS = {
+    ("scaling", "NVNI", 1000): 10752,
+    ("scaling", "TLRY", 1000): 1408,
+}
 SIGNALS = {
     "weighted": "flow_imbalance",
     "unweighted": "flow_imbalance_unweighted",
@@ -99,11 +103,12 @@ def missing_rows(records: list[RunRecord]) -> list[dict[str, Any]]:
     for ticker in EXPECTED_TICKERS:
         for n_agents in EXPECTED_SCALING:
             if ("scaling", ticker, n_agents) not in present:
+                partial_outputs = CANCELLED_PARTIAL_OUTPUTS.get(("scaling", ticker, n_agents), 0)
                 rows.append({
                     "config": f"scaling_n{n_agents}",
                     "ticker": ticker,
-                    "status": "missing_or_cancelled",
-                    "outputs": 0,
+                    "status": "budget_cancelled_partial" if partial_outputs else "missing_or_cancelled",
+                    "outputs": partial_outputs,
                     "expected": n_agents * EXPECTED_DAYS,
                     "sim_days": 0,
                 })
@@ -223,7 +228,7 @@ def render_report(records: list[RunRecord], frame: pd.DataFrame) -> str:
         "",
         "- Source: completed A-402/A-403 Vertex artifacts only.",
         "- Incomplete or budget-cancelled shards are listed in coverage and excluded from metrics.",
-        "- Scaling N1000 was budget-cancelled before completion and is not interpreted as a result.",
+        "- Scaling N1000 was budget-cancelled before completion; preserved partial outputs are reported for audit only, not interpreted as results.",
         "",
         "## Coverage",
         "",

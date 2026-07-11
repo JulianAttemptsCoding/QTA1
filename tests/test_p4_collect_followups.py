@@ -85,5 +85,5 @@ def test_report_excludes_partial_metrics_and_lists_missing(tmp_path):
 
     assert "scaling_n50" in report
     assert "scaling_n1000 | NVNI | partial" in report
-    assert "scaling_n1000 | TLRY | missing_or_cancelled" in report
+    assert "scaling_n1000 | TLRY | budget_cancelled_partial | 1408" in report
     assert frame["experiment_n_agents"].unique().tolist() == [50]

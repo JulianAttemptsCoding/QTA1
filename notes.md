@@ -3307,3 +3307,9 @@
 - Vertex AI custom training T4 quota request completed successfully on the new project: regular T4 `granted=24/preferred=24`, preemptible T4 `granted=24/preferred=24`.
 - Matching CPU quota requests are still reconciling: regular custom-training CPUs `granted=96/preferred=192`; preemptible custom-training CPUs `granted=42/preferred=192`.
 - Compute Engine T4 preferences remain denied from the prior request, which is non-blocking because active and planned heavy computation uses Vertex custom jobs.
+
+## [2026-07-11T10:43:30Z] P4/A-402-TLRY-N300-COMPLETE
+- TLRY scaling N300 reached `JOB_STATE_SUCCEEDED` at `2026-07-11T10:41:02Z` with `18,000` outputs.
+- Synced artifacts locally and accepted the shard: `18,000/18,000` requests/outputs, `60` sim rows, fixed-parser rate `0.998833` (`17,979/18,000`), worker summary `valid_json_rate=0.992389`.
+- Removed TLRY N300 from `STATE.json`; no Vertex jobs remain active. Actualized its budget row at `8.41` on-demand T4 hours (`$2.52`), bringing conservative cumulative budget to `$80.25`.
+- The N1000 follow-up shards remain intentionally cancelled at partial outputs under the original budget guardrail and require explicit budget authorization before any resume or rerun.
