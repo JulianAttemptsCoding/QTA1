@@ -3245,3 +3245,8 @@
 - All four corrected TLRY relaunch jobs are producing outputs: TLRY N300 `256`, TLRY N1000 `128`, TLRY news-off `256`, TLRY personas-off `128`.
 - Existing active outputs: NVNI N300 `8,064`, NVNI N1000 `9,472`, NVNI personas-off `5,432`, TLRY N50 `2,584`, TLRY N100 `2,048`.
 - Fixed-parser QA passed on the fresh TLRY outputs: TLRY N50 `0.998839`, TLRY N300 `1.000000`, TLRY N1000 `1.000000`, TLRY news-off `1.000000`, TLRY personas-off `1.000000`.
+
+## [2026-07-11T02:35:38Z] P4/A-402-TLRY-N50-COMPLETE
+- TLRY scaling N50 reached `JOB_STATE_SUCCEEDED` at `2026-07-11T02:34:27Z` with `3,000` outputs.
+- Synced artifacts locally and accepted the shard: `3,000/3,000` requests/outputs, `60` sim rows, fixed-parser rate `0.998667` (`2,996/3,000`), worker summary `valid_json_rate=0.991667`.
+- Removed TLRY N50 from `STATE.json` active jobs and actualized accepted follow-up budget rows for NVNI N50/N100/news-off and TLRY N50; conservative cumulative budget is now `$70.50`.
