@@ -3265,3 +3265,7 @@
 - Cancelled only the two N1000 scaling follow-ups to keep the remaining non-N1000 work projected under budget. Partial outputs were preserved in GCS: NVNI N1000 `10,752/60,000`, TLRY N1000 `1,408/60,000`.
 - Actualized cancelled N1000 costs in `BUDGET.md`; conservative cumulative budget is now `$72.83`. `STATE.json` now lists the N1000 cancellation as a blocker requiring explicit budget authorization before resume/rerun.
 - Remaining active jobs after guardrail action: NVNI N300, TLRY N100, TLRY N300, TLRY news-off, and TLRY personas-off.
+
+## [2026-07-11T03:17:27Z] P4/A-402-A-403-POLL
+- Five budget-allowed jobs remain `JOB_STATE_RUNNING`.
+- Output progress: NVNI N300 `10,920`, TLRY N100 `4,024`, TLRY N300 `2,304`, TLRY news-off `2,304`, TLRY personas-off `1,920`.
