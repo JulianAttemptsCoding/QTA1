@@ -3236,3 +3236,7 @@
 - Relaunched the four zero-output TLRY follow-ups with explicit unique display names/spec files. New active jobs: TLRY N300 `4544891245385744384`, TLRY N1000 `1092882131006259200`, TLRY news-off `7974382361628377088`, TLRY personas-off `5961836278147186688`.
 - `STATE.json` was updated to point at the corrected relaunch job IDs; running NVNI/TLRY N50/N100 jobs were not touched.
 - Immediate post-relaunch state: TLRY news-off and personas-off are `JOB_STATE_RUNNING`; TLRY N300/N1000 are fresh `JOB_STATE_PENDING` with updated scheduler timestamps.
+
+## [2026-07-11T02:19:48Z] P4/A-402-A-403-POLL
+- CPU quota fix worked: all four corrected TLRY relaunch jobs are now `JOB_STATE_RUNNING`. They have not emitted outputs yet, consistent with container/model startup.
+- Existing active outputs: NVNI N300 `7,936`, NVNI N1000 `9,344`, NVNI personas-off `5,304`, TLRY N50 `2,456`, TLRY N100 `1,920`.
