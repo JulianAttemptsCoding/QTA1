@@ -3293,3 +3293,8 @@
 - NVNI scaling N300 reached `JOB_STATE_SUCCEEDED` at `2026-07-11T06:34:18Z` with `18,000` outputs.
 - Synced artifacts locally and accepted the shard: `18,000/18,000` requests/outputs, `60` sim rows, fixed-parser rate `0.998111` (`17,966/18,000`), worker summary `valid_json_rate=0.989389`.
 - Removed NVNI N300 from `STATE.json` active jobs and actualized its budget row; conservative cumulative budget is now `$77.73`.
+
+## [2026-07-11T06:41:51Z] P4/VERTEX-T4-QUOTA-REQUEST-24
+- Requested additional Vertex-only training capacity on the new project: regular T4 preferred value `24` (`granted=12` at request time) and preemptible T4 preferred value `24` (`granted=12` at request time), both in `us-central1`.
+- Requested matching Vertex custom-training CPU quota for up to 24 `n1-standard-8` workers: regular CPUs preferred `192` (`granted=96` at request time) and preemptible CPUs preferred `192` (`granted=42` at request time).
+- All four quota preference updates were accepted and are reconciling with contact `jjjsresearch@gmail.com`; no quota request was made on the old project.
