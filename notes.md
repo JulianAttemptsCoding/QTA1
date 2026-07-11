@@ -3224,3 +3224,8 @@
 - Root-cause for the apparent five-job ceiling: Vertex custom training N1/E2 CPU quota is `42` in `us-central1`, and five active `n1-standard-8` jobs consume `40` CPUs.
 - Requested Vertex custom training CPU quota `96` and Vertex custom training preemptible CPU quota `96` on the new project only, matching the approved `12` T4 quota for up to 12 concurrent `n1-standard-8` workers.
 - Both CPU quota preferences were accepted and are reconciling; current grant at request time was `42`.
+
+## [2026-07-11T02:06:43Z] P4/VERTEX-CPU-QUOTA-RESULT
+- Vertex custom training CPU quota was approved to `96`, matching the `12` approved T4s for on-demand `n1-standard-8` workers; preemptible training CPU quota remains reconciling at `42/96`.
+- Active job state had not yet reallocated: five running and four pending. Continue waiting for Vertex queue refresh rather than duplicating pending jobs.
+- Output progress: NVNI N300 `7,424`, NVNI N1000 `8,832`, NVNI personas-off `4,920`, TLRY N50 `2,072`, TLRY N100 `1,536`.
