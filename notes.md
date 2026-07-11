@@ -3326,3 +3326,10 @@
 - Confirmed OOS exists and is explicitly separated: `oos-2025-main` and `oos-2025-followups`; P3 `calib-2019` is not OOS.
 - Added `docs/ARBITRAGE_TEST_PROTOCOL.md`, grounded in SEC backtest-performance guidance, Deflated Sharpe Ratio, White Reality Check/data-snooping literature, and FINRA intraday-margin guidance.
 - Interpretation: current price-spread diagnostics are exploratory and do not prove arbitrage; any tradability claim requires a new pre-registered, cost-aware, multiple-testing-adjusted holdout or live paper-trading test.
+
+## [2026-07-11T12:05:00Z] P6/A-604-OOS-BACKTEST-COMPLETE
+- Added `scripts/p5_oos_backtest.py` plus tests to convert archived P4 `sim.jsonl` artifacts into OOS daily strategy returns and return-over-time equity curves; no new LLM inference or heavy computation was run locally.
+- Generated `docs/OOS_BACKTEST_REPORT.md`, `docs/OOS_BACKTEST_DAILY_RETURNS.csv`, and `6` SVG equity curves under `docs/figures/oos_backtest`.
+- OOS main result: all tested strategies lost money after a 25 bps one-way turnover cost; equal-weight buy-and-hold was least bad at `-9.23%`, LLM crowd-flow returned `-11.07%`, and simulated-price spread variants returned between `-11.57%` and `-10.05%`.
+- OOS follow-up result: the simple `momentum_1d` baseline returned `+61.94%` over the short two-stock window, but it is not an LLM-agent strategy and had `-40.56%` max drawdown; LLM crowd-flow returned `-73.34%`.
+- Interpretation: return curves support the existing negative/diagnostic conclusion; the current artifacts do not establish arbitrage or a tradable LLM-agent edge.

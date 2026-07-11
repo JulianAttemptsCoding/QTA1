@@ -22,7 +22,7 @@ studies and counterfactuals. Nothing here is investment advice.
 | G4 | OOS budget checkpoint | **PASS** (`docs/G4_REPORT.md`, final budget `$80.25`) |
 | G5 | Full reproducibility from manifests | **PASS** (`docs/RQ3_REPORT.md`, `docs/P4_FOLLOWUP_REPORT.md`) |
 
-Local test suite: `pytest -q` - 62/62 passing. Stub smoke:
+Local test suite: `pytest -q` - 66/66 passing. Stub smoke:
 `python scripts/p2_smoke_sim.py --config configs/sim_smoke.yaml` - PASS
 (parse-valid 0.995, auction price dynamics exercised). Real-model G2 smoke:
 Qwen2.5-1.5B and Phi-3.5-mini both reached valid-JSON `1.000` and contamination
@@ -65,12 +65,16 @@ docs/RQ3_REPORT.md       main OOS prediction report
 docs/P4_FOLLOWUP_REPORT.md  scaling and ablation follow-up report
 docs/PRICE_TRACKING_REPORT.md  simulated auction price vs actual close plots
 docs/ARBITRAGE_TEST_PROTOCOL.md  rigorous protocol for any tradability claim
+docs/OOS_BACKTEST_REPORT.md  exploratory OOS strategy returns and equity curves
+docs/OOS_BACKTEST_DAILY_RETURNS.csv  daily strategy returns for OOS backtests
+docs/figures/oos_backtest/  return-over-time SVG equity curves by OOS split
 docs/RESULTS_REPORT.md   end-to-end research summary
 docs/INVESTOR_ONE_PAGER.md  concise PoC summary
 scripts/p4_gate_budget.py  measured G4 cost-per-decision checkpoint
 scripts/p4_collect_oos.py  RQ3 IC/hit/DM/bootstrap/DSR statistics
 scripts/p4_collect_followups.py  A-402/A-403 scaling and ablation statistics
 scripts/p5_price_tracking.py  P3/P4 price overlay figures and diagnostics
+scripts/p5_oos_backtest.py  exploratory OOS strategy backtest and return curves
 docs/TRIALS.md           registered trial count
 notebooks/agorasim_demo.ipynb  local replay notebook for archived artifacts
 configs/                 smoke / calibration / OOS experiment configs

@@ -15,7 +15,8 @@ signal until it survives the tests below.
 
 ## Evidence From Current Price Diagnostics
 
-Source: `docs/PRICE_TRACKING_REPORT.md`.
+Source: `docs/PRICE_TRACKING_REPORT.md` and
+`docs/OOS_BACKTEST_REPORT.md`.
 
 - OOS exists: P4 main is `oos-2025-main`, and P4 scaling/ablation runs are
   `oos-2025-followups`.
@@ -26,6 +27,14 @@ Source: `docs/PRICE_TRACKING_REPORT.md`.
   OOS behavior. Some OOS rows have positive net diagnostic Sharpe after a simple
   25 bps cost model, but hit rates and cross-run stability are not strong enough
   to justify an arbitrage claim.
+- The exploratory OOS backtest adds return-over-time curves with a 25 bps
+  one-way turnover cost. On the 10-stock OOS main split, all tested strategies
+  lost money; LLM crowd-flow returned `-11.07%`, simulated-price spread variants
+  returned between `-11.57%` and `-10.05%`, and equal-weight buy-and-hold was
+  least bad at `-9.23%`.
+- The two-stock follow-up window contains a positive `momentum_1d` baseline
+  (`+61.94%`), but that is not an LLM-agent signal and it has high drawdown and
+  turnover. In the same window, LLM crowd-flow returned `-73.34%`.
 
 ## Research Grounding
 
@@ -134,9 +143,9 @@ it a speculative alpha signal, not arbitrage.
 
 1. Pre-register a new `docs/TRIALS.md` section for the price-spread/hybrid
    strategy family.
-2. Build `scripts/p5_arbitrage_backtest.py` that consumes only point-in-time
-   `sim.jsonl` and execution-cost inputs.
-3. Run it first on already-viewed data only as a unit/integration check.
+2. Treat `scripts/p5_oos_backtest.py` as the already-viewed exploratory
+   integration check, not as confirmatory evidence.
+3. Freeze any next confirmatory backtest code before evaluating new data.
 4. Freeze the code hash.
 5. Evaluate on a new future holdout or live paper-trading stream.
 

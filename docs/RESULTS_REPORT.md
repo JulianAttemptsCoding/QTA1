@@ -81,6 +81,30 @@ correlated with actual closes, and current spread diagnostics do not establish
 an arbitrage opportunity. Any tradability claim requires a new pre-registered,
 cost-aware, multiple-testing-adjusted holdout or live paper-trading experiment.
 
+## OOS Return-Over-Time Backtest
+
+Source: `docs/OOS_BACKTEST_REPORT.md`,
+`docs/OOS_BACKTEST_DAILY_RETURNS.csv`, and
+`docs/figures/oos_backtest/`.
+
+The exploratory OOS strategy backtest converts archived P4 `sim.jsonl` outputs
+into close-to-next-close daily returns with a 25 bps one-way turnover cost. It is
+diagnostic only and does not rerun LLM inference.
+
+On the 10-stock OOS main split, every tested strategy lost money after costs.
+The least-bad strategy was equal-weight buy-and-hold at `-9.23%` total return
+over 124 trading days. The LLM crowd-flow strategies returned `-11.07%`, the
+simulated-price spread long-rich strategy returned `-11.57%`, and the
+opposite spread strategy returned `-10.05%`. None beat the cheap buy-and-hold
+baseline in a useful way.
+
+On the short two-stock OOS follow-up split, the simple `momentum_1d` baseline
+returned `+61.94%`, but it is not an LLM-agent strategy and carried a `-40.56%`
+maximum drawdown with high turnover. In the same window, LLM crowd-flow and
+buy-and-hold both returned `-73.34%`. This reinforces the main conclusion: the
+current artifacts are useful for simulator diagnostics, not for an arbitrage or
+live trading claim.
+
 ## Compute And Budget
 
 Final conservative tracked spend is `$80.25`, below the original `$85` guardrail
@@ -95,7 +119,8 @@ Key reproducibility artifacts:
 
 - `docs/TRIALS.md`: all `16` registered trials.
 - `docs/RQ1_REPORT.md`, `docs/RQ2_REPORT.md`, `docs/RQ3_REPORT.md`,
-  `docs/P4_FOLLOWUP_REPORT.md`: final statistics.
+  `docs/P4_FOLLOWUP_REPORT.md`, `docs/OOS_BACKTEST_REPORT.md`: final
+  statistics and OOS return curves.
 - `docs/vertex_job_specs/`: redacted Vertex custom job specs.
 - `BUDGET.md`: job-level budget ledger.
 - `STATE.json`: final local execution state.
