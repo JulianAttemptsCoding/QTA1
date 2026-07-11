@@ -3240,3 +3240,8 @@
 ## [2026-07-11T02:19:48Z] P4/A-402-A-403-POLL
 - CPU quota fix worked: all four corrected TLRY relaunch jobs are now `JOB_STATE_RUNNING`. They have not emitted outputs yet, consistent with container/model startup.
 - Existing active outputs: NVNI N300 `7,936`, NVNI N1000 `9,344`, NVNI personas-off `5,304`, TLRY N50 `2,456`, TLRY N100 `1,920`.
+
+## [2026-07-11T02:24:40Z] P4/A-402-A-403-POLL-QA
+- All four corrected TLRY relaunch jobs are producing outputs: TLRY N300 `256`, TLRY N1000 `128`, TLRY news-off `256`, TLRY personas-off `128`.
+- Existing active outputs: NVNI N300 `8,064`, NVNI N1000 `9,472`, NVNI personas-off `5,432`, TLRY N50 `2,584`, TLRY N100 `2,048`.
+- Fixed-parser QA passed on the fresh TLRY outputs: TLRY N50 `0.998839`, TLRY N300 `1.000000`, TLRY N1000 `1.000000`, TLRY news-off `1.000000`, TLRY personas-off `1.000000`.
