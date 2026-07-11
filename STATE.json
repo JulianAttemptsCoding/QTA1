@@ -4,28 +4,6 @@
   "active_jobs": [
     {
       "kind": "p4_oos_scaling",
-      "job": "projects/423678956768/locations/us-central1/customJobs/8139924832306331648",
-      "run_id": "oos-2025-g1-scaling-nvni-alias-n50-v2",
-      "ticker": "NVNI",
-      "arm": "alias",
-      "n_agents": 50,
-      "gpu": "T4",
-      "spot": false,
-      "region": "us-central1"
-    },
-    {
-      "kind": "p4_oos_scaling",
-      "job": "projects/423678956768/locations/us-central1/customJobs/4823692209817649152",
-      "run_id": "oos-2025-g1-scaling-nvni-alias-n100-v2",
-      "ticker": "NVNI",
-      "arm": "alias",
-      "n_agents": 100,
-      "gpu": "T4",
-      "spot": false,
-      "region": "us-central1"
-    },
-    {
-      "kind": "p4_oos_scaling",
       "job": "projects/423678956768/locations/us-central1/customJobs/1878373237889433600",
       "run_id": "oos-2025-g1-scaling-nvni-alias-n300-v1",
       "ticker": "NVNI",
@@ -42,17 +20,6 @@
       "ticker": "NVNI",
       "arm": "alias",
       "n_agents": 1000,
-      "gpu": "T4",
-      "spot": false,
-      "region": "us-central1"
-    },
-    {
-      "kind": "p4_oos_news_off",
-      "job": "projects/423678956768/locations/us-central1/customJobs/4670605006859141120",
-      "run_id": "oos-2025-g1-news_off-nvni-alias-n100-v1",
-      "ticker": "NVNI",
-      "arm": "alias",
-      "n_agents": 100,
       "gpu": "T4",
       "spot": false,
       "region": "us-central1"

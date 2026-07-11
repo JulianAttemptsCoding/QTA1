@@ -47,7 +47,7 @@ def test_decision_guided_schema_matches_parser_requirements():
     assert set(schema["required"]) == {"action", "order_type", "qty", "limit_price", "confidence", "horizon_days", "rationale"}
     assert schema["properties"]["action"]["enum"] == ["buy", "sell", "hold"]
     assert schema["properties"]["horizon_days"]["enum"] == list(range(1, 31))
-    assert schema["properties"]["limit_price"]["minimum"] == 0.01
+    assert schema["properties"]["limit_price"]["minimum"] == 0
 
 
 def test_safe_model_id_matches_model_cache_manifest_convention():

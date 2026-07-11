@@ -11,6 +11,16 @@ def test_hold_normalizes_qty():
     assert d.qty == 0
 
 
+def test_market_order_ignores_zero_limit_price():
+    d = parse_decision('{"action":"buy","order_type":"market","qty":10,"limit_price":0,"confidence":0.6}')
+    assert d is not None and d.order_type == "market" and d.limit_price is None
+
+
+def test_zero_limit_order_falls_back_to_market():
+    d = parse_decision('{"action":"sell","order_type":"limit","qty":10,"limit_price":0,"confidence":0.6}')
+    assert d is not None and d.order_type == "market" and d.limit_price is None
+
+
 def test_fenced_and_prosey_output_is_parsed():
     raw = 'Sure! Here you go:\n```json\n{"action":"sell","qty":5,"confidence":0.9,"order_type":"limit","limit_price":12.5}\n```'
     d = parse_decision(raw)

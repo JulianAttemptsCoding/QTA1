@@ -3170,3 +3170,9 @@
 - Marked N100 v1 as a QA-failed attempt for analysis purposes; no return stats computed from it.
 - Launched N100 v2 retry on-demand as `projects/423678956768/locations/us-central1/customJobs/4823692209817649152` with run id `oos-2025-g1-scaling-nvni-alias-n100-v2`.
 - Updated `STATE.json` active N100 entry to the v2 retry.
+
+## [2026-07-11T01:28:48Z] P4/A-402-SCHEMA-QA
+- Root-caused the N50/N100 apparent parse failures to market-order `limit_price: 0` rows: the market-clearing code ignores market limit prices, but the schema rejected zero before normalization.
+- Patched `AgentDecision` normalization and guided schemas so market-order `limit_price <= 0` is accepted/normalized to `None`; prompt now instructs market orders to use `limit_price: 0`.
+- Revalidated completed NVNI scaling N50/N100 and news-off with the fixed parser: N50 `0.998000`, N100 `0.998500`, news-off `0.996833`.
+- Cancelled unnecessary N50/N100 v2 retry jobs before they started (`8139924832306331648`, `4823692209817649152`) and removed them from active state.

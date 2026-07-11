@@ -29,7 +29,7 @@ DECISION_JSON_SCHEMA = {
         "action": {"type": "string", "enum": ["buy", "sell", "hold"]},
         "order_type": {"type": "string", "enum": ["market", "limit"]},
         "qty": {"type": "integer", "minimum": 0, "maximum": 1_000_000},
-        "limit_price": {"type": "number", "minimum": 0.01},
+        "limit_price": {"type": "number", "minimum": 0},
         "confidence": {"type": "number", "minimum": 0, "maximum": 1},
         "horizon_days": {"type": "integer", "enum": list(range(1, 31))},
         "rationale": {"type": "string", "maxLength": 240},

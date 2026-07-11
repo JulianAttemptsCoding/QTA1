@@ -3,6 +3,7 @@
 Failure modes handled explicitly:
 - Model emits markdown fences or prose around JSON  -> stripped / first balanced object extracted.
 - Model emits invalid enum / out-of-range values    -> pydantic ValidationError -> counted, decision dropped.
+- Market order limit_price <= 0                     -> normalized to None because market clearing ignores it.
 - action == "hold" with nonzero qty                 -> normalized to qty = 0.
 Parse-failure rate is a first-class metric (Gate G2 requires >= 99% valid).
 """
@@ -21,7 +22,7 @@ class AgentDecision(BaseModel):
     action: Literal["buy", "sell", "hold"]
     order_type: Literal["market", "limit"] = "market"
     qty: int = Field(ge=0, le=1_000_000, description="shares")
-    limit_price: Optional[float] = Field(default=None, gt=0)
+    limit_price: Optional[float] = Field(default=None, ge=0)
     confidence: float = Field(ge=0.0, le=1.0)
     horizon_days: int = Field(default=1, ge=1, le=30)
     rationale: str = Field(default="", max_length=2000)
@@ -30,8 +31,11 @@ class AgentDecision(BaseModel):
     def _normalize(self) -> "AgentDecision":
         if self.action == "hold":
             object.__setattr__(self, "qty", 0)
-        if self.order_type == "limit" and self.limit_price is None:
+        if self.order_type == "market":
+            object.__setattr__(self, "limit_price", None)
+        if self.order_type == "limit" and (self.limit_price is None or self.limit_price <= 0):
             object.__setattr__(self, "order_type", "market")
+            object.__setattr__(self, "limit_price", None)
         return self
 
 
