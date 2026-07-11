@@ -3160,3 +3160,7 @@
 - Final raw-text parse QA passed: `0.992833` (`5,957/6,000` parsed).
 - TLRY scaling N50 started (`JOB_STATE_RUNNING`); NVNI N50 v2 remains pending.
 - Other progress: NVNI N100 `5,432`, N300 `5,632`, N1000 `6,528`, personas-off `2,432`.
+
+## [2026-07-11T01:17:08Z] P4/A-402-A-403-POLL
+- NVNI N100/N300/N1000/personas-off and TLRY N50 remain `JOB_STATE_RUNNING`; NVNI N50 v2 and remaining TLRY follow-ups remain `JOB_STATE_PENDING`.
+- Output progress: NVNI N50 v2 `0`, N100 `5,816`, N300 `6,016`, N1000 `6,912`, personas-off `2,816`; TLRY N50 `384`.
