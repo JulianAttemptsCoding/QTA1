@@ -3134,3 +3134,7 @@
 ## [2026-07-11T00:08:53Z] P4/A-402-A-403-POLL
 - NVNI personas-off started and is `JOB_STATE_RUNNING`; N50 v2 remains `JOB_STATE_PENDING`; all TLRY follow-ups remain `JOB_STATE_PENDING`.
 - Output progress: NVNI scaling N50 v2 `0`, N100 `3,256`, N300 `3,840`, N1000 `4,352`, news-off `4,024`, personas-off `512`.
+
+## [2026-07-11T00:20:16Z] P4/A-402-A-403-POLL
+- NVNI N100/N300/N1000/news-off/personas-off remain `JOB_STATE_RUNNING`; N50 v2 and all TLRY follow-ups remain `JOB_STATE_PENDING`.
+- Output progress: NVNI scaling N50 v2 `0`, N100 `3,896`, N300 `4,224`, N1000 `4,736`, news-off `4,408`, personas-off `896`.
