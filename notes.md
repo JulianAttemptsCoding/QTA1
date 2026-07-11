@@ -3201,3 +3201,8 @@
 ## [2026-07-11T01:38:23Z] P4/A-402-A-403-MIDRUN-QA
 - Fixed-parser raw text QA is healthy on all active follow-up shards: NVNI N300 `0.999700` (`6,654/6,656`), NVNI N1000 `0.999488` (`7,804/7,808`), NVNI personas-off `0.998460` (`3,890/3,896`), TLRY N50 `0.999023` (`1,023/1,024`), TLRY N100 `0.998047` (`511/512`).
 - No retry or intervention is warranted; continue monitoring active Vertex jobs on the new project only.
+
+## [2026-07-11T01:45:10Z] P4/A-402-A-403-HEALTH
+- Active jobs stayed `JOB_STATE_RUNNING` after the Vertex quota increase; queued TLRY N300/N1000/news-off/personas-off remained pending.
+- Short-interval counts were lumpy: by `2026-07-11T01:45:08Z`, NVNI N300 `6,784`, NVNI N1000 `8,064`, NVNI personas-off `4,152`, TLRY N50 `1,280`, TLRY N100 `768`.
+- Inspected NVNI N300 logs after a flat count interval; worker logs show a fresh 128-prompt batch completed at `2026-07-11T01:45:10Z`, so the job is healthy and the flat count was an output flush lag rather than a stall.
