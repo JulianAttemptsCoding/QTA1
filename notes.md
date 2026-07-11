@@ -3288,3 +3288,8 @@
 ## [2026-07-11T06:01:10Z] P4/A-402-A-403-POLL
 - Two budget-allowed jobs remain `JOB_STATE_RUNNING`.
 - Output progress: NVNI N300 `16,808/18,000`, TLRY N300 `7,424/18,000`.
+
+## [2026-07-11T06:36:54Z] P4/A-402-NVNI-N300-COMPLETE
+- NVNI scaling N300 reached `JOB_STATE_SUCCEEDED` at `2026-07-11T06:34:18Z` with `18,000` outputs.
+- Synced artifacts locally and accepted the shard: `18,000/18,000` requests/outputs, `60` sim rows, fixed-parser rate `0.998111` (`17,966/18,000`), worker summary `valid_json_rate=0.989389`.
+- Removed NVNI N300 from `STATE.json` active jobs and actualized its budget row; conservative cumulative budget is now `$77.73`.
