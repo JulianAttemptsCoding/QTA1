@@ -3130,3 +3130,7 @@
 - Marked N50 v1 as a QA-failed attempt for analysis purposes; no return stats computed from it.
 - Launched N50 v2 retry on-demand as `projects/423678956768/locations/us-central1/customJobs/8139924832306331648` with run id `oos-2025-g1-scaling-nvni-alias-n50-v2`.
 - Updated `STATE.json` active N50 entry to the v2 retry.
+
+## [2026-07-11T00:08:53Z] P4/A-402-A-403-POLL
+- NVNI personas-off started and is `JOB_STATE_RUNNING`; N50 v2 remains `JOB_STATE_PENDING`; all TLRY follow-ups remain `JOB_STATE_PENDING`.
+- Output progress: NVNI scaling N50 v2 `0`, N100 `3,256`, N300 `3,840`, N1000 `4,352`, news-off `4,024`, personas-off `512`.
