@@ -3313,3 +3313,9 @@
 - Synced artifacts locally and accepted the shard: `18,000/18,000` requests/outputs, `60` sim rows, fixed-parser rate `0.998833` (`17,979/18,000`), worker summary `valid_json_rate=0.992389`.
 - Removed TLRY N300 from `STATE.json`; no Vertex jobs remain active. Actualized its budget row at `8.41` on-demand T4 hours (`$2.52`), bringing conservative cumulative budget to `$80.25`.
 - The N1000 follow-up shards remain intentionally cancelled at partial outputs under the original budget guardrail and require explicit budget authorization before any resume or rerun.
+
+## [2026-07-11T10:52:10Z] P6/A-601-A-602-PACKAGING
+- Added final packaging artifacts: `docs/RESULTS_REPORT.md`, `docs/INVESTOR_ONE_PAGER.md`, and `notebooks/agorasim_demo.ipynb`.
+- Updated `README.md` to show G4/G5 complete, final budget `$80.25`, final report paths, and `62/62` local tests passing.
+- Final QA: `python -m pytest -q` passed `62/62`; `STATE.json` and the notebook JSON validate; `git diff --check` passed; strict tracked-file HF token-shaped scan returned no hits.
+- `STATE.json` now records phase `P6`, no active jobs, and final task `A-602-COMPLETE`; the only blocker is the documented N1000 budget-cancelled partial follow-up, which is intentionally not resumed.
