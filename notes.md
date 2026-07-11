@@ -3274,3 +3274,8 @@
 - TLRY scaling N100 reached `JOB_STATE_SUCCEEDED` at `2026-07-11T04:12:07Z` with `6,000` outputs.
 - Synced artifacts locally and accepted the shard: `6,000/6,000` requests/outputs, `60` sim rows, fixed-parser rate `0.999000` (`5,994/6,000`), worker summary `valid_json_rate=0.992667`.
 - Removed TLRY N100 from `STATE.json` active jobs and actualized its budget row; conservative cumulative budget is now `$73.69`.
+
+## [2026-07-11T04:46:45Z] P4/A-403-TLRY-NEWS-OFF-COMPLETE
+- TLRY news-off reached `JOB_STATE_SUCCEEDED` at `2026-07-11T04:46:23Z` with `6,000` outputs.
+- Synced artifacts locally and accepted the shard: `6,000/6,000` requests/outputs, `60` sim rows, fixed-parser rate `0.999333` (`5,996/6,000`), worker summary `valid_json_rate=0.996667`.
+- Removed TLRY news-off from `STATE.json` active jobs and actualized its budget row; conservative cumulative budget is now `$74.44`.

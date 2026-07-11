@@ -1,6 +1,6 @@
 {
   "phase": "P4",
-  "last_completed_task": "A-402-TLRY-N100-COMPLETE",
+  "last_completed_task": "A-403-TLRY-NEWS-OFF-COMPLETE",
   "active_jobs": [
     {
       "kind": "p4_oos_scaling",
@@ -25,17 +25,6 @@
       "region": "us-central1"
     },
     {
-      "kind": "p4_oos_news_off",
-      "job": "projects/423678956768/locations/us-central1/customJobs/7974382361628377088",
-      "run_id": "oos-2025-g1-news_off-tlry-alias-n100-v1",
-      "ticker": "TLRY",
-      "arm": "alias",
-      "n_agents": 100,
-      "gpu": "T4",
-      "spot": false,
-      "region": "us-central1"
-    },
-    {
       "kind": "p4_oos_personas_off",
       "job": "projects/423678956768/locations/us-central1/customJobs/5961836278147186688",
       "run_id": "oos-2025-g1-personas_off-tlry-alias-n100-v1",
@@ -47,7 +36,7 @@
       "region": "us-central1"
     }
   ],
-  "budget_est_usd": 73.69,
+  "budget_est_usd": 74.44,
   "blockers": [
     "N1000 scaling follow-ups were cancelled at partial outputs to respect the original $85 budget hard stop; preserved partial outputs: NVNI 10752/60000, TLRY 1408/60000."
   ],
