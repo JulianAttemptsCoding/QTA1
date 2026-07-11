@@ -66,3 +66,4 @@
 | 2026-07-11T02:17:52Z | projects/423678956768/locations/us-central1/customJobs/1092882131006259200 | agorasim-p4-scaling-tlry-alias-n1000-v1 | n1-standard-8 | 1x NVIDIA_TESLA_T4 | on-demand-cancelled-budget-guardrail | 0.62 | 0.30 | 0.19 | 72.83 |
 | 2026-07-11T01:20:26Z | projects/423678956768/locations/us-central1/customJobs/5357403950033141760 | agorasim-p4-scaling-tlry-alias-n100-v1 | n1-standard-8 | 1x NVIDIA_TESLA_T4 | on-demand | 2.86 | 0.30 | 0.86 | 73.69 |
 | 2026-07-11T02:15:50Z | projects/423678956768/locations/us-central1/customJobs/7974382361628377088 | agorasim-p4-news-off-tlry-alias-n100-v1 | n1-standard-8 | 1x NVIDIA_TESLA_T4 | on-demand | 2.51 | 0.30 | 0.75 | 74.44 |
+| 2026-07-11T02:15:49Z | projects/423678956768/locations/us-central1/customJobs/5961836278147186688 | agorasim-p4-personas-off-tlry-alias-n100-v1 | n1-standard-8 | 1x NVIDIA_TESLA_T4 | on-demand | 2.93 | 0.30 | 0.88 | 75.32 |
