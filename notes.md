@@ -3176,3 +3176,18 @@
 - Patched `AgentDecision` normalization and guided schemas so market-order `limit_price <= 0` is accepted/normalized to `None`; prompt now instructs market orders to use `limit_price: 0`.
 - Revalidated completed NVNI scaling N50/N100 and news-off with the fixed parser: N50 `0.998000`, N100 `0.998500`, news-off `0.996833`.
 - Cancelled unnecessary N50/N100 v2 retry jobs before they started (`8139924832306331648`, `4823692209817649152`) and removed them from active state.
+
+## [2026-07-11T01:32:35Z] P4/A-402-A-403-POLL
+- New-project-only poll (`agorasim-new`, `project-82d97cf9-5889-43a4-850`) confirmed the two v2 retries are `JOB_STATE_CANCELLED`; no old-account compute was touched.
+- Running jobs: NVNI scaling N300/N1000, NVNI personas-off, TLRY scaling N50/N100. Pending jobs: TLRY scaling N300/N1000, TLRY news-off, TLRY personas-off.
+- Output progress: NVNI N300 `6,400`, NVNI N1000 `7,552`, NVNI personas-off `3,640`, TLRY N50 `896`, TLRY N100 `384`; all remaining pending TLRY jobs `0`.
+
+## [2026-07-11T01:34:52Z] P4/T4-QUOTA-REQUEST
+- Requested additional `us-central1` T4 capacity on the new project only, raising preferred value from `6` to `12` for Vertex custom training regular T4 and Vertex custom training preemptible T4.
+- Also updated Compute Engine regular/preemptible T4 quota preferences from preferred `6` to `12` for completeness, though Vertex custom training quota is the quota used by the active Vertex jobs.
+- All four quota preference updates were accepted and are reconciling with contact `jjjsresearch@gmail.com`; existing grants at request time were Vertex regular `6`, Vertex preemptible `6`, Compute regular `1`, Compute preemptible `4`.
+
+## [2026-07-11T01:35:59Z] P4/A-402-A-403-POLL
+- Quota preferences remain reconciling at preferred value `12`; currently granted values are unchanged at Vertex regular `6`, Vertex preemptible `6`, Compute regular `1`, Compute preemptible `4`.
+- Active job state unchanged: five running, four pending, two cancelled retries, and three already accepted completions (NVNI N50/N100/news-off) under the fixed parser.
+- Output progress: NVNI N300 `6,528`, NVNI N1000 `7,680`, NVNI personas-off `3,768`, TLRY N50 `896`, TLRY N100 `512`; all remaining pending TLRY jobs `0`.
