@@ -1,6 +1,6 @@
 {
   "phase": "P4",
-  "last_completed_task": "A-402-TLRY-N50-COMPLETE",
+  "last_completed_task": "A-403-NVNI-PERSONAS-OFF-COMPLETE",
   "active_jobs": [
     {
       "kind": "p4_oos_scaling",
@@ -20,17 +20,6 @@
       "ticker": "NVNI",
       "arm": "alias",
       "n_agents": 1000,
-      "gpu": "T4",
-      "spot": false,
-      "region": "us-central1"
-    },
-    {
-      "kind": "p4_oos_personas_off",
-      "job": "projects/423678956768/locations/us-central1/customJobs/4473853998138392576",
-      "run_id": "oos-2025-g1-personas_off-nvni-alias-n100-v1",
-      "ticker": "NVNI",
-      "arm": "alias",
-      "n_agents": 100,
       "gpu": "T4",
       "spot": false,
       "region": "us-central1"
@@ -91,7 +80,7 @@
       "region": "us-central1"
     }
   ],
-  "budget_est_usd": 70.5,
+  "budget_est_usd": 71.32,
   "blockers": [],
   "trials_registered": 16
 }
