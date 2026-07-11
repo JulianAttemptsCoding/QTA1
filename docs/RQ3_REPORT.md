@@ -34,14 +34,14 @@
 
 | Signal | N | Trials | Annualized Sharpe | DSR |
 | --- | --- | --- | --- | --- |
-| crowd_weighted | 124 | 4 | -0.1329 | 0.1275 |
-| crowd_unweighted | 124 | 4 | -0.1329 | 0.1275 |
-| single_qwen | 124 | 4 | -0.4741 | 0.0866 |
-| momentum_1d | 123 | 4 | -0.0016 | 0.1475 |
-| momentum_5d | 119 | 4 | 0.0550 | 0.1615 |
-| momentum_20d | 104 | 4 | 1.0653 | 0.3901 |
-| ar1 | 103 | 4 | 0.6867 | 0.2961 |
-| logistic | 64 | 4 | -3.6416 | 0.0022 |
+| crowd_weighted | 124 | 16 | -0.1329 | 0.0299 |
+| crowd_unweighted | 124 | 16 | -0.1329 | 0.0299 |
+| single_qwen | 124 | 16 | -0.4741 | 0.0179 |
+| momentum_1d | 123 | 16 | -0.0016 | 0.0366 |
+| momentum_5d | 119 | 16 | 0.0550 | 0.0429 |
+| momentum_20d | 104 | 16 | 1.0653 | 0.1687 |
+| ar1 | 103 | 16 | 0.6867 | 0.1081 |
+| logistic | 64 | 16 | -3.6416 | 0.0003 |
 
 ## Per-Ticker Results
 

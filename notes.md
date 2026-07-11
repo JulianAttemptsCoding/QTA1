@@ -3298,3 +3298,12 @@
 - Requested additional Vertex-only training capacity on the new project: regular T4 preferred value `24` (`granted=12` at request time) and preemptible T4 preferred value `24` (`granted=12` at request time), both in `us-central1`.
 - Requested matching Vertex custom-training CPU quota for up to 24 `n1-standard-8` workers: regular CPUs preferred `192` (`granted=96` at request time) and preemptible CPUs preferred `192` (`granted=42` at request time).
 - All four quota preference updates were accepted and are reconciling with contact `jjjsresearch@gmail.com`; no quota request was made on the old project.
+
+## [2026-07-11T06:49:12Z] P4/A-501-RQ3-REFRESH
+- Regenerated `docs/RQ3_REPORT.md` from `runs/p4/main` only, not the broader `runs/p4` tree, so follow-up shards cannot leak into the main OOS report.
+- The report now uses the full registered trial ledger (`16` rows in `docs/TRIALS.md`) for DSR; row count remains `1,250` across `10` OOS tickers.
+
+## [2026-07-11T06:50:45Z] P4/VERTEX-T4-QUOTA-RESULT-24
+- Vertex AI custom training T4 quota request completed successfully on the new project: regular T4 `granted=24/preferred=24`, preemptible T4 `granted=24/preferred=24`.
+- Matching CPU quota requests are still reconciling: regular custom-training CPUs `granted=96/preferred=192`; preemptible custom-training CPUs `granted=42/preferred=192`.
+- Compute Engine T4 preferences remain denied from the prior request, which is non-blocking because active and planned heavy computation uses Vertex custom jobs.
