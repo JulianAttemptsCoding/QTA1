@@ -3255,3 +3255,7 @@
 - NVNI personas-off reached `JOB_STATE_SUCCEEDED` at `2026-07-11T02:38:27Z` with `6,000` outputs.
 - Synced artifacts locally and accepted the shard: `6,000/6,000` requests/outputs, `60` sim rows, fixed-parser rate `0.998500` (`5,991/6,000`), worker summary `valid_json_rate=0.990000`.
 - Removed NVNI personas-off from `STATE.json` active jobs and actualized its budget row; conservative cumulative budget is now `$71.32`.
+
+## [2026-07-11T02:46:56Z] P4/A-402-A-403-POLL-QA
+- Remaining active outputs: NVNI N300 `8,832`, NVNI N1000 `10,368`, TLRY N100 `2,688`, TLRY N300 `1,024+`, TLRY N1000 `1,024+`, TLRY news-off `1,152`, TLRY personas-off `1,024`.
+- Fixed-parser QA remains healthy on remaining TLRY shards: TLRY N100 `0.998140`, TLRY N300 `0.999132`, TLRY N1000 `0.999132`, TLRY news-off `0.999132`, TLRY personas-off `0.998047`.
