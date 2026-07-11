@@ -69,6 +69,18 @@ The N1000 scaling shards were intentionally cancelled under the original budget
 guardrail, preserving partial GCS outputs only for audit: NVNI `10,752/60,000`,
 TLRY `1,408/60,000`.
 
+## Price Tracking And Tradability
+
+Source: `docs/PRICE_TRACKING_REPORT.md` and
+`docs/ARBITRAGE_TEST_PROTOCOL.md`.
+
+The repository now includes simulated auction-price vs actual-close overlays for
+all available P3/P4 splits: calibration, OOS main, and OOS follow-ups. The price
+track is diagnostic only. Many OOS auction-price paths are flat or weakly
+correlated with actual closes, and current spread diagnostics do not establish
+an arbitrage opportunity. Any tradability claim requires a new pre-registered,
+cost-aware, multiple-testing-adjusted holdout or live paper-trading experiment.
+
 ## Compute And Budget
 
 Final conservative tracked spend is `$80.25`, below the original `$85` guardrail

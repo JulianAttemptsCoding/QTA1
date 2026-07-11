@@ -63,11 +63,14 @@ docs/RQ1_REPORT.md       P3 calibration realism / stylized-fact report
 docs/RQ2_REPORT.md       P3 crowd-fidelity, named-vs-alias, and G3 report
 docs/RQ3_REPORT.md       main OOS prediction report
 docs/P4_FOLLOWUP_REPORT.md  scaling and ablation follow-up report
+docs/PRICE_TRACKING_REPORT.md  simulated auction price vs actual close plots
+docs/ARBITRAGE_TEST_PROTOCOL.md  rigorous protocol for any tradability claim
 docs/RESULTS_REPORT.md   end-to-end research summary
 docs/INVESTOR_ONE_PAGER.md  concise PoC summary
 scripts/p4_gate_budget.py  measured G4 cost-per-decision checkpoint
 scripts/p4_collect_oos.py  RQ3 IC/hit/DM/bootstrap/DSR statistics
 scripts/p4_collect_followups.py  A-402/A-403 scaling and ablation statistics
+scripts/p5_price_tracking.py  P3/P4 price overlay figures and diagnostics
 docs/TRIALS.md           registered trial count
 notebooks/agorasim_demo.ipynb  local replay notebook for archived artifacts
 configs/                 smoke / calibration / OOS experiment configs

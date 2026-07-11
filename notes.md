@@ -3319,3 +3319,10 @@
 - Updated `README.md` to show G4/G5 complete, final budget `$80.25`, final report paths, and `62/62` local tests passing.
 - Final QA: `python -m pytest -q` passed `62/62`; `STATE.json` and the notebook JSON validate; `git diff --check` passed; strict tracked-file HF token-shaped scan returned no hits.
 - `STATE.json` now records phase `P6`, no active jobs, and final task `A-602-COMPLETE`; the only blocker is the documented N1000 budget-cancelled partial follow-up, which is intentionally not resumed.
+
+## [2026-07-11T11:20:00Z] P6/A-603-PRICE-ARBITRAGE-DIAGNOSTICS
+- Added `scripts/p5_price_tracking.py` plus tests to generate simulated auction-price vs actual-close overlays from archived P3/P4 `sim.jsonl` artifacts without any new LLM inference.
+- Generated `docs/PRICE_TRACKING_REPORT.md` and `40` SVG overlays under `docs/figures/price_tracking`: `20` calibration runs, `10` OOS main runs, and `10` OOS follow-up runs.
+- Confirmed OOS exists and is explicitly separated: `oos-2025-main` and `oos-2025-followups`; P3 `calib-2019` is not OOS.
+- Added `docs/ARBITRAGE_TEST_PROTOCOL.md`, grounded in SEC backtest-performance guidance, Deflated Sharpe Ratio, White Reality Check/data-snooping literature, and FINRA intraday-margin guidance.
+- Interpretation: current price-spread diagnostics are exploratory and do not prove arbitrage; any tradability claim requires a new pre-registered, cost-aware, multiple-testing-adjusted holdout or live paper-trading test.
